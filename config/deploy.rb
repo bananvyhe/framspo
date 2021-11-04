@@ -2,8 +2,9 @@
 lock "~> 3.16.0"
 
 set :application, "farmspot"
-set :repo_url, "git://github.com:bananvyhe/framspo.git"
-
+set :repo_url, "git@github.com:bananvyhe/framspo.git"
+set :stage, :production
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -23,7 +24,7 @@ set :deploy_to, "/home/deploy/apps/farmspot"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # Default value for :linked_files is []
 append :linked_files, "config/database.yml"
-
+set :linked_files, %w{config/master.key}
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
