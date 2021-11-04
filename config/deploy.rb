@@ -19,7 +19,8 @@ set :deploy_to, "/home/deploy/apps/farmspot"
 
 # Default value for :pty is false
 # set :pty, true
-
+# set :rbenv_map_bins, %w{rake gem bundle ruby rails sidekiq sidekiqctl}
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # Default value for :linked_files is []
 append :linked_files, "config/database.yml"
 
