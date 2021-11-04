@@ -4,7 +4,7 @@ lock "~> 3.16.0"
 set :application, "farmspot"
 set :repo_url, "git@github.com:bananvyhe/framspo.git"
 set :stage, :production
-set :branch, ENV['BRANCH'] if ENV['BRANCH']
+set :branch, "main"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
