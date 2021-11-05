@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: framspo_production
-  username: framspo
+  username: deploy
   password: Rails.application.credentials.mail_secret
