@@ -83,4 +83,4 @@ production:
   <<: *default
   database: framspo_production
   username: framspo
-  password: <%= ENV['FRAMSPO_DATABASE_PASSWORD'] %>
+  password: Rails.application.credentials.mail_secret
