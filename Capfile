@@ -33,7 +33,7 @@ install_plugin Capistrano::SCM::Git
 require 'capistrano/sidekiq'
 require 'capistrano/sidekiq/monit'
 set :sidekiq_service_unit_name, 'frmspot'
-set :init_system, :systemd
+# set :init_system, :systemd
 set :upstart_service_name, 'sidekiq_framnspo'
 set :sidekiq_processes, 5
 set :sidekiq_options_per_process, ["--queue high", "--queue default --queue low"]
