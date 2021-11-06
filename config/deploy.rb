@@ -18,6 +18,25 @@ set :deploy_to, "/home/deploy/apps/farmspot"
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
 SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
+namespace :deploy do
+	desc "Update cron jobs"
+  task :update_crontab do
+  	on roles(:deploy) do
+  		run "cd #{release_path} && whenever --update-crontab farmspot"
+  	end
+  end
+    desc "Clear cron jobs"
+  task :clear_crontab do
+  	on roles(:deploy) do
+    	run "cd #{release_path} && whenever --clear-crontab farmspot"
+  	end
+  end
+end
+after 'deploy:starting', 'deploy:clear_crontab'
+after 'deploy:starting', 'deploy:update_crontab'
+after 'deploy:starting', 'sidekiq:quiet'
+after 'deploy:reverted', 'sidekiq:restart'
+after 'deploy:published', 'sidekiq:restart'
 # Default value for :pty is false
 # set :pty, true
 set :pty,  false
