@@ -10,7 +10,6 @@ set :branch, "main"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/deploy/apps/farmspot"
-set :pty,  false
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
