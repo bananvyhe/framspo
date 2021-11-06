@@ -47,9 +47,7 @@ namespace :deploy do
 end
 after 'deploy:starting', 'deploy:clear_crontab'
 after 'deploy:starting', 'deploy:update_crontab'
-after 'deploy:starting', 'sidekiq:quiet'
-after 'deploy:reverted', 'sidekiq:restart'
-after 'deploy:published', 'sidekiq:restart'
+
 
 # Default value for :pty is false
 # set :pty, true
