@@ -27,6 +27,13 @@ install_plugin Capistrano::SCM::Git
 #   https://github.com/capistrano/passenger
 #
 # require "capistrano/rvm"
+require 'capistrano/sidekiq'
+require 'capistrano/sidekiq/monit'
+set :sidekiq_service_unit_name, 'frmspot'
+set :init_system, :systemd
+set :upstart_service_name, 'farmspot_pxtech'
+set :sidekiq_processes, 5
+set :sidekiq_options_per_process, ["--queue high", "--queue default --queue low"]
 require "capistrano/rbenv"
 # require "capistrano/chruby"
 require "capistrano/bundler"
