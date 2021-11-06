@@ -17,11 +17,13 @@ set :pty,  false
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
-
+SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
+SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
 # Default value for :pty is false
 # set :pty, true
+set :pty,  false
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails sidekiq sidekiqctl}
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_map_bins, %w{rake gem bundle ruby rails sidekiq sidekiqctl}
 # Default value for :linked_files is []
 append :linked_files, "config/database.yml"
 set :linked_files, %w{config/master.key}
