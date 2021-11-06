@@ -1,6 +1,17 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
-
+namespace :sidekiq do
+  task :quiet do
+    on roles(:app) do
+      puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
+    end
+  end
+  task :restart do
+    on roles(:app) do
+      execute :sudo,  :restart, :workers
+    end
+  end
+end
 set :application, "farmspot"
 set :repo_url, "git@github.com:bananvyhe/framspo.git"
 set :stage, :production
@@ -18,6 +29,8 @@ set :deploy_to, "/home/deploy/apps/farmspot"
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
 SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
+
+
 namespace :deploy do
 	desc "Update cron jobs"
   task :update_crontab do
@@ -37,6 +50,7 @@ after 'deploy:starting', 'deploy:update_crontab'
 after 'deploy:starting', 'sidekiq:quiet'
 after 'deploy:reverted', 'sidekiq:restart'
 after 'deploy:published', 'sidekiq:restart'
+
 # Default value for :pty is false
 # set :pty, true
 set :pty,  false
