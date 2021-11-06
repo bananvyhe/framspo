@@ -1,7 +1,8 @@
 class HardWorker
   include Sidekiq::Worker
 
-  def perform(*args)
-    # Do something
-  end
+	def perform
+		puts "hello"
+	end
+ 
 end
