@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
 	root to: 'welcome#index'
   get 'welcome/index'
+  match "/404", :to => "errors#not_found", :via => :all
+	match "/500", :to => "errors#internal_server_error", :via => :all
   Sidekiq::Web.set :session_secret, Rails.application.credentials[:secret_key_base]
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     # Protect against timing attacks:
