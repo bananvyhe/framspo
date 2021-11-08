@@ -2,7 +2,9 @@ class HardWorker
   include Sidekiq::Worker
 
 	def perform
-		puts "hello"
+		adf = 2*2+6
+		puts  adf
+
 	end
  
 end
