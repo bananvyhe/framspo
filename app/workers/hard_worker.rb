@@ -3,7 +3,7 @@ class HardWorker
 
 	def perform
 		adf = Post.all
- 
+ 		
 
 	end
  

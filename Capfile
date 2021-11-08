@@ -34,9 +34,9 @@ install_plugin Capistrano::SCM::Git
 require 'capistrano/sidekiq'
 require 'capistrano/sidekiq/monit'
 require "whenever/capistrano"
-set :sidekiq_service_unit_name, 'frmspot'
+set :sidekiq_service_unit_name, 'farmspot'
 # set :init_system, :systemd 
-set :upstart_service_name, 'sidekiq_framnspo'
+set :upstart_service_name, 'sidekiq_farmspot'
 set :sidekiq_processes, 5
 set :sidekiq_options_per_process, ["--queue high", "--queue default --queue low"]
 require "capistrano/rbenv"
