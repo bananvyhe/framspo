@@ -27,8 +27,6 @@ set :deploy_to, "/home/deploy/apps/farmspot"
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
-SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
-SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
 
 
 namespace :deploy do
@@ -47,6 +45,9 @@ namespace :deploy do
 end
 after 'deploy:starting', 'deploy:clear_crontab'
 after 'deploy:starting', 'deploy:update_crontab'
+
+SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
+SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
 
 namespace :sidekiq do
   desc 'Quiet sidekiq (stop fetching new tasks from Redis)'
