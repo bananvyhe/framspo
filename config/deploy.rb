@@ -15,7 +15,7 @@ set :rbenv_ruby, '3.0.2'
 # end
 set :application, "farmspot"
 set :repo_url, "git@github.com:bananvyhe/framspo.git"
-set :stage, :production
+
 set :branch, "main"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -52,58 +52,43 @@ SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
 
  # set :init_system, :systemd
 # set :sidekiq_systemd_unit_name, "sidekiq"
-# namespace :sidekiq do
-#   desc 'Quiet sidekiq (stop fetching new tasks from Redis)'
-#   task :quiet do
-#     on roles fetch(:sidekiq_roles) do
-#       # See: https://github.com/mperham/sidekiq/wiki/Signals#tstp
-#       execute :systemctl, '--user', 'kill', '-s', 'SIGTSTP', fetch(:sidekiq_systemd_unit_name), raise_on_non_zero_exit: false
-#     end
-#   end
-
-#   desc 'Stop sidekiq (graceful shutdown within timeout, put unfinished tasks back to Redis)'
-#   task :stop do
-#     on roles fetch(:sidekiq_roles) do
-#       # See: https://github.com/mperham/sidekiq/wiki/Signals#tstp
-#       execute :systemctl, '--user', 'kill', '-s', 'SIGTERM', fetch(:sidekiq_systemd_unit_name), raise_on_non_zero_exit: false
-#     end
-#   end
-
-#   desc 'Start sidekiq'
-#   task :start do
-#     on roles fetch(:sidekiq_roles) do
-#       execute :systemctl, '--user', 'start', fetch(:sidekiq_systemd_unit_name)
-#     end
-#   end
-
-#   desc 'Restart sidekiq'
-#   task :restart do
-#     on roles fetch(:sidekiq_roles) do
-#       execute :systemctl, '--user', 'restart', fetch(:sidekiq_systemd_unit_name)
-#     end
-#   end
-# end
-
 namespace :sidekiq do
+  desc 'Quiet sidekiq (stop fetching new tasks from Redis)'
   task :quiet do
-    on roles(:app) do
-      puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
+    on roles fetch(:sidekiq_roles) do
+      # See: https://github.com/mperham/sidekiq/wiki/Signals#tstp
+      execute :systemctl, '--user', 'kill', '-s', 'SIGTSTP', fetch(:sidekiq_systemd_unit_name), raise_on_non_zero_exit: false
     end
   end
+
+  desc 'Stop sidekiq (graceful shutdown within timeout, put unfinished tasks back to Redis)'
+  task :stop do
+    on roles fetch(:sidekiq_roles) do
+      # See: https://github.com/mperham/sidekiq/wiki/Signals#tstp
+      execute :systemctl, '--user', 'kill', '-s', 'SIGTERM', fetch(:sidekiq_systemd_unit_name), raise_on_non_zero_exit: false
+    end
+  end
+
+  desc 'Start sidekiq'
+  task :start do
+    on roles fetch(:sidekiq_roles) do
+      execute :systemctl, '--user', 'start', fetch(:sidekiq_systemd_unit_name)
+    end
+  end
+
+  desc 'Restart sidekiq'
   task :restart do
-    on roles(:app) do
-      execute :sudo,  :restart, :workers
+    on roles fetch(:sidekiq_roles) do
+      execute :systemctl, '--user', 'restart', fetch(:sidekiq_systemd_unit_name)
     end
   end
 end
+ 
+
+
 after 'deploy:starting', 'sidekiq:quiet'
-after 'deploy:reverted', 'sidekiq:restart'
-after 'deploy:published', 'sidekiq:restart'
-
-
-# after 'deploy:starting', 'sidekiq:quiet'
-# after 'deploy:updated', 'sidekiq:stop'
-# after 'deploy:published', 'sidekiq:start'
+after 'deploy:updated', 'sidekiq:stop'
+after 'deploy:published', 'sidekiq:start'
 after 'deploy:published', 'passenger:restart'
 # after 'deploy:failed', 'sidekiq:restart'
 
