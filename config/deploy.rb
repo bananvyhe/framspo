@@ -49,6 +49,8 @@ after 'deploy:starting', 'deploy:update_crontab'
 SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
 SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
 
+set :sidekiq_roles, -> { :app }
+set :sidekiq_systemd_unit_name, "sidekiq@#{fetch(:stage)}"
 namespace :sidekiq do
   desc 'Quiet sidekiq (stop fetching new tasks from Redis)'
   task :quiet do

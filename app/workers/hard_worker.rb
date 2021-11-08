@@ -1,4 +1,4 @@
-class HardWorker
+class HardWorker < ApplicationController
   include Sidekiq::Worker
 
 	def perform
