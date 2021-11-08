@@ -32,6 +32,7 @@ install_plugin Capistrano::SCM::Git
 # require "capistrano/rvm"
 require 'capistrano/sidekiq'
 require 'capistrano/sidekiq/monit'
+require "whenever/capistrano"
 set :sidekiq_service_unit_name, 'frmspot'
 # set :init_system, :systemd
 set :upstart_service_name, 'sidekiq_framnspo'
