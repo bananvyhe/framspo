@@ -1,0 +1,54 @@
+# place file in /home/%user%/.config/systemd/user/sidekiq.service
+# 
+# run w/o sudo:
+# attention "--user" is an option, not a username on the system!
+#
+# systemctl --user reenable sidekiq
+# systemctl --user daemon-reload
+# systemctl --user restart sidekiq
+#
+# check sidekiq is run:
+# systemctl --user status sidekiq
+# ps aux | grep [s]idekiq
+# http://deployserver/sidekiq/busy
+# 
+# or run task capistrano from dev server
+# add lines in config/deploy.rb:
+# set :init_system, :systemd
+# set :service_unit_name, "sidekiq"
+# and run:
+# cap production sidekiq:restart
+ 
+[Unit]
+Description=sidekiq
+After=syslog.target network.target redis-server.service
+ 
+[Service]
+Type=simple
+WorkingDirectory=/home/deployer/project/current
+ExecStart=/home/deployer/.rvm/bin/rvm default do bundle exec sidekiq -e production -C /home/deployer/project/shared/config/sidekiq.yml
+# if need PID-file uncomment these two lines:
+# ExecStartPost=/bin/sh -c "/bin/systemctl --user show -p MainPID sidekiq 2>/dev/null | /usr/bin/cut -d= -f2 > /home/deployer/project/shared/tmp/pids/sidekiq.pid"
+# PIDFile=/home/deployer/project/shared/tmp/pids/sidekiq.pid
+ 
+# use `systemctl reload sidekiq` to send the quiet signal to Sidekiq
+# at the start of your deploy process.
+ExecReload=/bin/kill -TSTP $MAINPID
+ 
+# Greatly reduce Ruby memory fragmentation and heap usage
+# https://www.mikeperham.com/2018/04/25/taming-rails-memory-bloat/
+Environment=MALLOC_ARENA_MAX=2
+ 
+# if we crash, restart
+RestartSec=3
+Restart=on-failure
+ 
+# output goes to /var/log/syslog
+StandardOutput=syslog
+StandardError=syslog
+#
+# This will default to "bundler" if we don't specify it
+SyslogIdentifier=sidekiq
+ 
+[Install]
+WantedBy=multi-user.target
