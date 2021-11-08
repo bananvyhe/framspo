@@ -83,6 +83,7 @@ end
 after 'deploy:starting', 'sidekiq:quiet'
 after 'deploy:updated', 'sidekiq:stop'
 after 'deploy:published', 'sidekiq:start'
+after 'deploy:published', 'passenger:restart'
 after 'deploy:failed', 'sidekiq:restart'
 
 # Default value for :pty is false

@@ -21,6 +21,7 @@ gem 'sidekiq', '< 7'
 gem 'whenever', require: false
 gem 'redis-namespace'
 gem 'sidekiq-client-cli'
+gem 'capistrano-passenger'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
