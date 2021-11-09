@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'sidekiq', '< 6'
 gem 'whenever', require: false
 gem 'redis-namespace'
-gem 'sidekiq-client-cli'
+
 gem 'capistrano-passenger'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -34,15 +34,17 @@ gem 'capistrano-passenger'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
-  gem "capistrano", "~> 3.10", require: false
-  gem "capistrano-rails", "~> 1.6", require: false  
-  gem 'capistrano-rbenv', '~> 2.2'
-  gem 'capistrano-sidekiq'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.6", require: false  
+  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano-sidekiq'
+  gem 'sidekiq-client-cli'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
