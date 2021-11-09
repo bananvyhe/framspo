@@ -19,7 +19,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'sidekiq', '< 6'
 gem 'whenever', require: false
-
+gem 'redis-namespace'
 
 gem 'capistrano-passenger'
 # Use Redis adapter to run Action Cable in production
