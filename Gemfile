@@ -23,7 +23,8 @@ gem 'sidekiq', '< 6'
 gem 'whenever', require: false
 gem 'capistrano-sidekiq'
 gem 'sidekiq-client-cli'
-
+gem 'ed25519'  
+gem 'bcrypt_pbkdf'  
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
