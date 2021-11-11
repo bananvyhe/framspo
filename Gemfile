@@ -18,11 +18,10 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 gem "redis"
+gem 'sidekiq-client-cli'
 gem 'redis-namespace'
 gem 'sidekiq', '< 6'
 gem 'whenever'
-gem 'capistrano-sidekiq'
-gem 'sidekiq-client-cli'
 gem 'ed25519'  
 gem 'bcrypt_pbkdf'  
 # Use Redis adapter to run Action Cable in production
@@ -43,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano-sidekiq'
   gem 'capistrano-passenger'
   gem "capistrano", "~> 3.10", require: false
   gem "capistrano-rails", "~> 1.6", require: false  
