@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.7'
 gem "redis"
 gem 'redis-namespace'
 gem 'sidekiq', '< 6'
-gem 'whenever', require: false
+gem 'whenever'
 gem 'capistrano-sidekiq'
 gem 'sidekiq-client-cli'
 gem 'ed25519'  
