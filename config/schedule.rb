@@ -3,7 +3,7 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 env :PATH, ENV['PATH']
-job_type :sidekiq,  "cd :path && RAILS_ENV=:environment sidekiq-client :task :output"
+job_type :sidekiq,  "cd :path && RAILS_ENV=:environment sidekiq-client -r false :task :output"
 # job_type :sidekiq, "cd :path && BUNDLE_PATH=/bundle /usr/local/bin/bundle exec sidekiq-client :task :output"
 set :output, "#{path}/log/sidekiq.log"
 set :environment, :production

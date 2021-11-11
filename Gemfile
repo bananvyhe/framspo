@@ -18,12 +18,13 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 gem "redis"
-gem 'sidekiq-client-cli'
+
 gem 'redis-namespace'
 gem 'sidekiq', '< 6'
 gem 'whenever'
 gem 'ed25519'  
 gem 'bcrypt_pbkdf'  
+gem 'sidekiq-client-cli'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
