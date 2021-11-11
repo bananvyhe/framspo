@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.7'
 gem "redis"
 
 gem 'redis-namespace'
-gem 'sidekiq', '< 6'
+gem 'sidekiq', ' ~> 5.2.5'
 gem 'whenever'
 gem 'ed25519'  
 gem 'bcrypt_pbkdf'  

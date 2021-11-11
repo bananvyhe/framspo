@@ -270,7 +270,7 @@ DEPENDENCIES
   redis-namespace
   sass-rails (>= 6)
   selenium-webdriver
-  sidekiq (< 6)
+  sidekiq (~> 5.2.5)
   sidekiq-client-cli
   spring
   turbolinks (~> 5)
