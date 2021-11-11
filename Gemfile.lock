@@ -176,7 +176,7 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.1.4)
+    redis (4.5.1)
     redis-namespace (1.8.1)
       redis (>= 3.0.4)
     regexp_parser (2.1.1)
@@ -197,11 +197,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    sidekiq (5.2.9)
+    sidekiq (5.2.5)
       connection_pool (~> 2.2, >= 2.2.2)
-      rack (~> 2.0)
+      rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 4.2)
+      redis (>= 3.3.5, < 5)
     sidekiq-client-cli (0.1.7)
       cli
       sidekiq (>= 2.15)
@@ -270,7 +270,7 @@ DEPENDENCIES
   redis-namespace
   sass-rails (>= 6)
   selenium-webdriver
-  sidekiq (~> 5.2.5)
+  sidekiq (= 5.2.5)
   sidekiq-client-cli
   spring
   turbolinks (~> 5)
