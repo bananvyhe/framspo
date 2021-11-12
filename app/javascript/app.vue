@@ -2,7 +2,11 @@
   <div id="app">
     <v-app>
       <v-main>
-        <v-container><p>{{message}}<i> {{ tl }}</i></p></v-container>
+        <v-container>
+          <p>{{message}}<i> {{ tl }}</i></p>
+
+          <v-card>новости</v-card>
+        </v-container>
       </v-main>
     </v-app>
   </div>
