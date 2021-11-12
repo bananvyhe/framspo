@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <p>{{message}}<i> {{ tl }}</i></p>
+    <v-app>
+      <v-main>
+        <v-container><p>{{message}}<i> {{ tl }}</i></p></v-container>
+      </v-main>
+    </v-app>
   </div>
 </template>
 
