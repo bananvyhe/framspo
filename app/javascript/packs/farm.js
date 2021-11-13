@@ -10,9 +10,62 @@ import Vue from 'vue'
 import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
 
-import Vuetify from 'vuetify'
-Vue.use(Vuetify)
-
+// import Vuetify from 'vuetify/lib'
+// Vue.use(Vuetify)
+Vue.use(Vuetify, {
+	components: {
+		// VRadio,
+		// VRadioGroup,
+		// VTextField,
+		VCol,
+		VRow,
+		VContainer,
+		// VForm,
+		// VIcon,
+		// VSpacer,
+		// VToolbarTitle,
+		// VAppBarNavIcon,
+		VAppBar,
+		VMain,
+		VApp,
+		// VAlert,
+		VCard,
+		VCardTitle,
+		// VCardActions,
+		VBtn,
+		// VListItem,
+		// VListItemContent,
+		// VListItemTitle,
+		// VListItemSubtitle,
+		// VListItemAvatar,
+	}
+}) 
+import Vuetify, {
+	// VRadio,
+	// VRadioGroup,
+	// VTextField,
+	VCol,
+	VRow,
+	VContainer,
+	// VForm,
+	// VIcon,
+	// VSpacer,
+	// VToolbarTitle,
+	// VAppBarNavIcon,
+	VAppBar,
+	VMain,
+	VApp,
+	// VAlert,
+	VCard,
+	VCardTitle,
+	// VCardActions,
+	VBtn,
+	// VListItem,
+	// VListItemContent,
+	// VListItemTitle,
+	// VListItemSubtitle,
+	// VListItemAvatar,
+} from 'vuetify/lib'
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
   	vuetify: new Vuetify(),

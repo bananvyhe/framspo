@@ -4,7 +4,7 @@
       <v-main>
         <v-container>
           <p>{{message}}<i> {{ tl }}</i></p>
-
+ 
           <v-card>новости</v-card>
         </v-container>
       </v-main>
