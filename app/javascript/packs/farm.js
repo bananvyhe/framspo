@@ -10,8 +10,9 @@ import Vue from 'vue'
 import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
 
-// import Vuetify from 'vuetify/lib'
+// import Vuetify from 'vuetify'
 // Vue.use(Vuetify)
+
 Vue.use(Vuetify, {
 	components: {
 		// VRadio,
@@ -66,6 +67,8 @@ import Vuetify, {
 	// VListItemSubtitle,
 	// VListItemAvatar,
 } from 'vuetify/lib'
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
   	vuetify: new Vuetify(),
