@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-<!--     <v-app>
+    <v-app>
       <v-main>
-        <v-container> -->
+        <v-container>
           <p>{{message}}<i> {{ tl }}</i></p>
 
           <v-card>новости</v-card>
-<!--         </v-container>
+        </v-container>
       </v-main>
-    </v-app> -->
+    </v-app>
   </div>
 </template>
 
