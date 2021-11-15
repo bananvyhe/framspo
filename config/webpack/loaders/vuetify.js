@@ -31,11 +31,7 @@ module.exports = {
           loader: 'sass-loader',
         // Requires sass-loader@^8.0.0
           options: {
-            stats: {
-            // One of the two if I remember right
-             entrypoints: false,
-             children: false
-          },
+ 
           // This is the path to your variables
           // additionalData: "@import '@/app/javascript/stylesheets/scss/_variables.scss';"
           },
