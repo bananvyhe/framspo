@@ -1,10 +1,12 @@
 
 module.exports = {
+
       // SASS has different line endings than SCSS
       // and cannot use semicolons in the markup
       // SCSS has different line endings than SASS
       // and needs a semicolon after the import.
   rules: [
+
      // SASS has different line endings than SCSS
       // and cannot use semicolons in the markup
       // {
@@ -20,6 +22,7 @@ module.exports = {
       //   ],
       // },
     {
+
       test: /\.scss$/,
       use: [
         'vue-style-loader',
@@ -28,6 +31,11 @@ module.exports = {
           loader: 'sass-loader',
         // Requires sass-loader@^8.0.0
           options: {
+            stats: {
+            // One of the two if I remember right
+             entrypoints: false,
+             children: false
+          },
           // This is the path to your variables
           // additionalData: "@import '@/app/javascript/stylesheets/scss/_variables.scss';"
           },
