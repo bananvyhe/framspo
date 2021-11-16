@@ -26,6 +26,7 @@ gem 'redis-namespace'
 gem 'ed25519'  
 gem 'bcrypt_pbkdf'  
 gem 'httparty'
+gem 'mechanize'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
