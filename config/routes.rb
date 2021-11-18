@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get 'news/index'
 	require "sidekiq/web"
-
+	post :news, to: "news#create"
+  get :news, to: "news#index"
 	root to: 'welcome#index'
   get 'welcome/index'
   resources :users
