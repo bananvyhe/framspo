@@ -9,7 +9,6 @@ class HardWorker < ApplicationController
 	
 	def perform
 		@rowsd = Array.new
-		@tokenrapid = "bearer " + %x{yc iam create-token}
 		@s = 3
 		def selection_scrapped(row)
 			pic = row.css('img').attr('src').to_s
@@ -29,23 +28,6 @@ class HardWorker < ApplicationController
 			}
 			@rowsd = [*@rowsd, data]
 
-			# def transclucate |in|
-			# 	@headersb = {
-	  #       "Content-Type" => "application/json",
-	  #       "Authorization" => @tokenrapid 
-	  #     }
-	  #     bodyb = {
-	  #       "folderId"=>"b1g86cba4bfmnhhsnobp",
-	  #       "texts"=> in,
-	  #       "targetLanguageCode"=>"ru"
-	  #     }
-	  #     resp = HTTParty.post("https://translate.api.cloud.yandex.net/translate/v2/translate", headers: @headersb, body: bodyb.to_json)
-	  #     render = JSON.parse resp.to_s 
-	  #     out = render["translations"]
-	  #     tex = out[0]
-	  #     headfin = tex.slice("text")['text']
-	  #     puts headfin
-			# end
 		end
  		agent = Mechanize.new
  		url='https://www.pocketgamer.biz/asia/news/'
@@ -62,7 +44,18 @@ class HardWorker < ApplicationController
 				end
 			end
 		end
-		puts @rowsd
+		headers = {
+			"Content-Type" => "application/json"  
+		}
+		if Rails.env.production?
+			HTTParty.post("https://farmspot.ru/news",headers: headers, body: @rowsd.to_json)
+		end
+		if Rails.env.development?
+			HTTParty.post("http://localhost:3000/news",headers: headers, body: @rowsd.to_json)
+		end		
+
+
+		# puts @rowsd
 	end
 
 end
