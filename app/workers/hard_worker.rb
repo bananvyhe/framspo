@@ -4,9 +4,31 @@ class HardWorker < ApplicationController
 	require 'mechanize'
 	require 'json'
 	require 'httparty'
-
+	# require 'openssl'
+	# require 'uri'
 	def perform
 		def selection_scrapped(row)
+			pic = row.css('img').attr('src').to_s
+			link = row.css('a').attr('href').to_s
+			head = row.css('.qualifier').inner_text.to_s
+			date = row.css('.date').inner_text.to_s
+			desc = row.css('h2').inner_text.to_s
+
+			tokenrapid = "bearer " + %x{yc iam create-token}
+			@headersb = {
+        "Content-Type" => "application/json",
+        "Authorization" => tokenrapid 
+      }
+      bodyb = {
+        "folderId"=>"b1g86cba4bfmnhhsnobp",
+        "texts"=> head,
+        "targetLanguageCode"=>"ru"
+      }
+      resp = HTTParty.post("https://translate.api.cloud.yandex.net/translate/v2/translate", headers: @headersb, body: bodyb.to_json)
+      render = JSON.parse resp.to_s 
+      puts render
+
+
 			# rowd = row.css('.item item-list').inner_text
 			# puts '5'
 			# puts rowd
@@ -39,11 +61,12 @@ class HardWorker < ApplicationController
 				@m = @m + 1
 				puts @m
 				if @m != 5
-					puts rowf.css('img').attr('src').to_s
-					puts rowf.css('a').attr('href').to_s
-					puts rowf.css('.qualifier').inner_text.to_s
-					puts rowf.css('.date').inner_text.to_s
-					puts rowf.css('h2').inner_text.to_s
+					selection_scrapped(rowf)
+					# puts rowf.css('img').attr('src').to_s
+					# puts rowf.css('a').attr('href').to_s
+					# puts rowf.css('.qualifier').inner_text.to_s
+					# puts rowf.css('.date').inner_text.to_s
+					# puts rowf.css('h2').inner_text.to_s
 				end
  				# selection_scrapped(rowf)
  				# puts "ds"
