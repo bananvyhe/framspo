@@ -3,9 +3,11 @@
     <v-app>
       <v-main>
         <v-container>
-          <p>{{message}}<i> {{ tl }}</i></p>
+          <v-app-bar app dense hide-on-scroll>
+            <p>{{message}}<i> {{ tl }}</i></p>
+          </v-app-bar>
 
-          <v-card>новости</v-card>
+          <news></news>
         </v-container>
       </v-main>
     </v-app>
@@ -13,7 +15,11 @@
 </template>
 
 <script>
+import News from './news.vue'
 export default {
+  components: {
+    'news': News
+  },
   data: function () {
     return {
       message: "project",
