@@ -7,9 +7,10 @@ class TobdWorker < ApplicationController
   def perform (pic, head, desc, date, link, tokenrapid)
 
     # puts desc
-
+    @m = 0
     def tranklukate(ina, tokenrapid)
-      puts tokenrapid
+      @m = @m + 1
+      puts @m
         @headersb = {
           "Content-Type" => "application/json",
           "Authorization" => tokenrapid 
@@ -26,17 +27,17 @@ class TobdWorker < ApplicationController
         out = render["translations"]
         tex = out[0]
         headfin = tex.slice("text")['text']
-        puts headfin
+        # puts headfin
     end
 
-    headfin = tranklukate(head, tokenrapid )
-    contentfin = tranklukate(head, tokenrapid )
+    headfin = tranklukate(head, tokenrapid).to_s
+    contentfin = tranklukate(desc, tokenrapid).to_s
 
-    puts headfin
-    puts contentfin
     sleep(1)
+    @news = News.new({:pic => pic, :head => headfin,:desc => contentfin,:date => date,:link => link})
+    @news.save
 
-
+    # puts headfin
 
 
      # @headersb = {
