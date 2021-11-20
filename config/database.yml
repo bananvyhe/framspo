@@ -83,4 +83,4 @@ production:
   <<: *default
   database: framspo_production
   username: deploy
-  password: <%= ENV['FRAMSPO_DATABASE_PASSWORD'] %>
+  password: <%= ENV['FARMSPOT_DATABASE_PASSWORD'] %>
