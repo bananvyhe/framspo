@@ -1,9 +1,9 @@
 class HardWorker < ApplicationController
-	include Sidekiq::Worker
 	wrap_parameters format: [:json, :xml]
 	require 'mechanize'
 	require 'json'
 	require 'httparty'
+	include Sidekiq::Worker
 	# require 'openssl'
 	# require 'uri'
 	
