@@ -6,7 +6,7 @@ class NewsController < ApplicationController
   end
 
 	def create 
-		@tokenrapid = "bearer " + %x{yc iam create-token}
+		tokenrapid = "bearer " + %x{yc iam create-token}
 		# puts tokenrapid
 		puts "23452"
 		params.require(:_json).each do |d|
@@ -18,7 +18,7 @@ class NewsController < ApplicationController
       link = d[:link].to_s
 
     	unless News.find_by(link: link)  
-      	TobdWorker.perform_async(pic, head, desc, date, link, @tokenrapid)
+      	TobdWorker.perform_async(pic, head, desc, date, link, tokenrapid)
       	puts 'send'
 			end
 			# head = d[:head].to_s
