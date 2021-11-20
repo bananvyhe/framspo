@@ -10,7 +10,7 @@ class TobdWorker < ApplicationController
     @m = 0
     def tranklukate(ina, tokenrapid)
       @m = @m + 1
-      puts @m
+      puts @m + "tranklucating.."
         @headersb = {
           "Content-Type" => "application/json",
           "Authorization" => tokenrapid 

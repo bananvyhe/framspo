@@ -9,7 +9,7 @@ class HardWorker < ApplicationController
 	
 	def perform
 		@rowsd = Array.new
-		@s = 3
+		# @s = 3
 		def selection_scrapped(row)
 			pic = row.css('img').attr('src').to_s
 			link = row.css('a').attr('href').to_s
@@ -17,8 +17,8 @@ class HardWorker < ApplicationController
 			date = row.css('.date').inner_text.to_s
 			desc = row.css('h2').inner_text.to_s
 
-			@s = @s + 2
-			puts @s
+			# @s = @s + 2
+			# puts @s
 			data = {
 				:pic => pic,
 				:link => link,
@@ -34,10 +34,10 @@ class HardWorker < ApplicationController
  		page = agent.get(url)
 		@rowsd = Array.new
 		page.css('.module.latest.news').each do |row|
-			@m = 0
+			# @m = 0
 			rowcss = row.css('.item')
 			rowcss.each do |rowf|
-			@m = @m + 1
+			# @m = @m + 1
 			# puts @m
 				if @m != 5
 					selection_scrapped(rowf)

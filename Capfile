@@ -3,7 +3,6 @@ require "capistrano/setup"
 set :stage, :production
 # Include default deployment tasks
 require "capistrano/deploy"
-set :stage, :production
 # Load the SCM plugin appropriate to your project:
 #
 # require "capistrano/scm/hg"
