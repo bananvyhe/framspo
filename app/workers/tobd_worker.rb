@@ -1,8 +1,6 @@
 class TobdWorker < ApplicationController
   include Sidekiq::Worker
   require 'json'
-  require 'uri'
-  require 'openssl'
   require 'httparty' 
   def perform (pic, head, desc, date, link, tokenrapid)
 
