@@ -40,7 +40,7 @@ class HardWorker < ApplicationController
 			rowcss.each do |rowf|
 			@m = @m + 1
 			puts @m 
-				if @m == 1
+				if @m != 5
 					selection_scrapped(rowf)
 				end
 			end
