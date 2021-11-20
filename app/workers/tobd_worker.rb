@@ -7,10 +7,10 @@ class TobdWorker < ApplicationController
   def perform (pic, head, desc, date, link, tokenrapid)
 
     # puts desc
-    @m = 0
+    @n = 0
     def tranklukate(ina, tokenrapid)
-      @m = @m + 1
-      puts @m + "tranklucating.."
+      @n = @n + 1
+      puts @n.to_s + "tranklucating.."
         @headersb = {
           "Content-Type" => "application/json",
           "Authorization" => tokenrapid 

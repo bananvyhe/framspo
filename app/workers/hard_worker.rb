@@ -11,6 +11,7 @@ class HardWorker < ApplicationController
 		@rowsd = Array.new
 		# @s = 3
 		def selection_scrapped(row)
+			puts "cooking.."
 			pic = row.css('img').attr('src').to_s
 			link = row.css('a').attr('href').to_s
 			head = row.css('.qualifier').inner_text.to_s
@@ -34,12 +35,12 @@ class HardWorker < ApplicationController
  		page = agent.get(url)
 		@rowsd = Array.new
 		page.css('.module.latest.news').each do |row|
-			# @m = 0
+			@m = 0
 			rowcss = row.css('.item')
 			rowcss.each do |rowf|
-			# @m = @m + 1
-			# puts @m
-				if @m != 5
+			@m = @m + 1
+			puts @m 
+				if @m == 1
 					selection_scrapped(rowf)
 				end
 			end
@@ -48,9 +49,11 @@ class HardWorker < ApplicationController
 			"Content-Type" => "application/json"  
 		}
 		if Rails.env.production?
+			puts "send to news contr.."
 			HTTParty.post("https://farmspot.ru/news",headers: headers, body: @rowsd.to_json)
 		end
 		if Rails.env.development?
+			puts "send to news contr.."
 			HTTParty.post("http://localhost:3000/news",headers: headers, body: @rowsd.to_json)
 		end		
 
