@@ -7,8 +7,10 @@ class NewsController < ApplicationController
   end
 
 	def create 
-		tokenrapid = "bearer " + %x{yc iam create-token}
-
+		ycc =  `yc iam create-token`
+		# print ycc
+		tokenrapid = "bearer " + ycc
+		print tokenrapid
 		params.require(:_json).each do |d|
     	pic = d[:pic].to_s
       head = d[:head].to_s
