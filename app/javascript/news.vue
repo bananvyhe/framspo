@@ -1,35 +1,34 @@
 <template>
   <div> 
     <div v-for="(item, index) in alld" >
-      <v-card >
       <v-row class="row">
         <v-col
-          class="d-flex flex-row mb-6 "
-          :color="$vuetify.theme.dark ? 'grey darken-3' : 'grey lighten-4'"
+          class="d-flex flex-row mb-0  "
+           
           flat
           tile>
-            <v-col 
-            cols=3  
-            v-bind:style="{backgroundImage: 'url('+ item.pic}"
-            class="pa-2 d-flex align-stretch pic"
+          <v-col 
+            cols=2
+            
+            class=" d-flex px-1 justify-end align-center"
             outlined
             tile>
-            </v-col>  
-            <v-col>
-              <v-card-title
-              class="text-h5"
+            <div class ="pic px-0" v-bind:style="{backgroundImage: 'url('+ item.pic}"></div>
+          </v-col>  
+          <v-col>
+            <v-card-title
+              class="text-h6"
               v-text="item.head">
-              </v-card-title>
+            </v-card-title>
  
               {{item.desc}}  
-              <div  >
-                {{item.date}}                
-              </div>      
-            </v-col>
+            <div>
+              {{item.date}}                
+            </div>      
+          </v-col>
             <!-- {{item.link}} -->
         </v-col>
       </v-row>
-      </v-card>
     </div>
   </div>
 </template>
@@ -61,9 +60,11 @@
 </script>
 <style scoped>
 .row {
-  height: 200px;
+ 
 }
 .pic {
+  width: 100px;
+  height: 100px;
   background-position: center;
   background-size: cover; 
   background-repeat: no-repeat;
