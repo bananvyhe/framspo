@@ -23,10 +23,11 @@
  
               {{item.desc}}  
             <div>
-              {{item.date}}                
-            </div>      
+              {{item.date}}&nbsp;&nbsp;<i><a target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link">источник...</a></i>            
+            </div> 
+ 
+                  
           </v-col>
-            <!-- {{item.link}} -->
         </v-col>
       </v-row>
     </div>
