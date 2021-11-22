@@ -73,7 +73,9 @@ import Vuetify, {
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
-  	vuetify: new Vuetify(),
+  	vuetify: new Vuetify({
+		  theme: { dark: true },
+  	}),
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)
