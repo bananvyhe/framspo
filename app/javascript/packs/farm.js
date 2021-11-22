@@ -69,12 +69,15 @@ import Vuetify, {
 	VListItemSubtitle,
 	VListItemAvatar,
 } from 'vuetify/lib'
-
+import colors from 'vuetify/lib/util/colors'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
   	vuetify: new Vuetify({
-		  theme: { dark: true },
+		  theme: { 
+		  	dark: {
+		  	},
+		  },
   	}),
     render: h => h(App)
   }).$mount()

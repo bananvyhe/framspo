@@ -1,41 +1,44 @@
 <template>
   <div> 
-    <div v-for="(item, index) in alld" >
-      <v-row class="row">
-        <v-col
-          class="d-flex flex-row mb-0  "
-           
-          flat
+
+    <div >
+      <v-row class="row" v-for="(item, index) in alld" :key= "item">
+
+        <v-col 
+          class="d-flex px-1 justify-end align-center"  
+          cols=3
+          sm=2
+          md=2
+          lg=2
+          outlined
           tile>
-          <v-col 
-            cols=2
-            
-            class=" d-flex px-1 justify-end align-center"
-            outlined
-            tile>
-            <div class ="pic px-0" v-bind:style="{backgroundImage: 'url('+ item.pic}"></div>
-          </v-col>  
-          <v-col>
-            <v-card-title
-              class="text-h6"
-              v-text="item.head">
-            </v-card-title>
- 
-              {{item.desc}}  
-            <div>
-              {{item.date}}&nbsp;&nbsp;<i><a target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link">источник...</a></i>            
-            </div> 
- 
-                  
-          </v-col>
+          <div class ="pic px-0" v-bind:style="{backgroundImage: 'url('+ item.pic}"></div>
         </v-col>
+
+        <v-col
+          cols=9
+          sm=10
+          md=10
+          lg=10>
+          <v-card-title
+            class="text-h6"
+            v-text="item.head">
+          </v-card-title>
+            {{item.desc}}  
+          <div>
+            {{item.date}}&nbsp;&nbsp;<i><a target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link">источник...</a></i>            
+          </div> 
+        </v-col>
+
       </v-row>
     </div>
+
   </div>
 </template>
 <script>
   import axios from 'axios'
   export default {
+ 
     data: function (){
       return {
         alld: ''
