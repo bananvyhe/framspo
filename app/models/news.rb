@@ -1,6 +1,8 @@
 class News < ApplicationRecord
 	require 'net/http'
 	require 'uri'
+	
+	# curl -d "{\"yandexPassportOauthToken\":\"Rails.application.credentials.yaOauth\"}" "https://iam.api.cloud.yandex.net/iam/v1/tokens"
 
 	def self.tokenmake
 		uri = URI.parse("https://iam.api.cloud.yandex.net/iam/v1/tokens")
@@ -21,8 +23,8 @@ class News < ApplicationRecord
 		tokenrapid = "bearer " + formj['iamToken']
 	end	
 
-	 @n = 0
-	 
+	@n = 0
+
     def  self.tranklukate(ina, tokenrapid)
       # puts tokenrapid
       @n = @n + 1

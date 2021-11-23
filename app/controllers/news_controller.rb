@@ -7,13 +7,7 @@ class NewsController < ApplicationController
   end
 
 	def create 
-		# curl -d "{\"yandexPassportOauthToken\":\"Rails.application.credentials.yaOauth\"}" "https://iam.api.cloud.yandex.net/iam/v1/tokens"
 
-
-	# ycc =  `yc iam create-token`
-	# print ycc
-	# tokenrapid = "bearer " + ycc
-	# print tokenrapid
 		tokenrapid = News.tokenmake
 		params.require(:_json).each do |d|
     	pic = d[:pic].to_s

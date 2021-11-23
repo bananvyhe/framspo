@@ -5,6 +5,11 @@
         <v-container>
           <v-app-bar app dense hide-on-scroll>
             <p>{{message}}<i> {{ tl }}</i></p>
+
+            <div subt>
+               <p>сбор</p>  
+            </div>
+
           </v-app-bar>
 
           <news></news>
