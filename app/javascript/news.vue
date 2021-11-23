@@ -1,8 +1,7 @@
 <template>
   <div> 
-
     <div >
-      <v-row class="row" v-for="(item, index) in alld" :key= "item">
+      <v-row class="row" v-for="(item, index) in alld" :key= "item.id">
 
         <v-col 
           class="d-flex px-1 justify-end align-center"  

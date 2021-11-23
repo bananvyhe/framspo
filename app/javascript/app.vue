@@ -4,10 +4,11 @@
       <v-main>
         <v-container>
           <v-app-bar app dense hide-on-scroll>
-            <p>{{message}}<i> {{ tl }}</i></p>
+
+              <p>{{message}}<i> {{ tl }}</i></p>
 
             <div subt>
-               <p>сбор</p>  
+               <p></p>  
             </div>
 
           </v-app-bar>
