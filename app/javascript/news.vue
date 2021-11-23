@@ -20,12 +20,12 @@
           md=10
           lg=10>
           <v-card-title
-            class="text-h6"
+            class="text-h6 px-0 py-1"
             v-text="item.head">
           </v-card-title>
             {{item.desc}}  
           <div>
-            {{item.date}}&nbsp;&nbsp;<i><a target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link">источник...</a></i>            
+            {{item.date}}&nbsp;&nbsp; <a class="font-weight-thin font-italic" target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link">источник...</a>            
           </div> 
         </v-col>
 

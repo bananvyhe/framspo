@@ -8,7 +8,7 @@
               <p>{{message}}<i> {{ tl }}</i></p>
 
             <div subt>
-               <p></p>  
+               <p class="font-weight-thin font-italic ">&nbsp;фри пвп</p>  
             </div>
 
           </v-app-bar>
