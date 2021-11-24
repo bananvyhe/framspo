@@ -6,7 +6,7 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
-
+import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
 
@@ -40,6 +40,13 @@ Vue.use(Vuetify, {
 		VListItemSubtitle,
 		VListItemAvatar,
 		VList,
+		VImg,
+		VCardSubtitle,
+		VSpacer,
+		VIcon,
+		VExpandTransition,
+		VDivider,
+		VCardText,
 	}
 }) 
 import Vuetify, {
@@ -68,6 +75,14 @@ import Vuetify, {
 	VListItemTitle,
 	VListItemSubtitle,
 	VListItemAvatar,
+	VImg,
+	VCardSubtitle,
+	VSpacer,
+	VIcon,
+	VExpandTransition,
+	VDivider,
+	VCardText,
+
 } from 'vuetify/lib'
 import colors from 'vuetify/lib/util/colors'
 

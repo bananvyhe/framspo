@@ -1,19 +1,20 @@
 <template>
-  <div> 
-    <div >
-      <v-row class="row" v-for="(item, index) in alld" :key= "item.id">
-
+  <div class=" py-1"> 
+    <v-card v-for="(item, index) in alld " :key= "item.id" 
+      class=" py-1">
+      <v-row class="row" :name="item.id">
         <v-col 
-          class="d-flex px-1 justify-end align-center"  
+          class="d-flex px-1 justify-end align-top"  
           cols=3
           sm=2
           md=2
           lg=2
           outlined
           tile>
-          <div class ="pic px-0" v-bind:style="{backgroundImage: 'url('+ item.pic}"></div>
+          <div class ="pic px-0 " v-bind:style="{backgroundImage: 'url('+ item.pic}">
+    
+          </div>
         </v-col>
-
         <v-col
           cols=9
           sm=10
@@ -25,13 +26,44 @@
           </v-card-title>
             {{item.desc}}  
           <div>
-            {{item.date}}&nbsp;&nbsp; <a class=" " target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link">источник...</a>            
+            <v-card-subtitle
+            class="px-0 py-0">
+            {{item.date}}&nbsp;&nbsp;источник...
+            </v-card-subtitle>
           </div> 
+
+          <v-card-actions class="px-0 py-0"> 
+            <v-btn  target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link"
+              color="orange lighten-2"
+              text small>
+              источник
+            </v-btn> 
+
+            <v-spacer></v-spacer>
+
+            <v-btn
+              icon
+              @click="clickhandler(item.id, $event)">
+              <v-icon>{{ dialogVisible&&item.id == empid  ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+            </v-btn>
+          </v-card-actions>
+          <div v-if="item.id == empid">
+            
+            <v-expand-transition>
+              <div v-show="dialogVisible">
+                <v-divider></v-divider>
+
+                <v-card-text>
+                {{item.desc}}
+ 
+                </v-card-text>
+              </div>
+            </v-expand-transition>
+
+          </div>
         </v-col>
-
       </v-row>
-    </div>
-
+    </v-card>
   </div>
 </template>
 <script>
@@ -40,6 +72,8 @@
  
     data: function (){
       return {
+        dialogVisible: false,
+        empid: '',
         alld: ''
       }
     },
@@ -47,6 +81,30 @@
         this.addBeer()
     },
     methods: {
+
+    popemploy: function(data) {
+      if (this.empid != ''){
+      var self = this;  
+      return data.filter(function (elem) {
+ 
+        return elem.id == self.empid;
+        })
+      }
+    },
+    clickhandler( event) {
+      if (event == this.empid){
+        this.dialogVisible = !this.dialogVisible;
+      }else{
+        this.dialogVisible = true;
+        this.empid = event;
+      }
+ 
+     
+       
+    },
+
+
+
       addBeer() {
         axios({
           method: 'get',
@@ -68,8 +126,6 @@
 .pic {
   width: 100px;
   height: 100px;
-  background-position: center;
-  background-size: cover; 
-  background-repeat: no-repeat;
+ 
 }
 </style>
