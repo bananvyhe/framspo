@@ -25,7 +25,7 @@
           </v-card-title>
             {{item.desc}}  
           <div>
-            {{item.date}}&nbsp;&nbsp; <a class="font-weight-thin font-italic" target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link">источник...</a>            
+            {{item.date}}&nbsp;&nbsp; <a class=" " target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link">источник...</a>            
           </div> 
         </v-col>
 
