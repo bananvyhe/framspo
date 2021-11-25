@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
   get 'news/index'
 	require "sidekiq/web"
-	post :news, to: "news#create"
+
+ 	# resources :news do
+  	post :news, to: "news#create"
+  	post :fullnews, to: "news#fullnews"
+  # end
+
+	# post :news, to: "news#create"
+
+
+
   get :news, to: "news#index"
 	root to: 'welcome#index'
   get 'welcome/index'
@@ -20,8 +29,8 @@ Rails.application.routes.draw do
     login_hash = ::Digest::SHA256.hexdigest(username)
     password_hash = ::Digest::SHA256.hexdigest(password)
 
-    ActiveSupport::SecurityUtils.secure_compare(login_hash, ::Digest::SHA256.hexdigest(Rails.application.credentials.username)) &
-      ActiveSupport::SecurityUtils.secure_compare(password_hash, ::Digest::SHA256.hexdigest(Rails.application.credentials.password))
+  ActiveSupport::SecurityUtils.secure_compare(login_hash, ::Digest::SHA256.hexdigest(Rails.application.credentials.username)) &
+  ActiveSupport::SecurityUtils.secure_compare(password_hash, ::Digest::SHA256.hexdigest(Rails.application.credentials.password))
   end # if Rails.env.production?
   mount Sidekiq::Web, at: "/sidekiq"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
