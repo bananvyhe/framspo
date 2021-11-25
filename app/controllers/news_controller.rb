@@ -25,35 +25,36 @@ class NewsController < ApplicationController
 	def fullnews
 		puts "===-----------fullnews----------===="
 		puts params[:id]
+
 		link = News.find(params[:id])  
-		agent = Mechanize.new
-    url= 'https://www.pocketgamer.biz'+link.link 
-    page = agent.get(url)
-    tokenr = News.tokenmake
+		 if link.fullarticle.nil?
+			agent = Mechanize.new
+	    url= 'https://www.pocketgamer.biz'+link.link 
+	    page = agent.get(url)
+	    tokenr = News.tokenmake
 
- 
-
-		article = page.css('.body').to_s
-		getp = article.gsub '<div class="body" itemprop="articleBody">', ''
-		get = getp.gsub '</div>', ''
-		artbody = News.tranklukate(get, tokenr)
-    getp =  artbody.gsub '</рисунок>', '</figure>'
-    getp = getp.gsub '<рисунок>', '<figure>'
-    getp =  getp.gsub '</сильный>', '</strong>'
-    getp = getp.gsub '<сильный>', '<strong>'
-
-    puts getp
-
-
-		# puts artbody
-    imageget = page.at_css('#fb-image').attr('src').to_s
-
-		# artbody.gsub! '</сильный>', '</strong>'
-		# imageget.gsub! '<сильный>', '<strong>'
-		# ds = imageget.gsub! '</рисунок>', '</figure>'
-		# imageget.gsub! '<рисунок>', '<figure>'
-		# ds = imageget.gsub! '<рисунок>', '<figure>'
-		# puts ds
+			article = page.css('.body').to_s
+			getp = article.gsub '<div class="body" itemprop="articleBody">', ''
+			get = getp.gsub '</div>', ''
+			get =	get[1..-2]
+	    imageget = page.at_css('#fb-image').attr('src').to_s
+	    puts get
+			artbody = News.tranklukate(get, tokenr)
+	    getp =  artbody.gsub '</рисунок>', '</figure>'
+	    getp = getp.gsub '<рисунок>', '<figure>'
+	    getp =  getp.gsub '</сильный>', '</strong>'
+	    getp = getp.gsub '<сильный>', '<strong>'
+	    getp = getp.gsub '<заголовок iframe= "Видеоплеер YouTube"', '<iframe title="YouTube video player"'
+	    getp = getp.gsub 'ширина=', 'width='
+	    getp = getp.gsub 'высота=', 'height='
+	    getp = getp.gsub 'порядок кадров=', 'frameborder='
+	  	link.biglink = imageget
+ 			link.fullarticle = getp
+ 			link.save!
+		end
+		puts getp
+		puts imageget
+		render json: link
 # 
     # puts imageget.to_s
 

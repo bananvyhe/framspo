@@ -11,9 +11,9 @@
           lg=2
           outlined
           tile>
-<!--           <div class ="pic px-0 " v-bind:style="{backgroundImage: 'url('+ item.pic}">
+          <div class ="pic px-0 " v-bind:style="{backgroundImage: 'url('+ item.pic}">
     
-          </div> -->
+          </div>
         </v-col>
         <v-col
           cols=9
@@ -54,7 +54,12 @@
                 <v-divider></v-divider>
 
                 <v-card-text>
-                {{item.desc}}
+                  <v-img
+                    class=" mr-3 float-left"
+                    height="225px"
+                    width="225px"
+                    :src = "bigimage"></v-img>
+                    <span v-html="fullnews"></span> 
  
                 </v-card-text>
               </div>
@@ -72,6 +77,8 @@
  
     data: function (){
       return {
+        bigimage: '',
+        fullnews: '',
         dialogVisible: false,
         empid: '',
         alld: ''
@@ -95,6 +102,8 @@
       if (event == this.empid){
         this.dialogVisible = !this.dialogVisible;
       }else{
+        this.bigimage = ''
+        this.fullnews = '' 
         this.dialogVisible = true;
         this.empid = event;
        axios({
@@ -106,6 +115,8 @@
         }).then((response) => { 
           if (response.data){
             console.log(response.data)
+            this.fullnews = response.data.fullarticle
+            this.bigimage = response.data.biglink
           }
         }); 
       }
