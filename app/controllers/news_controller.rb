@@ -25,6 +25,37 @@ class NewsController < ApplicationController
 	def fullnews
 		puts "===-----------fullnews----------===="
 		puts params[:id]
+		link = News.find(params[:id])  
+		agent = Mechanize.new
+    url= 'https://www.pocketgamer.biz'+link.link 
+    page = agent.get(url)
+    tokenr = News.tokenmake
+
+		article = page.css('.body').to_s
+		artbody = News.tranklukate(article, tokenr)
+    getp =  artbody.gsub '</рисунок>', '</figure>'
+    getp = getp.gsub '<рисунок>', '<figure>'
+    getp =  getp.gsub '</сильный>', '</strong>'
+    getp = getp.gsub '<сильный>', '<strong>'
+		getp = getp.gsub '<заголовок iframe= "Видеоплеер YouTube"', '<iframe title="YouTube video player"'
+    puts getp
+
+    
+		# puts artbody
+    imageget = page.at_css('#fb-image').attr('src').to_s
+
+		# artbody.gsub! '</сильный>', '</strong>'
+		# imageget.gsub! '<сильный>', '<strong>'
+		# ds = imageget.gsub! '</рисунок>', '</figure>'
+		# imageget.gsub! '<рисунок>', '<figure>'
+		# ds = imageget.gsub! '<рисунок>', '<figure>'
+		# puts ds
+# 
+    # puts imageget.to_s
+
+    # resp = page.body.force_encoding("utf-8")
+		# File.open('777.html', 'w'){ |file| file.write resp }
+
 
 		# @rowsd = Array.new
 
