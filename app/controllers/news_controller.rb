@@ -31,16 +31,20 @@ class NewsController < ApplicationController
     page = agent.get(url)
     tokenr = News.tokenmake
 
+ 
+
 		article = page.css('.body').to_s
-		artbody = News.tranklukate(article, tokenr)
+		getp = article.gsub '<div class="body" itemprop="articleBody">', ''
+		get = getp.gsub '</div>', ''
+		artbody = News.tranklukate(get, tokenr)
     getp =  artbody.gsub '</рисунок>', '</figure>'
     getp = getp.gsub '<рисунок>', '<figure>'
     getp =  getp.gsub '</сильный>', '</strong>'
     getp = getp.gsub '<сильный>', '<strong>'
-		getp = getp.gsub '<заголовок iframe= "Видеоплеер YouTube"', '<iframe title="YouTube video player"'
+
     puts getp
 
-    
+
 		# puts artbody
     imageget = page.at_css('#fb-image').attr('src').to_s
 
