@@ -11,9 +11,9 @@
           lg=2
           outlined
           tile>
-          <div class ="pic px-0 " v-bind:style="{backgroundImage: 'url('+ item.pic}">
+<!--           <div class ="pic px-0 " v-bind:style="{backgroundImage: 'url('+ item.pic}">
     
-          </div>
+          </div> -->
         </v-col>
         <v-col
           cols=9
@@ -97,14 +97,19 @@
       }else{
         this.dialogVisible = true;
         this.empid = event;
+       axios({
+          method: 'post',
+          url: '/fullnews',
+          data: {
+            id: event
+          },
+        }).then((response) => { 
+          if (response.data){
+            console.log(response.data)
+          }
+        }); 
       }
- 
-     
-       
     },
-
-
-
       addBeer() {
         axios({
           method: 'get',
