@@ -52,8 +52,8 @@ class NewsController < ApplicationController
  			link.fullarticle = getp
  			link.save!
 		end
-		puts getp
-		puts imageget
+		# puts getp
+		# puts imageget
 		render json: link
 # 
     # puts imageget.to_s
