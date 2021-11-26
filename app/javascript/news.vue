@@ -25,29 +25,35 @@
             class="text-h6 px-0 py-1"
             v-text="item.head">
           </v-card-title>
-            {{item.desc}}  
           <div>
+            {{item.desc}}  
+          </div>
+          <div class="float-left">
             <v-card-subtitle
-            class="px-0 py-0">
-            {{item.date}}&nbsp;&nbsp;источник...
+            class="px-1 py-0">
+            {{item.date}} 
             </v-card-subtitle>
           </div> 
 
-          <v-card-actions class="px-0 py-0"> 
-            <v-btn  target="_blank" v-bind:href="'https://www.pocketgamer.biz'+item.link"
+          <!-- <v-card-actions class="px-0 py-0">  -->
+            <v-btn  
+              target="_blank" 
+              v-bind:href="'https://www.pocketgamer.biz'+item.link"
+              class="px-1 py-0"
               color="orange lighten-2"
-              text small>
+              text x-small>
               источник
             </v-btn> 
 
             <v-spacer></v-spacer>
 
             <v-btn
+              class="float-right"
               icon
               @click="clickhandler(item.id, $event)">
               <v-icon>{{ dialogVisible&&item.id == empid  ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
-          </v-card-actions>
+          <!-- </v-card-actions> -->
 
         </v-col>
       </v-row>
