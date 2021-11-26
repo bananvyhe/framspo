@@ -5,8 +5,8 @@
       <v-row>
         <div 
           class="d-flex align-top justify-end  ml-5 px-2">
-         <!--  v-bind:style="{backgroundImage: 'url('+ item.pic}" -->
-          <div class ="pic px-0 float-right align-center my-6" >
+         <!--   -->
+          <div class ="pic px-0 float-right align-center my-6" v-bind:style="{backgroundImage: 'url('+ item.pic}">
           </div>
         </div>
         <v-col
