@@ -55,7 +55,7 @@
 
               <v-card-text>
                 <v-img
-                  class=" mr-3 float-left"
+                  class=" mr-4 float-left"
                   height="225px"
                   width="225px"
                   :src = "bigimage"></v-img>
