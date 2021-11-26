@@ -1,26 +1,16 @@
 <template>
-  <div class=" py-1"> 
+  <div class=" py-1 px-0"> 
     <v-card v-for="(item, index) in alld " :key= "item.id" 
-      class=" py-1">
-      <v-row class="row" :name="item.id">
-        <v-col 
-          class="d-flex px-1 justify-end align-top"  
-          cols=3
-          sm=2
-          md=2
-          lg=2
-          outlined
-          tile>
+      class=" py-1 my-1">
+      <v-row>
+        <div 
+          class="d-flex align-center px-1 justify-end  ml-6">
          <!--   -->
-          <div class ="pic px-0 " v-bind:style="{backgroundImage: 'url('+ item.pic}">
-    
+          <div class ="pic px-0 float-right align-center" v-bind:style="{backgroundImage: 'url('+ item.pic}">
           </div>
-        </v-col>
+        </div>
         <v-col
-          cols=9
-          sm=10
-          md=10
-          lg=10>
+           >
           <v-card-title
             class="text-h6 px-0 py-1"
             v-text="item.head">
@@ -144,6 +134,7 @@
   }
 </script>
 <style scoped>
+
 .row {
   
 }
