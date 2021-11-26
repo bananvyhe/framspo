@@ -11,6 +11,7 @@
           lg=2
           outlined
           tile>
+         <!--   -->
           <div class ="pic px-0 " v-bind:style="{backgroundImage: 'url('+ item.pic}">
     
           </div>
@@ -47,26 +48,27 @@
               <v-icon>{{ dialogVisible&&item.id == empid  ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
           </v-card-actions>
-          <div v-if="item.id == empid">
-            
-            <v-expand-transition>
-              <div v-show="dialogVisible">
-                <v-divider></v-divider>
 
-                <v-card-text>
-                  <v-img
-                    class=" mr-3 float-left"
-                    height="225px"
-                    width="225px"
-                    :src = "bigimage"></v-img>
-                    <span v-html="fullnews"></span> 
- 
-                </v-card-text>
-              </div>
-            </v-expand-transition>
-
-          </div>
         </v-col>
+      </v-row>
+      <v-row class="row px-3">
+        <div v-if="item.id == empid">
+          <v-expand-transition>
+            <div v-show="dialogVisible">
+              <v-divider></v-divider>
+
+              <v-card-text>
+                <v-img
+                  class=" mr-3 float-left"
+                  height="225px"
+                  width="225px"
+                  :src = "bigimage"></v-img>
+                  <span v-html="fullnews"></span> 
+
+              </v-card-text>
+            </div>
+          </v-expand-transition>
+        </div>
       </v-row>
     </v-card>
   </div>
@@ -137,9 +139,10 @@
 </script>
 <style scoped>
 .row {
- 
+  
 }
 .pic {
+  background-color: #dad;
   width: 100px;
   height: 100px;
  
