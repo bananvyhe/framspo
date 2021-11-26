@@ -4,7 +4,7 @@
       class=" py-1 my-1">
       <v-row>
         <div 
-          class="d-flex align-top justify-end  ml-5 px-2">
+          class="d-flex align-top justify-end  ml-5 pl-2 pr-1">
          <!--   -->
           <div class ="pic px-0 float-right align-center my-6" v-bind:style="{backgroundImage: 'url('+ item.pic}">
           </div>
