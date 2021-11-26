@@ -4,15 +4,15 @@
       class=" py-1 my-1">
       <v-row>
         <div 
-          class="d-flex align-center px-1 justify-end  ml-6">
-         <!--   -->
-          <div class ="pic px-0 float-right align-center" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+          class="d-flex align-top justify-end  ml-5 px-2">
+         <!--  v-bind:style="{backgroundImage: 'url('+ item.pic}" -->
+          <div class ="pic px-0 float-right align-center my-6" >
           </div>
         </div>
         <v-col
            >
           <v-card-title
-            class="text-h6 px-0 py-1"
+            class="text-h6 px-0 py-2"
             v-text="item.head">
           </v-card-title>
           <div>
@@ -35,10 +35,10 @@
               источник
             </v-btn> 
 
-            <v-spacer></v-spacer>
+            
 
             <v-btn
-              class="float-right"
+              class="float-right "
               icon
               @click="clickhandler(item.id, $event)">
               <v-icon>{{ dialogVisible&&item.id == empid  ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
