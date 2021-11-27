@@ -45,8 +45,8 @@ class NewsController < ApplicationController
 	    getp =  getp.gsub '</сильный>', '</strong>'
 	    getp = getp.gsub '<сильный>', '<strong>'
 	    getp = getp.gsub '<заголовок iframe= "Видеоплеер YouTube"', '<iframe title="YouTube video player"'
-	    getp = getp.gsub 'ширина=', 'width='
-	    getp = getp.gsub 'высота=', 'height='
+	    getp = getp.gsub 'ширина=', ''
+	    getp = getp.gsub 'высота=', ''
 	    getp = getp.gsub 'порядок кадров=', 'frameborder='
 	  	link.biglink = imageget
  			link.fullarticle = getp
