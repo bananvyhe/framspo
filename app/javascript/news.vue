@@ -15,12 +15,12 @@
             class="text-h6 px-0 py-2"
             v-text="item.head">
           </v-card-title>
-          <div>
+          <div class="px-2">
             {{item.desc}}  
           </div>
  
           <v-card-subtitle
-          class="px-1 py-0 float-left">
+          class="px-2 py-0 float-left">
           {{item.date}} 
           </v-card-subtitle>
 
