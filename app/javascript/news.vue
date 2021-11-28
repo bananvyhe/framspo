@@ -2,15 +2,15 @@
   <div class=" py-1 px-0"> 
     <v-card v-for="(item, index) in alld " :key= "item.id" 
       class=" py-1 my-1">
-      <v-row>
-        <div 
-          class="d-flex align-top justify-end  ml-5 pl-2 pr-1">
+      <v-row class="d-flex">
+       
+        <v-col>
+           <div 
+          class="d-flex align-top  float-left mx-3  ">
          <!--   -->
-          <div class ="pic px-0 float-right align-center my-6" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+          <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
           </div>
         </div>
-        <v-col
-           >
           <v-card-title
             class="text-h6 px-0 py-2"
             v-text="item.head">
@@ -18,55 +18,91 @@
           <div>
             {{item.desc}}  
           </div>
-          <div class="float-left">
-            <v-card-subtitle
-            class="px-1 py-0">
-            {{item.date}} 
-            </v-card-subtitle>
-          </div> 
+ 
+          <v-card-subtitle
+          class="px-1 py-0 float-left">
+          {{item.date}} 
+          </v-card-subtitle>
 
-          <!-- <v-card-actions class="px-0 py-0">  -->
-            <v-btn  
-              target="_blank" 
-              v-bind:href="'https://www.pocketgamer.biz'+item.link"
-              class="px-1 py-0"
-              color="orange lighten-2"
-              text x-small>
-              источник
-            </v-btn> 
-
-            
-
-            <v-btn
+          <v-btn  
+            target="_blank" 
+            v-bind:href="'https://www.pocketgamer.biz'+item.link"
+            class="px-1 py-0 float-left"
+            color="orange lighten-2"
+            text x-small>
+            источник
+          </v-btn>  
+           
+          <v-btn
+          class="px-2 py-0 mx-4 but"
+          @click="clickhandler(item.id, $event)"
+          color="primary"
+          small>
+            открыть
+          </v-btn>   
+<!--             <v-btn
               class="float-right "
               icon
               @click="clickhandler(item.id, $event)">
               <v-icon>{{ dialogVisible&&item.id == empid  ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-            </v-btn>
-          <!-- </v-card-actions> -->
+            </v-btn> -->
+
+            <div v-if="item.id == empid">
+
+              <v-dialog
+                v-model="dialogVisible"
+                max-width="960px"
+                width="95%">
+                <v-card class="px-2">
+                  <v-card-title class="px-1">
+                    <span class="text-h5 px-1">{{item.desc}}</span>
+                  </v-card-title>
+                  <v-card-text class="px-1">
+                    <v-img
+                  class=" mr-4 float-left"
+                  height="225px"
+                  width="225px"
+                  :src = "bigimage"></v-img>
+                    <span v-html="fullnews"></span> 
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                    color="green darken-1 "
+                    text
+                    @click="dialogVisible = false">
+                    Закрыть
+                    </v-btn>
+ 
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+             </div>
+
 
         </v-col>
       </v-row>
-      <v-row class="row px-3">
-        <div v-if="item.id == empid">
-          <v-expand-transition>
+    </v-card>
+
+       
+
+<!--           <v-expand-transition>
             <div v-show="dialogVisible">
               <v-divider></v-divider>
-
               <v-card-text>
                 <v-img
                   class=" mr-4 float-left"
                   height="225px"
                   width="225px"
                   :src = "bigimage"></v-img>
-                  <span v-html="fullnews"></span> 
-
+                  <span v-html="fullnews"></span>
               </v-card-text>
             </div>
-          </v-expand-transition>
-        </div>
-      </v-row>
-    </v-card>
+          </v-expand-transition> -->
+     
+
+
+   
   </div>
 </template>
 <script>
@@ -134,12 +170,17 @@
   }
 </script>
 <style scoped>
+.but{
+  position: absolute;
+  bottom: 2em;
+  right: 1em;
 
-.row {
+}
+.row { position: relative;
   
 }
 .pic {
-  background-color: #dad;
+  /*background-color: #dad;*/
   width: 100px;
   height: 100px;
  

@@ -47,6 +47,7 @@ Vue.use(Vuetify, {
 		VExpandTransition,
 		VDivider,
 		VCardText,
+		VDialog,
 	}
 }) 
 import Vuetify, {
@@ -82,6 +83,7 @@ import Vuetify, {
 	VExpandTransition,
 	VDivider,
 	VCardText,
+	VDialog,
 
 } from 'vuetify/lib'
 import colors from 'vuetify/lib/util/colors'
