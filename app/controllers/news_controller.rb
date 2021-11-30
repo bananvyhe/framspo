@@ -26,28 +26,32 @@ class NewsController < ApplicationController
 		puts "===-----------fullnews----------===="
 		puts params[:id]
 
-		link = News.find(params[:id])  
-		 if link.fullarticle.nil?
+		full = News.find(params[:id]) 
+		 
+		 if full.fullarticle.nil?
+
 			agent = Mechanize.new
-	    url= link.link 
+	    url = full.link 
+
 	    page = agent.get(url)
 	    tokenr = News.tokenmake
-	    # page = page.css('.entry-content').to_s	
+	 #    get = page.css('.body').to_s
+	 #    get = get.force_encoding("utf-8")
+		# File.open('777.html', 'w'){ |file| file.write get } 
+		url = url.to_s
+			compare = url[0..20]
 
- 			if page.css('.entry-content')  != nil
+ 			if compare == 'https://www.blockchai'
+				# puts "entry"
  				get = page.css('.entry-content').to_s
- 				
- 				@get = get[58..-7]	
- 				 
- 				puts @get
- 			else 
+ 				@get = get[58..-7]
+ 			elsif compare == 'https://www.pocketgam'
+				# puts "body"
  				article = page.css('.body').to_s
  				getp = article.gsub '<div class="body" itemprop="articleBody">', ''
 				get = getp.gsub '</div>', ''
-				@get =	get[1..-4]	
+				@get =	get[1..-4]
  			end
-
-	    # imageget = page.at_css('#fb-image').attr('src').to_s
 
 			artbody = News.tranklukate(@get, tokenr)
 	    getp =  artbody.gsub '</рисунок>', '</figure>'
@@ -59,12 +63,12 @@ class NewsController < ApplicationController
 	    getp = getp.gsub 'высота=', ''
 	    getp = getp.gsub 'порядок кадров=', 'frameborder='
  
- 			link.fullarticle = getp
- 			link.save!
+ 			full.fullarticle = getp
+ 			full.save!
 		end
 		# puts getp
 		# puts imageget
-		render json: link
+		render json: full
 # 
     # puts imageget.to_s
 
