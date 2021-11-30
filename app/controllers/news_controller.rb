@@ -54,7 +54,14 @@ class NewsController < ApplicationController
  			end
 
 			artbody = News.tranklukate(@get, tokenr)
-	    getp =  artbody.gsub '</рисунок>', '</figure>'
+			getp =  artbody.gsub '<загрузка iframe= "ленивый" заголовок=','<iframe loading="lazy" title='
+			getp =  getp.gsub '<идентификатор ul=','<ul '
+			getp =  getp.gsub '<класс рисунка= "wp-блок-встраивание','<figure '
+			getp =  getp.gsub '<ли>', '<li>'
+			getp =  getp.gsub '</ли>', '</li>'
+	    getp =  getp.gsub '</рисунок>', '</figure>'
+	    getp =  getp.gsub '<класс рисунка="wp-блок-изображение" id="','<figure '
+	    getp =  getp.gsub '<класс div="','<div '
 	    getp = getp.gsub '<рисунок>', '<figure>'
 	    getp =  getp.gsub '</сильный>', '</strong>'
 	    getp = getp.gsub '<сильный>', '<strong>'

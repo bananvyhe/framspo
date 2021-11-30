@@ -26,7 +26,7 @@
 
           <v-btn  
             target="_blank" 
-            v-bind:href="'https://www.pocketgamer.biz'+item.link"
+            v-bind:href="item.link"
             class="px-1 py-0 float-left"
             color="orange lighten-2"
             text x-small>
@@ -58,7 +58,7 @@
                     <span class="text-h5 px-1">{{item.desc}}</span>
                   </v-card-title>
                   <v-card-text class="px-1">
-<div v-if="!fullnews"><v-progress-circular 
+                    <div v-if="!fullnews"><v-progress-circular 
                       indeterminate 
                       color="green">
                     </v-progress-circular>  </div>
