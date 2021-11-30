@@ -48,6 +48,7 @@ Vue.use(Vuetify, {
 		VDivider,
 		VCardText,
 		VDialog,
+		VProgressCircular,
 	}
 }) 
 import Vuetify, {
@@ -84,7 +85,7 @@ import Vuetify, {
 	VDivider,
 	VCardText,
 	VDialog,
-
+	VProgressCircular,
 } from 'vuetify/lib'
 import colors from 'vuetify/lib/util/colors'
 

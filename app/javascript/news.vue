@@ -16,7 +16,7 @@
             v-text="item.head">
           </v-card-title>
           <div class="px-2">
-            {{item.desc}}  
+            {{item.desc}}… 
           </div>
  
           <v-card-subtitle
@@ -58,11 +58,16 @@
                     <span class="text-h5 px-1">{{item.desc}}</span>
                   </v-card-title>
                   <v-card-text class="px-1">
-                    <v-img
+<div v-if="!fullnews"><v-progress-circular 
+                      indeterminate 
+                      color="green">
+                    </v-progress-circular>  </div>
+                    
+<!--                     <v-img
                   class=" mr-4 float-left"
                   height="225px"
                   width="225px"
-                  :src = "bigimage"></v-img>
+                  :src = "bigimage"></v-img> -->
                     <span v-html="fullnews"></span> 
                   </v-card-text>
                   <v-card-actions>
@@ -99,8 +104,10 @@
               </v-card-text>
             </div>
           </v-expand-transition> -->
-     
-
+    <v-progress-circular  
+    indeterminate 
+    color="green" v-if="this.bottom == true && alld.length != 0"></v-progress-circular>   
+ 
 
    
   </div>
@@ -111,6 +118,7 @@
  
     data: function (){
       return {
+        bottom: false,
         bigimage: '',
         fullnews: '',
         dialogVisible: false,
@@ -118,11 +126,30 @@
         alld: ''
       }
     },
+    created(){
+      window.addEventListener('scroll', () => {
+        this.bottom = this.bottomVisible()
+        // this.bganim.backgroundPosition = "center"
+      })
+    },
+    watch: {
+      bottom(bottom) {
+        if (bottom)  {
+          this.addBeer()
+        }
+      } 
+    },
     mounted(){
         this.addBeer()
     },
     methods: {
-
+    bottomVisible() {
+      const scrollY = window.scrollY
+      const visible = document.documentElement.clientHeight 
+      const pageHeight = document.documentElement.scrollHeight
+      const bottomOfPage = visible + scrollY+1000 > pageHeight
+      return bottomOfPage || pageHeight < visible 
+    },
     popemploy: function(data) {
       if (this.empid != ''){
       var self = this;  
@@ -150,7 +177,7 @@
           if (response.data){
             console.log(response.data)
             this.fullnews = response.data.fullarticle
-            this.bigimage = response.data.biglink
+            // this.bigimage = response.data.biglink
           }
         }); 
       }

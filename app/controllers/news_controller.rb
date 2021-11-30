@@ -16,7 +16,7 @@ class NewsController < ApplicationController
       date = d[:date].to_s
       link = d[:link].to_s
 
-    	unless News.find_by(pic: pic)  
+    	unless News.find_by(link: link)  
       	TobdWorker.perform_async(pic, head, desc, date, link, tokenrapid)
 			end
 		end
@@ -29,17 +29,27 @@ class NewsController < ApplicationController
 		link = News.find(params[:id])  
 		 if link.fullarticle.nil?
 			agent = Mechanize.new
-	    url= 'https://www.pocketgamer.biz'+link.link 
+	    url= link.link 
 	    page = agent.get(url)
 	    tokenr = News.tokenmake
+	    # page = page.css('.entry-content').to_s	
 
-			article = page.css('.body').to_s
-			getp = article.gsub '<div class="body" itemprop="articleBody">', ''
-			get = getp.gsub '</div>', ''
-			get =	get[1..-2]
-	    imageget = page.at_css('#fb-image').attr('src').to_s
-	    puts get
-			artbody = News.tranklukate(get, tokenr)
+ 			if page.css('.entry-content')  != nil
+ 				get = page.css('.entry-content').to_s
+ 				
+ 				@get = get[58..-7]	
+ 				 
+ 				puts @get
+ 			else 
+ 				article = page.css('.body').to_s
+ 				getp = article.gsub '<div class="body" itemprop="articleBody">', ''
+				get = getp.gsub '</div>', ''
+				@get =	get[1..-4]	
+ 			end
+
+	    # imageget = page.at_css('#fb-image').attr('src').to_s
+
+			artbody = News.tranklukate(@get, tokenr)
 	    getp =  artbody.gsub '</рисунок>', '</figure>'
 	    getp = getp.gsub '<рисунок>', '<figure>'
 	    getp =  getp.gsub '</сильный>', '</strong>'
@@ -48,7 +58,7 @@ class NewsController < ApplicationController
 	    getp = getp.gsub 'ширина=', ''
 	    getp = getp.gsub 'высота=', ''
 	    getp = getp.gsub 'порядок кадров=', 'frameborder='
-	  	link.biglink = imageget
+ 
  			link.fullarticle = getp
  			link.save!
 		end
