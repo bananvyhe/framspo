@@ -36,7 +36,9 @@ class News < ApplicationRecord
     bodyb = {
       "folderId"=>"b1g86cba4bfmnhhsnobp",
       "texts"=> ina,
-      "targetLanguageCode"=>"ru"
+      "targetLanguageCode"=>"ru",
+      "format" => "HTML"
+
     }
      
     resp = HTTParty.post("https://translate.api.cloud.yandex.net/translate/v2/translate", headers: @headersb, body: bodyb.to_json)

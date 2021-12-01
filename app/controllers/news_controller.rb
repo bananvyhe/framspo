@@ -54,24 +54,24 @@ class NewsController < ApplicationController
  			end
 
 			artbody = News.tranklukate(@get, tokenr)
-			getp =  artbody.gsub '<загрузка iframe= "ленивый" заголовок=','<iframe loading="lazy" title='
-			getp =  getp.gsub '<идентификатор ul=','<ul '
-			getp =  getp.gsub '<класс рисунка=','<figure '
-			getp =  getp.gsub '<загрузка img= "', '<img loading="lazy" '
-			getp =  getp.gsub '<ли>', '<li>'
-			getp =  getp.gsub '</ли>', '</li>'
-	    getp =  getp.gsub '</рисунок>', '</figure>'
-	    # getp =  getp.gsub '<класс рисунка="','<figure '
-	    getp =  getp.gsub '<класс div="','<div '
-	    getp = getp.gsub '<рисунок>', '<figure>'
-	    getp =  getp.gsub '</сильный>', '</strong>'
-	    getp = getp.gsub '<сильный>', '<strong>'
-	    getp = getp.gsub '<заголовок iframe= "Видеоплеер YouTube"', '<iframe title="YouTube video player"'
-	    getp = getp.gsub 'ширина=', ''
-	    getp = getp.gsub 'высота=', ''
-	    getp = getp.gsub 'порядок кадров=', 'frameborder='
+			# getp =  artbody.gsub '<загрузка iframe= "ленивый" заголовок=','<iframe loading="lazy" title='
+			# getp =  getp.gsub '<идентификатор ul=','<ul '
+			# getp =  getp.gsub '<класс рисунка=','<figure '
+			# getp =  getp.gsub '<загрузка img= "', '<img loading="lazy" '
+			# getp =  getp.gsub '<ли>', '<li>'
+			# getp =  getp.gsub '</ли>', '</li>'
+	  #   getp =  getp.gsub '</рисунок>', '</figure>'
+	  #   # getp =  getp.gsub '<класс рисунка="','<figure '
+	  #   getp =  getp.gsub '<класс div="','<div '
+	  #   getp = getp.gsub '<рисунок>', '<figure>'
+	  #   getp =  getp.gsub '</сильный>', '</strong>'
+	  #   getp = getp.gsub '<сильный>', '<strong>'
+	  #   getp = getp.gsub '<заголовок iframe= "Видеоплеер YouTube"', '<iframe title="YouTube video player"'
+	  #   getp = getp.gsub 'ширина=', ''
+	  #   getp = getp.gsub 'высота=', ''
+	  #   getp = getp.gsub 'порядок кадров=', 'frameborder='
  
- 			full.fullarticle = getp
+ 			full.fullarticle = artbody
  			full.save!
 		end
 		# puts getp
