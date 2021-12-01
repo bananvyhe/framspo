@@ -204,6 +204,9 @@
   }
 </script>
 <style scoped>
+.text-h6, .text-h5{
+  word-break: normal;
+}
 .but{
   position: absolute;
   bottom: 2em;
