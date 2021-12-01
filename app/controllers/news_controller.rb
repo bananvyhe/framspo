@@ -3,7 +3,7 @@ class NewsController < ApplicationController
 
   def index
   	@news = News.all 
-		render json: @news.order(created_at: :desc)
+		render json: @news.order(created_at: :desc).limit(25)
   end
 
 	def create 
