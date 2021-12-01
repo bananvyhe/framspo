@@ -58,10 +58,17 @@
                     <span class="text-h5 px-1">{{item.desc}}</span>
                   </v-card-title>
                   <v-card-text class="px-1">
-                    <div v-if="!fullnews"><v-progress-circular 
+                    <div v-if="!fullnews">
+                      <v-progress-circular 
                       indeterminate 
                       color="green">
-                    </v-progress-circular>  </div>
+                      </v-progress-circular>  
+                    </div>
+                    <div v-else>
+                      <div class ="innerpic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+                        <img :src="item.pic">
+                      </div>
+                    </div>
                     
 <!--                     <v-img
                   class=" mr-4 float-left"
@@ -210,6 +217,10 @@
   /*background-color: #dad;*/
   width: 100px;
   height: 100px;
- 
+}
+.innerpic {
+  margin: 1em;
+  /*padding-bottom: 1em;*/
+  float: left;
 }
 </style>
