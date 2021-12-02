@@ -51,7 +51,7 @@
 
               <v-dialog
                 v-model="dialogVisible"
-                max-width="960px"
+                max-width="1020px"
                 width="95%">
                 <v-card class="px-2">
                   <v-card-title class="px-1">
@@ -204,6 +204,11 @@
   }
 </script>
 <style scoped>
+.v-card__text{
+  box-sizing: border-box;
+ 
+  overflow: hidden;
+}
 .text-h6, .text-h5{
   word-break: normal;
 }
