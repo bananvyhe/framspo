@@ -85,7 +85,7 @@ class NewsController < ApplicationController
 
 
 
-					render json: full
+		render json: full
 
 
 
