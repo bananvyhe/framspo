@@ -30,7 +30,7 @@ class HardWorker < ApplicationController
 			link = row.css('a').attr('href').to_s
 			link = 'https://www.pocketgamer.biz'+link
 			head = row.css('.qualifier').inner_text.to_s
-			date = row.css('.date').inner_text.to_s
+			# date = row.css('.date').inner_text.to_s
 			desc = row.css('h2').inner_text.to_s
 
 			# @s = @s + 2
@@ -39,7 +39,7 @@ class HardWorker < ApplicationController
 				:pic => pic,
 				:link => link,
 				:head => head,
-				:date => date,
+				:date => DateTime.now.strftime('%d/%m/%Y'),
 				:desc => desc				
 			}
 			@rowsd = [*@rowsd, data]
@@ -57,7 +57,7 @@ class HardWorker < ApplicationController
 				:pic => pic,
 				:link => link,
 				:head => head,
-				:date => DateTime.now.strftime('%m/%d/%Y'),
+				:date => DateTime.now.strftime('%d/%m/%Y'),
 				:desc => desc				
 			}
 			@datatwo = [*@datatwo, data]
@@ -80,7 +80,7 @@ class HardWorker < ApplicationController
 				:pic => pic,
 				:link => link,
 				:head => head,
-				:date => DateTime.now.strftime('%m/%d/%Y'),
+				:date => DateTime.now.strftime('%d/%m/%Y'),
 				:desc => desc				
 			}
 			@datathree = [*@datathree, data]
