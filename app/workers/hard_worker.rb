@@ -107,7 +107,7 @@ class HardWorker < ApplicationController
  		agent = Mechanize.new
  		url=['https://www.google.ru/',
  			'https://www.yandex.ru/',
- 			'http://mmorpgbr.com.br/mmos/mmorpg/']
+ 			]
 		@mass = Array.new
 		url.each_with_index do |url, index|
 			@mass << agent.get(url)
