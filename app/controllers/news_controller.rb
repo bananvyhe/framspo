@@ -38,7 +38,7 @@ class NewsController < ApplicationController
 	 #    get = page.css('.body').to_s
 	 #    get = get.force_encoding("utf-8")
 		# File.open('777.html', 'w'){ |file| file.write get } 
-		url = url.to_s
+			url = url.to_s
 			compare = url[0..20]
 
  			if compare == 'https://www.blockchai'
@@ -51,9 +51,15 @@ class NewsController < ApplicationController
  				getp = article.gsub '<div class="body" itemprop="articleBody">', ''
 				get = getp.gsub '</div>', ''
 				@get =	get[1..-4]
+			elsif compare == 'http://mmorpgbr.com.b'
+				@get = page.css('.entry-content').to_s
+				puts @get
  			end
 
-			artbody = News.tranklukate(@get, tokenr)
+
+						artbody = News.tranklukate(@get, tokenr)
+
+
 			# getp =  artbody.gsub '<загрузка iframe= "ленивый" заголовок=','<iframe loading="lazy" title='
 			# getp =  getp.gsub '<идентификатор ul=','<ul '
 			# getp =  getp.gsub '<класс рисунка=','<figure '
@@ -76,10 +82,15 @@ class NewsController < ApplicationController
 		end
 		# puts getp
 		# puts imageget
-		render json: full
-# 
-    # puts imageget.to_s
 
+
+
+					render json: full
+
+
+
+
+    # puts imageget.to_s
     # resp = page.body.force_encoding("utf-8")
 		# File.open('777.html', 'w'){ |file| file.write resp }
 
