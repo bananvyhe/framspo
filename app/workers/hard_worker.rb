@@ -63,9 +63,51 @@ class HardWorker < ApplicationController
 			@datatwo = [*@datatwo, data]
 		end
 
+		@datathree = Array.new
+		def selection_scrapped_three(row)
+			puts "cooking3.."
+			# puts @mass[1].body
+			# puts row
+			link = row.css('.bottom-recentpost-image-0 a').attr('href').to_s
+	  	# puts link 
+	  	head = row.css('h2').inner_text.to_s
+	  	# puts head 
+	  	pic = row.css('img').attr('src').to_s
+	  	# puts pic
+	  	desc = row.css('.post-content').inner_text.to_s
+	  	# puts desc
+	  	data = {
+				:pic => pic,
+				:link => link,
+				:head => head,
+				:date => DateTime.now.strftime('%m/%d/%Y'),
+				:desc => desc				
+			}
+			@datathree = [*@datathree, data]
+
+	  	# datatrhee = row.css('.bottom-recentpost-image-0 a').attr('href').to_s
+			# File.open('889.html', 'w'){ |file| file.write mas }
+			# head = row.css('h2').inner_text.to_s
+			# desc = row.css('.post-summary').inner_text.to_s
+			# desc = desc[1..-10]
+			# pic = row.css('.img-holder').attr('data-src').to_s
+			# link = row.css('.title a').attr('href').to_s
+			# data = {
+			# 	:pic => pic,
+			# 	:link => link,
+			# 	:head => head,
+			# 	:date => DateTime.now.strftime('%m/%d/%Y'),
+			# 	:desc => desc				
+			# }
+			# @datatwo = [*@datatwo, data]
+		end
+
+# 'https://www.pocketgamer.biz/asia/news/',
+#  			'https://www.blockchaingamer.biz/news/',
  		agent = Mechanize.new
- 		url=['https://www.pocketgamer.biz/asia/news/',
- 			'https://www.blockchaingamer.biz/news/']
+ 		url=['https://www.google.ru/',
+ 			'https://www.yandex.ru/',
+ 			'http://mmorpgbr.com.br/mmos/mmorpg/']
 		@mass = Array.new
 		url.each_with_index do |url, index|
 			@mass << agent.get(url)
@@ -83,16 +125,24 @@ class HardWorker < ApplicationController
 				end
 			end
 		end		
-		# mas = @mass[1].body.force_encoding("utf-8")
-		# mas =@mass[1].css('.content-container').inner_text
+
 	  @mass[1].css('.content-container article').each do |row|
 	    selection_scrapped_two(row)
 	  end
-		# mas = mas.force_encoding("utf-8")
-		# File.open('889.html', 'w'){ |file| file.write mas }
+# mas = @mass[2].css('.bottom-recentpost-wrapper-cat').to_s
+# mas = mas.force_encoding("utf-8")
+
+# File.open('889.html', 'w'){ |file| file.write mas }
+	  @mass[2].css('.bottom-archive').each do |row|
+	    selection_scrapped_three(row)
+	  end
+
 		to_news_trank(@rowsd)
 		sleep(5)
 		to_news_trank(@datatwo)
+		sleep(5)
+		to_news_trank(@datathree)		
+		sleep(5)
 
 
 
@@ -102,3 +152,7 @@ class HardWorker < ApplicationController
 	end
 
 end
+		# mas = @mass[1].body.force_encoding("utf-8")
+		# mas =@mass[1].css('.content-container').inner_text
+		# mas = mas.force_encoding("utf-8")
+		# File.open('889.html', 'w'){ |file| file.write mas }
