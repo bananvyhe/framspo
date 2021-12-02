@@ -66,8 +66,7 @@ class HardWorker < ApplicationController
 		@datathree = Array.new
 		def selection_scrapped_three(row)
 			puts "cooking3.."
-			# puts @mass[1].body
-			# puts row
+
 	  	head = row.css('h3').inner_text.to_s
 	  	# puts head 
 	  	link = row.css('h3 a').attr('href').to_s
@@ -90,49 +89,46 @@ class HardWorker < ApplicationController
  		agent = Mechanize.new
  		url=['https://www.pocketgamer.biz/asia/news/',
  			'https://www.blockchaingamer.biz/news/',
- 			'https://massivelyop.com/']
+ 			'https://massivelyop.com/category/new-games/']
 		@mass = Array.new
 		url.each_with_index do |url, index|
 			@mass << agent.get(url)
 		end
 
 		@rowsd = Array.new
-		@mass[0].css('.module.latest.news').each do |row|
-			@m = 0
-			rowcss = row.css('.item')
-			rowcss.each do |rowf|
-			@m = @m + 1
-			puts @m 
-				if @m != 5
-					selection_scrapped(rowf)
+		if @mass[0] != nil
+			@mass[0].css('.module.latest.news').each do |row|
+				@m = 0
+				rowcss = row.css('.item')
+				rowcss.each do |rowf|
+				@m = @m + 1
+				puts @m 
+					if @m != 5
+						selection_scrapped(rowf)
+					end
 				end
-			end
-		end		
+			end		
+		end
 
-	  @mass[1].css('.content-container article').each do |row|
-	    selection_scrapped_two(row)
-	  end
-
-
-
-	  @mass[2].css('.td_module_10').each do |row|
-	    selection_scrapped_three(row)
-	  end
-
+		if @mass[1] != nil
+		  @mass[1].css('.content-container article').each do |row|
+		    selection_scrapped_two(row)
+		  end
+		end
+		if @mass[2] != nil
+			# mas = @mass[2].body.force_encoding("utf-8")
+			# File.open('881.html', 'w'){ |file| file.write mas }
+		  @mass[2].css('.td_module_16').each do |row|
+		    selection_scrapped_three(row)
+		  end
+		end
 		to_news_trank(@rowsd)
 		sleep(5)
 		to_news_trank(@datatwo)
 		sleep(5)
 		to_news_trank(@datathree)		
 		sleep(5)
-
-
-
-
-
- 
 	end
-
 end
 		# mas = @mass[1].body.force_encoding("utf-8")
 		# mas =@mass[1].css('.content-container').inner_text
