@@ -68,13 +68,13 @@ class HardWorker < ApplicationController
 			puts "cooking3.."
 			# puts @mass[1].body
 			# puts row
-			link = row.css('.bottom-recentpost-image-0 a').attr('href').to_s
-	  	# puts link 
-	  	head = row.css('h2').inner_text.to_s
+	  	head = row.css('h3').inner_text.to_s
 	  	# puts head 
-	  	pic = row.css('img').attr('src').to_s
+	  	link = row.css('h3 a').attr('href').to_s
+	  	# puts link 
+	  	pic = row.css('img').attr('data-img-url').to_s
 	  	# puts pic
-	  	desc = row.css('.post-content').inner_text.to_s
+	  	desc = row.css('.td-excerpt').inner_text.to_s
 	  	# puts desc
 	  	data = {
 				:pic => pic,
@@ -85,29 +85,12 @@ class HardWorker < ApplicationController
 			}
 			@datathree = [*@datathree, data]
 
-	  	# datatrhee = row.css('.bottom-recentpost-image-0 a').attr('href').to_s
-			# File.open('889.html', 'w'){ |file| file.write mas }
-			# head = row.css('h2').inner_text.to_s
-			# desc = row.css('.post-summary').inner_text.to_s
-			# desc = desc[1..-10]
-			# pic = row.css('.img-holder').attr('data-src').to_s
-			# link = row.css('.title a').attr('href').to_s
-			# data = {
-			# 	:pic => pic,
-			# 	:link => link,
-			# 	:head => head,
-			# 	:date => DateTime.now.strftime('%m/%d/%Y'),
-			# 	:desc => desc				
-			# }
-			# @datatwo = [*@datatwo, data]
 		end
 
-# 'https://www.pocketgamer.biz/asia/news/',
-#  			'https://www.blockchaingamer.biz/news/',
  		agent = Mechanize.new
- 		url=['https://www.google.ru/',
- 			'https://www.yandex.ru/',
- 			]
+ 		url=['https://www.pocketgamer.biz/asia/news/',
+ 			'https://www.blockchaingamer.biz/news/',
+ 			'https://massivelyop.com/']
 		@mass = Array.new
 		url.each_with_index do |url, index|
 			@mass << agent.get(url)
@@ -129,11 +112,10 @@ class HardWorker < ApplicationController
 	  @mass[1].css('.content-container article').each do |row|
 	    selection_scrapped_two(row)
 	  end
-# mas = @mass[2].css('.bottom-recentpost-wrapper-cat').to_s
-# mas = mas.force_encoding("utf-8")
 
-# File.open('889.html', 'w'){ |file| file.write mas }
-	  @mass[2].css('.bottom-archive').each do |row|
+
+
+	  @mass[2].css('.td_module_10').each do |row|
 	    selection_scrapped_three(row)
 	  end
 

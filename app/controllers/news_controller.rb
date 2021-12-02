@@ -43,20 +43,17 @@ class NewsController < ApplicationController
 
  			if compare == 'https://www.blockchai'
 				# puts "entry"
- 				get = page.css('.entry-content').to_s
- 				@get = get[58..-7]
+ 				@get = page.css('.entry-content').to_s
+ 				# @get = get[58..-7]
  			elsif compare == 'https://www.pocketgam'
 				# puts "body"
- 				article = page.css('.body').to_s
- 				getp = article.gsub '<div class="body" itemprop="articleBody">', ''
-				get = getp.gsub '</div>', ''
-				@get =	get[1..-4]
-			elsif compare == 'http://mmorpgbr.com.b'
-				@get = page.css('.entry-content').to_s
-				puts @get
+ 				@get = page.css('.body').to_s
+ 				# getp = article.gsub '<div class="body" itemprop="articleBody">', ''
+				# get = getp.gsub '</div>', ''
+				# @get =	get[1..-4]
+			elsif compare == 'https://massivelyop.c'
+				@get = page.css('.td-post-content').to_s
  			end
-
-
 						artbody = News.tranklukate(@get, tokenr)
 
 
@@ -76,7 +73,9 @@ class NewsController < ApplicationController
 	  #   getp = getp.gsub 'ширина=', ''
 	  #   getp = getp.gsub 'высота=', ''
 	  #   getp = getp.gsub 'порядок кадров=', 'frameborder='
- 
+
+
+			puts artbody
  			full.fullarticle = artbody
  			full.save!
 		end
@@ -85,7 +84,7 @@ class NewsController < ApplicationController
 
 
 
-		render json: full
+			render json: full
 
 
 

@@ -55,7 +55,7 @@
                 width="95%">
                 <v-card class="px-2">
                   <v-card-title class="px-1">
-                    <span class="text-h5 px-1">{{item.desc}}</span>
+                    <span class="text-h5 px-1">{{item.head}}</span>
                   </v-card-title>
                   <v-card-text class="px-1">
                     <div v-if="!fullnews">
@@ -65,7 +65,7 @@
                       </v-progress-circular>  
                     </div>
                     <div v-else>
-                      <div class ="innerpic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+                      <div v-if ='item.link.slice(0, 20) != "https://massivelyop."' class ="innerpic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
                         <img :src="item.pic">
                       </div>
                     </div>
