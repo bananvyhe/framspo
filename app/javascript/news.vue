@@ -5,12 +5,12 @@
       <v-row>
         <v-col>
           <div 
-          class="align-top  float-left mx-0 px-3 py-md-1 mr-md-2 ml-md-1">
+          class="align-top  float-left mx-0 px-3 py-md-1 mx-md-1 ">
             <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
             </div>
           </div>
           <v-card-title
-            class="text-h6 px-0 py-2"
+            class="text-h5 px-0 py-2"
             v-text="item.head">
           </v-card-title>
           <div class="px-2 ">
@@ -197,7 +197,7 @@
   overflow: hidden;
 }
 .text-h6, .text-h5{
-  /*word-break: normal;*/
+  word-break: normal;
 }
 .but{
   position: absolute;
