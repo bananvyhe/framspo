@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <v-main>
-        <v-container class="px-0">
+        <v-container class=" ">
           <v-app-bar app dense hide-on-scroll>
 
               <p>{{message}}<i> {{ tl }}</i></p>

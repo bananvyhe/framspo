@@ -2,10 +2,10 @@
   <div class=" py-1 px-0"> 
     <v-card v-for="(item, index) in alld " :key= "item.id" 
       class=" py-1 my-1">
-      <v-row class="d-flex">
+      <v-row>
         <v-col>
           <div 
-          class="d-flex align-top  float-left mx-3">
+          class="align-top  float-left mx-3">
             <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
             </div>
           </div>
@@ -191,7 +191,7 @@
 </script>
 <style scoped>
 .v-card__text{
-  box-sizing: border-box;
+
  
   overflow: hidden;
 }
