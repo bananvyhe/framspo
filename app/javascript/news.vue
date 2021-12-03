@@ -13,7 +13,7 @@
             class="text-h5 px-0 py-2"
             v-text="item.head">
           </v-card-title>
-          <div class="px-2 ">
+          <div class="px-2 body-1">
             {{item.desc}}… 
           </div>
  
@@ -62,7 +62,7 @@
                     </div>
                   </div>
                     
-                  <span v-html="fullnews"></span> 
+                  <span class="body-1" v-html="fullnews"></span> 
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
