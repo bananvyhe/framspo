@@ -3,12 +3,12 @@
     <v-app>
       <v-main>
         <v-container class=" ">
-          <v-app-bar app dense hide-on-scroll>
+          <v-app-bar app dense hide-on-scroll class="py-1">
 
               <p>{{message}}<i> {{ tl }}</i></p>
 
             <div subt>
-               <p class=" font-italic ">&nbsp; NFT mmorpg </p>  
+               <p class=" font-italic ">&nbsp;</p>  
             </div>
 
           </v-app-bar>
@@ -28,8 +28,8 @@ export default {
   },
   data: function () {
     return {
-      message: "project",
-      tl: "TL"
+      message: "Lineage Eternal ",
+      tl: "reboot TL mmorpg NFT"
     }
   }
 }
