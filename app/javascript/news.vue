@@ -5,14 +5,14 @@
       <v-row>
         <v-col>
           <div 
-          class="align-top  float-left mx-0 px-3 py-md-1 mx-md-1 ">
+          class="align-top  float-left mr-1 px-3 py-md-1 mx-md-1 ">
             <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
             </div>
           </div>
-          <v-card-title
-            class="text-h5 px-0 py-2"
+          <div
+            class="text-h5 px-2 py-2"
             v-text="item.head">
-          </v-card-title>
+          </div>
           <div class="px-2 body-1">
             {{item.desc}}… 
           </div>
@@ -58,7 +58,7 @@
                   </div>
                   <div v-else>
                     <div v-if ='item.link.slice(0, 20) != "https://massivelyop."' class ="innerpic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
-                        <img :src="item.pic">
+                        <img :src="item.pic"  >
                     </div>
                   </div>
                     
