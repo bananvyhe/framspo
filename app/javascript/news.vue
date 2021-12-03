@@ -47,7 +47,7 @@
               <v-card 
               class="  px-md-5">
                 <v-card-title class="pb-md-5"">
-                  <span class="text-h5 px-1">{{item.head}}</span>
+                  <span class="text-h5 ">{{item.head}}</span>
                 </v-card-title>
                 <v-card-text >
                   <div v-if="!fullnews">
