@@ -3,14 +3,12 @@
     <v-card v-for="(item, index) in alld " :key= "item.id" 
       class=" py-1 my-1">
       <v-row class="d-flex">
-       
         <v-col>
-           <div 
-          class="d-flex align-top  float-left mx-3  ">
-         <!--   -->
-          <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+          <div 
+          class="d-flex align-top  float-left mx-3">
+            <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+            </div>
           </div>
-        </div>
           <v-card-title
             class="text-h6 px-0 py-2"
             v-text="item.head">
@@ -40,42 +38,30 @@
           small>
             открыть
           </v-btn>   
-<!--             <v-btn
-              class="float-right "
-              icon
-              @click="clickhandler(item.id, $event)">
-              <v-icon>{{ dialogVisible&&item.id == empid  ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-            </v-btn> -->
 
-            <div v-if="item.id == empid">
-
-              <v-dialog
-                v-model="dialogVisible"
-                max-width="1020px"
-                width="95%">
-                <v-card class="px-2">
-                  <v-card-title class="px-1">
-                    <span class="text-h5 px-1">{{item.head}}</span>
-                  </v-card-title>
-                  <v-card-text class="px-1">
-                    <div v-if="!fullnews">
-                      <v-progress-circular 
+          <div v-if="item.id == empid">
+            <v-dialog
+              v-model="dialogVisible"
+              max-width="1020px"
+              width="95%">
+              <v-card class="px-2">
+                <v-card-title class="px-1">
+                  <span class="text-h5 px-1">{{item.head}}</span>
+                </v-card-title>
+                <v-card-text class="px-1">
+                  <div v-if="!fullnews">
+                    <v-progress-circular 
                       indeterminate 
                       color="green">
-                      </v-progress-circular>  
-                    </div>
-                    <div v-else>
-                      <div v-if ='item.link.slice(0, 20) != "https://massivelyop."' class ="innerpic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+                    </v-progress-circular>  
+                  </div>
+                  <div v-else>
+                    <div v-if ='item.link.slice(0, 20) != "https://massivelyop."' class ="innerpic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
                         <img :src="item.pic">
-                      </div>
                     </div>
+                  </div>
                     
-<!--                     <v-img
-                  class=" mr-4 float-left"
-                  height="225px"
-                  width="225px"
-                  :src = "bigimage"></v-img> -->
-                    <span v-html="fullnews"></span> 
+                  <span v-html="fullnews"></span> 
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
@@ -210,7 +196,7 @@
   overflow: hidden;
 }
 .text-h6, .text-h5{
-  word-break: normal;
+  /*word-break: normal;*/
 }
 .but{
   position: absolute;
