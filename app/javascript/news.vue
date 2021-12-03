@@ -13,7 +13,7 @@
             class="text-h6 px-0 py-2"
             v-text="item.head">
           </v-card-title>
-          <div class="px-2">
+          <div class="px-2 ">
             {{item.desc}}… 
           </div>
  
@@ -44,11 +44,12 @@
               v-model="dialogVisible"
               max-width="1020px"
               width="95%">
-              <v-card class="px-2">
-                <v-card-title class="px-1">
+              <v-card 
+              class="  px-md-5">
+                <v-card-title class="pb-md-5"">
                   <span class="text-h5 px-1">{{item.head}}</span>
                 </v-card-title>
-                <v-card-text class="px-1">
+                <v-card-text >
                   <div v-if="!fullnews">
                     <v-progress-circular 
                       indeterminate 
