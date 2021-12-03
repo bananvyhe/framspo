@@ -1,11 +1,11 @@
 <template>
   <div class=" py-1 px-0"> 
     <v-card v-for="(item, index) in alld " :key= "item.id" 
-      class=" py-1 my-1">
+      class="px-1 my-1 py-2 py-md-1 my-md-2">
       <v-row>
         <v-col>
           <div 
-          class="align-top  float-left mx-3">
+          class="align-top  float-left mx-0 px-3 py-md-1 mr-md-2 ml-md-1">
             <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
             </div>
           </div>
