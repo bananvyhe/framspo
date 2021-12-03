@@ -51,7 +51,7 @@ class NewsController < ApplicationController
  				# getp = article.gsub '<div class="body" itemprop="articleBody">', ''
 				# get = getp.gsub '</div>', ''
 				# @get =	get[1..-4]
-			elsif compare == 'https://massivelyop.c'
+			elsif compare == 'https://massivelyop.com'
 				@get = page.css('.td-post-content').to_s
  			end
 						artbody = News.tranklukate(@get, tokenr)
