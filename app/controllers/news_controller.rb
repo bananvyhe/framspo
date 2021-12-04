@@ -51,11 +51,17 @@ class NewsController < ApplicationController
  				# getp = article.gsub '<div class="body" itemprop="articleBody">', ''
 				# get = getp.gsub '</div>', ''
 				# @get =	get[1..-4]
-			elsif compare == 'https://massivelyop.com'
+			elsif compare == 'https://massivelyop.c'
+ 
 				@get = page.css('.td-post-content').to_s
- 			end
-						artbody = News.tranklukate(@get, tokenr)
 
+			else
+ 			end
+ 			
+			artbody = News.tranklukate(@get, tokenr) 
+			# puts artbody
+ 			full.fullarticle = artbody
+ 			full.save!
 
 			# getp =  artbody.gsub '<загрузка iframe= "ленивый" заголовок=','<iframe loading="lazy" title='
 			# getp =  getp.gsub '<идентификатор ul=','<ul '
@@ -73,26 +79,14 @@ class NewsController < ApplicationController
 	  #   getp = getp.gsub 'ширина=', ''
 	  #   getp = getp.gsub 'высота=', ''
 	  #   getp = getp.gsub 'порядок кадров=', 'frameborder='
-
-
-			puts artbody
- 			full.fullarticle = artbody
- 			full.save!
 		end
 		# puts getp
 		# puts imageget
 
-
-
 			render json: full
-
-
-
-
     # puts imageget.to_s
     # resp = page.body.force_encoding("utf-8")
 		# File.open('777.html', 'w'){ |file| file.write resp }
-
 
 		# @rowsd = Array.new
 
@@ -133,7 +127,6 @@ class NewsController < ApplicationController
 		# headers = {
 		# 	"Content-Type" => "application/json"  
 		# }
-
 
 	end
 
