@@ -30,18 +30,29 @@ $headings: (
       'size': 1.05rem,
       'line-height': 1.618rem,
       'letter-spacing': 0.03125rem,
+
     ),
 	);
 $material-dark: (
   'background': #11120e,
 	'text': (
-	'secondary': #fff,
+		'secondary': #fff,
 	),
+
 );
 $body-font-family: 'Roboto Slab';
 // $title-font: 'Roboto';
 $heading-font-family: 'Roboto Condensed';
 $font-size-root: 1.0em ;
+.v-application{
+	a{
+		color: #80d0ff 	!important;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #ffdf80 	!important;
+	}
+}
  
 
   
