@@ -120,7 +120,7 @@
       return {
         pos: 0,
         bottom: false,
-        bigimage: '',
+ 
         fullnews: '',
         dialogVisible: false,
         empid: '',
@@ -143,6 +143,12 @@
       })
     },
     watch: {
+      dialogVisible(val){
+        if (val == false){
+          this.fullnews = ''
+          console.log("fafafaf")
+        }
+      },
       bottom(bottom) {
         if (bottom)  {
           this.addBeer()
@@ -150,7 +156,7 @@
       } 
     },
     mounted(){
-        this.addBeer()
+      this.addBeer()
     },
     methods: {
     bottomVisible() {
@@ -171,30 +177,29 @@
     },
     clohand(){
       this.dialogVisible = false
-       this.fullnews = '' 
+       // this.fullnews = '' 
     },
     clickhandler( event) {
-      if (event == this.empid){
-        this.dialogVisible = !this.dialogVisible;
-      }else{
-        this.bigimage = ''
-        this.fullnews = '' 
-        this.dialogVisible = true;
-        this.empid = event;
-       axios({
-          method: 'post',
-          url: '/fullnews',
-          data: {
-            id: event
-          },
-        }).then((response) => { 
-          if (response.data){
-            console.log(response.data)
-            this.fullnews = response.data.fullarticle
-            // this.bigimage = response.data.biglink
-          }
-        }); 
-      }
+      // if (event == this.empid){
+        // this.dialogVisible = !this.dialogVisible;
+
+      // }else{
+    this.dialogVisible = true;
+     axios({
+        method: 'post',
+        url: '/fullnews',
+        data: {
+          id: event
+        },
+      }).then((response) => { 
+        if (response.data){
+          console.log(response.data)
+          this.fullnews = response.data.fullarticle
+          // this.bigimage = response.data.biglink
+        }
+      }); 
+      this.empid = event;
+      // }
     },
       addBeer() {
         axios({
