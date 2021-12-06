@@ -7,7 +7,7 @@
           <div 
           class="align-top  float-left mr-1 px-3 py-md-1 mx-md-1 ">
           <!-- {backgroundImage: 'url('+ item.pic} -->
-            <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic} ">
+            <div class ="pic px-0  align-center my-2" v-bind:style="  ">{{pos}}
             </div>
           </div>
           <div
@@ -99,9 +99,13 @@
               </v-card-text>
             </div>
           </v-expand-transition> -->
-    <v-progress-circular  
+          <div class="d-flex justify-center" > 
+                <v-progress-circular 
+    
     indeterminate 
     color="green" v-if="this.bottom == true && alld.length != 0"></v-progress-circular>   
+          </div>
+
  
 
    
@@ -113,6 +117,7 @@
  
     data: function (){
       return {
+        pos: 0,
         bottom: false,
         bigimage: '',
         fullnews: '',
@@ -181,10 +186,27 @@
         axios({
           method: 'get',
           url: '/news',
+          params: {
+            pos: this.pos
+          },
         }).then((response) => { 
           if (response.data){
-            console.log(response.data)
-            this.alld = response.data
+            // console.log(response.data)
+            var alldat = response.data
+            // this.alldata = this.alldata.concat(this.alld);
+            if (this.pos != 0){
+
+              console.log(alldat)
+              this.alld = this.alld.concat(response.data);
+              this.pos = this.alld.length
+            }else if (this.pos == 0){
+            this.alld = alldat
+            this.pos = alldat.length
+            this.bottom = false     
+            }else if (response.data.length == 0){
+
+            this.bottom = false     
+            }      
           }
         });
       }
