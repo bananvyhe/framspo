@@ -5,7 +5,7 @@
       <v-row>
         <v-col>
           <div 
-          class="align-top  float-left mr-1 px-3 py-md-1 mx-md-1 ">
+          class="align-top  float-left mr-1 px-3 py-md-1 mx-md-1">
           <!-- {backgroundImage: 'url('+ item.pic} -->
             <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
               <!-- {{pos}} -->
@@ -44,11 +44,11 @@
           <div v-if="item.id == empid">
             <v-dialog
               v-model="dialogVisible"
-              max-width="1020px"
+              max-width="1240px"
               width="95%">
               <v-card 
-              class="  px-md-5">
-                <v-card-title class="pb-md-5"">
+              class="px-md-5 py-md-2">
+                <v-card-title class="pb-md-4">
                   <span class="text-h5 ">{{item.head}}</span>
                 </v-card-title>
                 <v-card-text >
@@ -225,8 +225,6 @@
 </script>
 <style scoped>
 .v-card__text{
-
- 
   overflow: hidden;
 }
 .text-h6, .text-h5{
