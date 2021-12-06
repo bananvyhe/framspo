@@ -71,7 +71,7 @@
                     <v-btn
                     color="green darken-1 "
                     text
-                    @click="dialogVisible = false">
+                    @click="clohand">
                     Закрыть
                     </v-btn>
  
@@ -168,6 +168,10 @@
         return elem.id == self.empid;
         })
       }
+    },
+    clohand(){
+      this.dialogVisible = false
+       this.fullnews = '' 
     },
     clickhandler( event) {
       if (event == this.empid){
