@@ -89,7 +89,8 @@ class HardWorker < ApplicationController
  		agent = Mechanize.new
  		url=['https://www.pocketgamer.biz/asia/news/',
  			'https://www.blockchaingamer.biz/news/',
- 			'https://massivelyop.com/category/new-games/']
+ 			'https://massivelyop.com/category/new-games/',
+ 			'https://massivelyop.com/category/industry/']
 		@mass = Array.new
 		url.each_with_index do |url, index|
 			@mass << agent.get(url)
@@ -122,12 +123,20 @@ class HardWorker < ApplicationController
 		    selection_scrapped_three(row)
 		  end
 		end
+		if @mass[3] != nil
+		  @mass[3].css('.td_module_16').each do |row|
+		    selection_scrapped_three(row)
+		  end 
+		end
+
 		to_news_trank(@rowsd)
-		sleep(5)
+		sleep(2)
 		to_news_trank(@datatwo)
-		sleep(5)
+		sleep(2)
 		to_news_trank(@datathree)		
-		sleep(5)
+		sleep(2)
+		to_news_trank(@datafour)		
+		sleep(2)
 	end
 end
 		# mas = @mass[1].body.force_encoding("utf-8")
