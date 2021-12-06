@@ -128,9 +128,19 @@
       }
     },
     created(){
+      var timer;
       window.addEventListener('scroll', () => {
-        this.bottom = this.bottomVisible()
-        // this.bganim.backgroundPosition = "center"
+
+        if(timer) {
+          window.clearTimeout(timer);
+        }
+        var self = this
+         timer = setTimeout(function() {
+            self.bottom = self.bottomVisible()
+              console.log("vis")
+         }, 200);
+      
+        
       })
     },
     watch: {
