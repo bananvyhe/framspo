@@ -3,12 +3,12 @@
     <v-app>
       <v-main>
         <v-container class=" ">
-          <v-app-bar app dense hide-on-scroll class="py-1">
+          <v-app-bar app dense hide-on-scroll class="py-0">
 
               <p>{{message}}<i> {{ tl }}</i></p>
 
-            <div subt>
-               <p class=" font-italic ">&nbsp;</p>  
+            <div class="subt">
+              Yandex neural network translator API 
             </div>
 
           </v-app-bar>
@@ -36,5 +36,10 @@ export default {
 </script>
 
 <style scoped>
- 
+ .subt{
+  color: #73708f;
+  position: absolute;
+  bottom: 1px;
+
+ }
 </style>
