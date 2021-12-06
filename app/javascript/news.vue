@@ -135,12 +135,11 @@
           window.clearTimeout(timer);
         }
         var self = this
-         timer = setTimeout(function() {
-            self.bottom = self.bottomVisible()
-              console.log("vis")
-         }, 200);
+        timer = setTimeout(function() {
+          self.bottom = self.bottomVisible()
+          console.log("vis")
+        }, 200);
       
-        
       })
     },
     watch: {
