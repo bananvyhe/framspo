@@ -27,7 +27,7 @@ $headings: (
       'line-height': 1.818rem,
     ),
   	'body-1': (
-      'size': 1.05rem,
+      'size': 1rem,
       'line-height': 1.618rem,
       'letter-spacing': 0.03125rem,
 
@@ -43,7 +43,7 @@ $material-dark: (
 $body-font-family: 'Roboto Slab';
 // $title-font: 'Roboto';
 $heading-font-family: 'Roboto Condensed';
-$font-size-root: 1.0em ;
+$font-size-root: 0.9em ;
 .v-application{
 	a{
 		color: #80d0ff 	!important;
@@ -54,6 +54,15 @@ $font-size-root: 1.0em ;
 	}
 }
  
-
+// $grid-breakpoints: map-deep-merge(
+//   (
+//     'xs': 0,
+//     'sm': 600px,
+//     'md': 960px,
+//     'lg': 1280px - 16px,
+//     'xl': 1920px - 16px
+//   ),
+//   $grid-breakpoints
+// );
   
   
