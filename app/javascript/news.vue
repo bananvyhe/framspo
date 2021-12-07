@@ -12,7 +12,7 @@
             </div>
           </div>
           <div
-            class="text-h5 px-2 py-2"
+            class="text-h5 px-2 pt-1 pb-1"
             v-text="item.head">
           </div>
           <div class="px-2 body-1">
@@ -237,6 +237,7 @@
   overflow: hidden;
 }
 .text-h6, .text-h5{
+
   word-break: normal;
 }
 .but{
