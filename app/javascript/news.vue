@@ -138,7 +138,7 @@
         timer = setTimeout(function() {
           self.bottom = self.bottomVisible()
           console.log("vis")
-        }, 200);
+        }, 20);
       
       })
     },
@@ -151,6 +151,7 @@
       },
       bottom(bottom) {
         if (bottom)  {
+          console.log("bottom")
           this.addBeer()
         }
       } 
@@ -163,7 +164,7 @@
       const scrollY = window.scrollY
       const visible = document.documentElement.clientHeight 
       const pageHeight = document.documentElement.scrollHeight
-      const bottomOfPage = visible + scrollY+1000 > pageHeight
+      const bottomOfPage = visible + scrollY+500 > pageHeight
       return bottomOfPage || pageHeight < visible 
     },
     popemploy: function(data) {
@@ -218,13 +219,16 @@
               console.log(alldat)
               this.alld = this.alld.concat(response.data);
               this.pos = this.alld.length
+              console.log(this.pos)
+
             }else if (this.pos == 0){
-            this.alld = alldat
-            this.pos = alldat.length
-            this.bottom = false     
+              this.alld = alldat
+              this.pos = alldat.length
+              this.bottom = false  
+
             }else if (response.data.length == 0){
 
-            this.bottom = false     
+              this.bottom = false     
             }      
           }
         });
