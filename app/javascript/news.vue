@@ -40,7 +40,7 @@
           small>
             открыть
           </v-btn>   
-
+  {{bottom}}
           <div v-if="item.id == empid">
             <v-dialog
               v-model="dialogVisible"
@@ -101,6 +101,7 @@
             </div>
           </v-expand-transition> -->
           <div class="d-flex justify-center" > 
+
                 <v-progress-circular 
     
     indeterminate 
@@ -138,7 +139,7 @@
         timer = setTimeout(function() {
           self.bottom = self.bottomVisible()
           console.log("vis")
-        }, 20);
+        }, 10);
       
       })
     },
@@ -161,11 +162,17 @@
     },
     methods: {
     bottomVisible() {
+      var scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      );
+
       const scrollY = window.scrollY
       const visible = document.documentElement.clientHeight 
-      const pageHeight = document.documentElement.scrollHeight
-      const bottomOfPage = visible + scrollY+1000 > pageHeight
-      return bottomOfPage || pageHeight < visible 
+      // const pageHeight = document.documentElement.scrollHeight
+      const bottomOfPage = visible + scrollY+1000 > scrollHeight
+      return bottomOfPage || scrollHeight < visible 
     },
     popemploy: function(data) {
       if (this.empid != ''){
