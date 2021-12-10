@@ -59,7 +59,7 @@ class NewsController < ApplicationController
  			end
  			
 			artbody = News.tranklukate(@get, tokenr) 
-			getp =  artbody.gsub 'a href="/','a href="https://massivelyop.com'
+			getp =  artbody.gsub 'a href="/','a href="https://massivelyop.com/'
 			# puts artbody
  			full.fullarticle = getp
  			full.save!
