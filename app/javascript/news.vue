@@ -40,7 +40,7 @@
           small>
             открыть
           </v-btn>   
-  {{bottom}}
+  <!-- {{bottom}} -->
           <div v-if="item.id == empid">
             <v-dialog
               v-model="dialogVisible"
