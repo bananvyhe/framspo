@@ -63,7 +63,7 @@ class NewsController < ApplicationController
 			# puts artbody
  			full.fullarticle = getp
  			full.save!
-				"https://massivelyop.com/"
+ 
 			# getp =  artbody.gsub '<загрузка iframe= "ленивый" заголовок=','<iframe loading="lazy" title='
 			# getp =  getp.gsub '<идентификатор ul=','<ul '
 			# getp =  getp.gsub '<класс рисунка=','<figure '
