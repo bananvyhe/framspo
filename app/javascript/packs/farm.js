@@ -9,7 +9,7 @@ import Vue from 'vue'
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
-
+import gsap from "gsap"
 // import Vuetify from 'vuetify'
 // Vue.use(Vuetify)
 
