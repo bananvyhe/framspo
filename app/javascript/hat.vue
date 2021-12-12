@@ -9,7 +9,7 @@
 	  	<div class="bgshad"></div>
 	  	<div class="voodoo font3">
 	  		<!-- VooDoo power  -->
-	  		powered by NGINX 
+	  		free pvp zone
 	  	</div>
 	  	<div class="clouds"></div>
 <!-- <div class="plashken"></div> -->
@@ -24,6 +24,7 @@
 <script>
 	// import ScrambleText from 'scramble-text'; 
 	// import { VueTyper } from 'vue-typer'
+import { TweenMax, TimelineMax} from 'gsap';
 
   export default {
     data: function (){
@@ -43,26 +44,27 @@
     mounted() {
     	// console.log('22222updatedHat')
 			var vood = new TimelineMax();
+
 			vood.to('.voodoo', 0.2, { webkitFilter:"brightness(1)",
-          filter:"brightness(1)",y: -26, opacity: 1, scale: 0.08,  ease: Expo.easeIn}, '-=0.2')
+          filter:"brightness(1)",y: -26, opacity: 0.5, scale: 0.01,  ease: "expoScale(1, 2)"}, '-=0.2')
 			.to('.voodoo', 0.6, { webkitFilter:"brightness(1)",
-          filter:"brightness(1)",y: -22, opacity: 1, scale: 0.08, ease: "none"}, '+=0.0')	
+          filter:"brightness(1)",y: -22, opacity: 1, scale: 0.03, ease: "none"}, '+=0.0')	
 			.to('.voodoo', 3.5, { webkitFilter:"brightness(1)",
-          filter:"brightness(1)",y: -10, opacity: 1, scale: 0.13, ease: Expo.easeInOut}, '-=0.0')	          		
-			// .to('.voodoo', 0.1, {webkitFilter:"brightness(0.8)",
-   //        filter:"brightness(0.1)", y:  -20, opacity: 0.3, x: 0, scale: 0.24, ease: Quad.easeOut}, '+=0.5' )
+          filter:"brightness(1)",y: -5, opacity: 1, scale: 0.09, ease: "expoScale(1, 2)"}, '-=0.0')	          		
+			.to('.voodoo', 0.1, {webkitFilter:"brightness(1)",
+          filter:"brightness(0.1)", y:  -20, opacity: 0.3, x: 0, scale: 0.13, ease: "expoScale(1, 2)"}, '+=0.5' )
  		
 			.to('.voodoo', 0.1, {webkitFilter:"brightness(0.9)",
-          filter:"brightness(0.9)", y:  -50, scale: 1, opacity: 0, x: 0, ease: Quad.easeOut}, '-=0.3' );
+          filter:"brightness(0.9)", y:  -50, scale: 1, opacity: 0, x: 0, ease: "expoScale(1, 2)"} );
 
     	var tlwar = new TimelineMax();
-    	tlwar.to('.warriors', 0.4, {backgroundPositionY: 22, ease: Power0.easeOut} ).to('.warriors', 5.0, {backgroundPositionY: 0, ease: Power4.easeOut}, '+=0.2');
+    	tlwar.to('.warriors', 0.4, {backgroundPositionY: 22, ease: "power1.out"} ).to('.warriors', 5.0, {backgroundPositionY: 0, ease: "power4.out"}, '+=0.2');
     	 
     	var tl2 = new TimelineMax({repeat:-1});
-			tl2.to('.clouds', 1200, {backgroundPositionX: 903, ease: Power0.easeNone});
+			tl2.to('.clouds', 1200, {backgroundPositionX: 903, ease: "power1.out"});
 
 			var tl3 = new TimelineMax({repeat:-1});
-			tl3.to('.clouds2', 80, {backgroundPositionX: -903, ease: Power0.easeNone});
+			tl3.to('.clouds2', 80, {backgroundPositionX: -903, ease: "power1.out"});
 
 			var repDelay = 8;
 			var firsFlash = 0.05;
@@ -116,9 +118,9 @@
 			// .to('.brightness', firsFlash, {opacity: "1"}, '+=2.6')
 			// .to('.brightness', 0.05, {opacity: "0"})
 			.to('.brightness', secondFlash, {opacity: "1"}, '+=0.0')
-			.to('.brightness', 4.0, {opacity: "0", ease: Expo.easeOut}, '+=0.0')
+			.to('.brightness', 4.0, {opacity: "0", ease: "expo.out"}, '+=0.0')
 			.to('.brightness', firsFlash, {opacity: "1"}, '-=0.0')
-			.to('.brightness', 4.0, {opacity: "0", ease: Expo.easeOut});	
+			.to('.brightness', 4.0, {opacity: "0", ease: "expo.out"});	
 
 
 			var tldn1 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
@@ -126,9 +128,9 @@
 			// .to('.flash', firsFlash, {opacity: "1"}, '+=2.6')
 			// .to('.flash', 0.05, {opacity: "0"})
 			.to('.flash', secondFlash, {opacity: "1"}, '+=0.0')
-			.to('.flash', 4.0, {opacity: "0", ease: Expo.easeOut}, '-=0.0')
+			.to('.flash', 4.0, {opacity: "0", ease: "expo.out"}, '-=0.0')
 			.to('.flash', firsFlash, {opacity: "1"}, '-=0.0')
-			.to('.flash', 4.0, {opacity: "0", ease: Expo.easeOut});	
+			.to('.flash', 4.0, {opacity: "0", ease: "expo.out"});	
 
 
 
@@ -158,12 +160,11 @@
 	// }());
 </script>
 <style scoped>
-@import "stylesheets/_variables";
-@import "stylesheets/_extends";
+ 
 .plashken {
 	position: absolute;
 	width: 100%;
-	/*background-color: $siteBG;*/
+ 
 	height: 0.4em;
 }
 .blank {
@@ -172,29 +173,22 @@
 .container {
 	height: 100%;
 	overflow: hidden;	
-	/*height: 110px !important;*/
+ padding: 0;
 	position: relative;	
 	display: flex;
 	align-items: stretch;
 	position: relative;
-	lost-center: $lcenter;
-	/*lost-utility: edit;*/
-	/*height: 162px;*/
+ 
+ 
 	background-color: #13151a;
-	/*border-radius: 0px 0 4em 4em;*/
+ 
 	border-bottom: 2px solid color( #1E1E21 shade(40%));
-	border
-	@media (--only-small-screen) {
-		/*height: 9em;*/
-  }
- 	@media (--only-xsmall-screen) {
-		/*height: 9em;*/
-  }
+ 
 }
 .hat {
-
- top: 0;
-
+	height: 140px;
+	top: 0;
+ 
 }
 .warriors {
 
@@ -203,7 +197,7 @@
 	z-index: 20;
 	background-repeat: no-repeat;
 	background-position: center bottom;
-	/*background-size: cover;*/
+ 
 	height: 100%;
 	width: 100%;
 	background-position: 43% 12px;
@@ -214,10 +208,7 @@
 		background-size: auto 155%;
     background-position: 45% 23px;
   }
-/*  @media (--only-medium-screen) {
-		background-size: auto 100%;
-    background-position: center 25px;
-  }*/
+ 
   @media (--only-xsmall-screen) {
 		background-size: 130%;
     background-position: 45% 15px;
@@ -230,45 +221,42 @@
 .war1{
 	position: relative;
 	background-color: #dad;
-	/*background-image: url('./images/_hat/warriors.gif');*/
+ 
 }
 .voodoo {
 	opacity: 0.0;
 	white-space: nowrap;
-	/*background-color: #dad;*/
+ 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 100%;
 	width: 100%;
- 	/*color: $str5;*/
- 	/*color: $screenbg;*/
-	color: color( $screenbg  saturation(92%) shade(65%) tint(10%) blackness(70%));
+ color: #ae7ee1;
+ font-family: 'Roboto Condensed';
 	position: absolute;
+	left: 130px;
 	font-size: 22vh;
-	padding-right: 2em;
-	@media (--only-956less-screen) {
-		padding-right: 0em;
-	}
-	/*transform: perspective(200px) rotateX(-60deg);*/
-	/*opacity: 0.8;*/
+ 
+
+ 
 }
 .fog {
 	align-self: flex-end;	
 	background-repeat: no-repeat;
 	background-size: contain;
-	/*background-size: 80% auto;*/
+ 
 	background-position: center bottom;
 	height: 100%;
 	width: 100%;
-	/*position: absolute;*/
+ 
 	background-image: url('./images/_hat/fog.jpg');
 }
 .brightness{
 	filter: brightness(35%);
 }
 .flash {
- 	/*visibility: hidden;*/
+ 
 	position: absolute;
 	height: 100%;
 	width: 100%;

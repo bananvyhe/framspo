@@ -6,10 +6,13 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
+
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
-import gsap from "gsap"
+import Hat from '../hat.vue'
+
+
 // import Vuetify from 'vuetify'
 // Vue.use(Vuetify)
 
@@ -102,6 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(app.$el)
 
   console.log(app)
+  var hat = document.getElementById("hat") 
+  if (hat != null) {
+	  new Vue({
+ 
+	    el: '#hat',
+	    render: h => h(Hat) 
+	  })
+	}
 })
 
 

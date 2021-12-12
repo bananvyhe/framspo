@@ -1,7 +1,7 @@
 <template>
-  <div class=" py-1 px-0"> 
+  <div class=" py-0 px-0"> 
     <v-card v-for="(item, index) in alld " :key= "item.id" 
-      class="px-1 my-1 py-2 py-md-1 my-md-2">
+      class="px-1 my-2 py-2 ">
       <v-row>
         <v-col>
           <div 
