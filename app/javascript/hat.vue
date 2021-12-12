@@ -45,17 +45,12 @@ import { TweenMax, TimelineMax} from 'gsap';
     	// console.log('22222updatedHat')
 			var vood = new TimelineMax();
 
-			vood.to('.voodoo', 0.2, { webkitFilter:"brightness(1)",
-          filter:"brightness(1)",y: -26, opacity: 0.5, scale: 0.01,  ease: "expoScale(1, 2)"}, '-=0.2')
-			.to('.voodoo', 0.6, { webkitFilter:"brightness(1)",
-          filter:"brightness(1)",y: -22, opacity: 1, scale: 0.03, ease: "none"}, '+=0.0')	
-			.to('.voodoo', 3.5, { webkitFilter:"brightness(1)",
-          filter:"brightness(1)",y: -5, opacity: 1, scale: 0.09, ease: "expoScale(1, 2)"}, '-=0.0')	          		
-			.to('.voodoo', 0.1, {webkitFilter:"brightness(1)",
-          filter:"brightness(0.1)", y:  -20, opacity: 0.3, x: 0, scale: 0.13, ease: "expoScale(1, 2)"}, '+=0.5' )
+			vood.to('.voodoo', 0.2, { y: -26, opacity: 0.5, scale: 0.01,  ease: "expoScale(1, 2)"}, '-=0.2')
+			.to('.voodoo', 0.6, { y: -22, opacity: 1, scale: 0.03, ease: "none"}, '+=0.0')	
+			.to('.voodoo', 3.5, { y: -5, opacity: 1, scale: 0.09, ease: "expoScale(1, 2)"}, '-=0.0')	          		
+			.to('.voodoo', 0.1, { y:  -20, opacity: 0.3, x: 0, scale: 0.13, ease: "expoScale(1, 2)"}, '+=0.5' )
  		
-			.to('.voodoo', 0.1, {webkitFilter:"brightness(0.9)",
-          filter:"brightness(0.9)", y:  -50, scale: 1, opacity: 0, x: 0, ease: "expoScale(1, 2)"} );
+			.to('.voodoo', 0.1, { y:  -50, scale: 1, opacity: 0, x: 0, ease: "expoScale(1, 2)"} );
 
     	var tlwar = new TimelineMax();
     	tlwar.to('.warriors', 0.4, {backgroundPositionY: 22, ease: "power1.out"} ).to('.warriors', 5.0, {backgroundPositionY: 0, ease: "power4.out"}, '+=0.2');
