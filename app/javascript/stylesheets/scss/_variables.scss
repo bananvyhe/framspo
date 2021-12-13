@@ -54,6 +54,9 @@ $font-size-root: 1em ;
 	}
 }
  
+.fonta {
+  font-family: $heading-font-family;
+}
 // $grid-breakpoints: map-deep-merge(
 //   (
 //     'xs': 0,

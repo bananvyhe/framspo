@@ -7,9 +7,9 @@
 
 	  	<div class="clouds2"></div>
 	  	<div class="bgshad"></div>
-	  	<div class="voodoo font3">
+	  	<div class="voodoo fonta">
 	  		<!-- VooDoo power  -->
-	  		free pvp zone
+	  		FREE PVP ZONE
 	  	</div>
 	  	<div class="clouds"></div>
 <!-- <div class="plashken"></div> -->
@@ -24,7 +24,7 @@
 <script>
 	// import ScrambleText from 'scramble-text'; 
 	// import { VueTyper } from 'vue-typer'
-import { TweenMax, TimelineMax} from 'gsap';
+import { gsap } from "gsap";
 
   export default {
     data: function (){
@@ -36,127 +36,225 @@ import { TweenMax, TimelineMax} from 'gsap';
     methods: {
     },
     created() { 
-    	// console.log('6666updatedHat');
-  
-    		// var tlwar2 = new TimelineMax();		
-    	 //    	tlwar2.to('.warriors', 0.1, {backgroundPositionY: 0, ease: Sine.easeOut}, '-=0.0');
+    
   	},
     mounted() {
-    	// console.log('22222updatedHat')
-			var vood = new TimelineMax();
+    
+	    function voodoo() {
+	    	gsap.set(".voodoo", {
+					scale: 0.01,
+					opacity: 0,			
+				});
 
-			vood.to('.voodoo', 0.2, { y: -26, opacity: 0.5, scale: 0.01,  ease: "expoScale(1, 2)"}, '-=0.2')
-			.to('.voodoo', 0.6, { y: -22, opacity: 1, scale: 0.03, ease: "none"}, '+=0.0')	
-			.to('.voodoo', 3.5, { y: -5, opacity: 1, scale: 0.09, ease: "expoScale(1, 2)"}, '-=0.0')	          		
-			.to('.voodoo', 0.1, { y:  -20, opacity: 0.3, x: 0, scale: 0.13, ease: "expoScale(1, 2)"}, '+=0.5' )
- 		
-			.to('.voodoo', 0.1, { y:  -50, scale: 1, opacity: 0, x: 0, ease: "expoScale(1, 2)"} );
+				var tl =	gsap.timeline();
+		  	tl.to(".voodoo", {
+		  		x: "-15px",
+		  		y:"-0px",
+		  		scale: 0.09,
+					opacity: 0.5,	
+		  		duration: 1,  
+		  		delay: 0.5,
+		  	})
+		  	.to(".voodoo", {
+		  		x: "-15px",
+		  		y: "-20px",
+		  	 	color:"#b52a2c",
+		  		scale: 0.09,
+					opacity: 1,	
+		  		duration: 4,  
+		  		delay: 0,
+		  	}, '-=0.2')
+		  	.to(".voodoo", {
+		  		duration: 0.05,
+		  		opacity: 0.4,
+		  		scale: 4.9,
+		  	})
+		  	.to(".voodoo", {
+		  		duration: 0.2,
+		  		opacity: 0.1,
+		  		scale: 4.9,
+		  	})
+		  			  	.to(".voodoo", {
+		  		duration: 4,
+		  		opacity: 0,
+		  		scale: 4.9,
+		  	})
+  	
+	  	}
 
-    	var tlwar = new TimelineMax();
-    	tlwar.to('.warriors', 0.4, {backgroundPositionY: 22, ease: "power1.out"} ).to('.warriors', 5.0, {backgroundPositionY: 0, ease: "power4.out"}, '+=0.2');
+	  	function warriors() {
+	  		gsap.set(".warriors", {
+					backgroundPositionY: 165,
+				});
+
+				var tl =	gsap.timeline();
+				tl.to('.warriors', {
+					duration: 2,
+					ease: "power1.out",
+					backgroundPositionY: 0,
+				});
+	  	}
+
+	  	function cloud() {
+	    	// var tl2 = new TimelineMax({repeat:-1});
+	    	var tl =	gsap.timeline({repeat:-1});
+				tl.to('.clouds', {
+			 		duration: 18,
+					backgroundPositionX: -1, 
+					ease: "none",
+				});
+	  	}
+	  	function cloud2() {
+	  		var tl =	gsap.timeline({repeat:-1});
+	  		tl.to('.clouds2', {
+	  			duration: 18,
+	  			backgroundPositionX: -1, 
+	  			ease: "none",
+	  		});
+	  	}
+	  	function brightness() {
+	  		var tl =	gsap.timeline();
+				tl.set('.brightness', {opacity: "0"})
+				.to('.brightness', {
+					duration: 0.05, 
+					opacity: "1"}, '+=0.0')
+				.to('.brightness', {
+					duration: 4.0, 
+					opacity: "0", 
+					ease: "expo.out"}, '+=0.0')
+				.to('.brightness', {
+					duration: 0.05,
+					opacity: "1"}, '-=0.0')
+				.to('.brightness',{
+					duration: 4.0, 
+					opacity: "0", 
+					ease: "expo.out"});		  		
+	  	}
+
+	  	function flash() {
+				var tl =	gsap.timeline({repeat:-1});
+				tl.set('.flash', {
+					opacity: "0"})
+				.to('.flash', {
+					duration: 0.05,
+					opacity: "1"}, '+=0.0')
+				.to('.flash', {
+					duration: 4.0, 
+					opacity: "0", 
+					ease: "expo.out"}, '-=0.0')
+				.to('.flash', {
+					duration: 0.05,
+					opacity: "1"}, '-=0.0')
+				.to('.flash', 4.0, {
+					duration: 4.0,
+					opacity: "0", 
+					ease: "expo.out"});		  		  		
+	  	}
+			
+
+				// var tl3 = new TimelineMax({repeat:-1});
+				// tl3.to('.clouds2', 80, {backgroundPositionX: -903, ease: "power1.out"});
+
+				// var repDelay = 8;
+				// var firsFlash = 0.05;
+				// var secondFlash = 0.05;
+				// var flashTime = 0.6;
+
+				// var tldn7 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
+				// tldn7.set('.brightness', {opacity: "0"})
+				// .to('.brightness', secondFlash, {opacity: "1"}, '+=0.0')
+				// .to('.brightness', 4.0, {opacity: "0", ease: "expo.out"}, '+=0.0')
+				// .to('.brightness', firsFlash, {opacity: "1"}, '-=0.0')
+				// .to('.brightness', 4.0, {opacity: "0", ease: "expo.out"});	
+
+				// var tldn1 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
+				// tldn1.set('.flash', {opacity: "0"})
+				// .to('.flash', secondFlash, {opacity: "1"}, '+=0.0')
+				// .to('.flash', 4.0, {opacity: "0", ease: "expo.out"}, '-=0.0')
+				// .to('.flash', firsFlash, {opacity: "1"}, '-=0.0')
+				// .to('.flash', 4.0, {opacity: "0", ease: "expo.out"});	
+
+				// var tldn5 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
+				// tldn5.set('.clouds2', {visibility: "visible"})
+				// .to('.clouds2', secondFlash, {visibility: "hidden"}, '+=0.0')
+				// .to('.clouds2', 4.0, {visibility: "visible"}, '-=0.0')
+				// .to('.clouds2', firsFlash, {visibility: "hidden"}, '-=0.0')
+				// .to('.clouds2', 4.0, {visibility: "visible"});		
+
+			var master = gsap.timeline();
+
+			master.add(voodoo())
+      .add(warriors(), "+=0")     //with a gap of 2 seconds
+      
+      .add(cloud2(), "+=0") 
+ 			.add(brightness(), "+=0") 
+ 			.add(flash(), "+=0") 
+
+			
+   //  	let tl =	gsap.timeline();
+			// let tlwaranim = tl.to('.warriors', {
+			// 	duration: 0.4,
+			// 	ease: "power1.out",
+			// 	backgroundPositionY: 0,
+
+			// });
+
+ 
+
+   //  	var tlwar = new TimelineMax();
+   //  	tlwar.to('.warriors', 0.4, {backgroundPositionY: 22, ease: "power1.out"} ).to('.warriors', 5.0, {backgroundPositionY: 0, ease: "power4.out"}, '+=0.2');
     	 
-    	var tl2 = new TimelineMax({repeat:-1});
-			tl2.to('.clouds', 1200, {backgroundPositionX: 903, ease: "power1.out"});
+   //  	var tl2 = new TimelineMax({repeat:-1});
+			// tl2.to('.clouds', 1200, {backgroundPositionX: 903, ease: "power1.out"});
 
-			var tl3 = new TimelineMax({repeat:-1});
-			tl3.to('.clouds2', 80, {backgroundPositionX: -903, ease: "power1.out"});
-
-			var repDelay = 8;
-			var firsFlash = 0.05;
-			var secondFlash = 0.05;
-			var flashTime = 0.6;
+			// var tl3 = new TimelineMax({repeat:-1});
+			// tl3.to('.clouds2', 80, {backgroundPositionX: -903, ease: "power1.out"});
 
 			// var repDelay = 8;
-			// var self = this;
-			// function randomize() {
-			// 	var min = 3.0
-			// 	var max = 12.0
-			// 	var repDelay = Math.random() * (max - min) + min;
-			// 	self.repDelay =  Math.round(repDelay)
-			// 	console.log(repDelay)
-			// }
+			// var firsFlash = 0.05;
+			// var secondFlash = 0.05;
+			// var flashTime = 0.6;
 
+			// var tldn7 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
+			// tldn7.set('.brightness', {opacity: "0"})
+			// .to('.brightness', secondFlash, {opacity: "1"}, '+=0.0')
+			// .to('.brightness', 4.0, {opacity: "0", ease: "expo.out"}, '+=0.0')
+			// .to('.brightness', firsFlash, {opacity: "1"}, '-=0.0')
+			// .to('.brightness', 4.0, {opacity: "0", ease: "expo.out"});	
 
-
-			// var tlfl1 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
-			// tlfl1.to('.clouds', firsFlash, {css:{className:'+=brightness'}}, '+=2.6')
-			// .to('.clouds', 0.05, {css:{className:'-=brightness'}})
-			// .to('.clouds', secondFlash, {css:{className:'+=brightness'}}, '+=0.05')
-			// .to('.clouds', 0.05, {css:{className:'-=brightness'}})
-			// .to('.clouds', flashTime, {css:{className:'+=brightness'}}, '+=0.05')
-			// .to('.clouds', 0.05, {css:{className:'-=brightness'}});
-
- 		// 	var tlfl2 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
-			// tlfl2.to('.clouds2', firsFlash, {css:{className:'+=brightness'}}, '+=2.6')
-			// .to('.clouds2', 0.05, {css:{className:'-=brightness'}})
-			// .to('.clouds2', secondFlash, {css:{className:'+=brightness'}}, '+=0.05')
-			// .to('.clouds2', 0.05, {css:{className:'-=brightness'}})
-			// .to('.clouds2', flashTime, {css:{className:'+=brightness'}}, '+=0.05')
-			// .to('.clouds2', 0.05, {css:{className:'-=brightness'}});
 			// var tldn1 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
-			// tldn1.set('.flash', {visibility: "hidden"})
-			// .to('.flash', firsFlash, {visibility: "visible"}, '+=2.6')
-			// .to('.flash', 0.05, {visibility: "hidden"})
-			// .to('.flash', secondFlash, {visibility: "visible"}, '+=0.05')
-			// .to('.flash', 0.05, {visibility: "hidden"})
-			// .to('.flash', flashTime, {visibility: "visible"}, '+=0.05')
-			// .to('.flash', 0.05, {visibility: "hidden"});
-			// var tlfl = new TimelineMax({repeat:-1, repeatDelay: repDelay});
-			// tlfl.to('.warriors', firsFlash, {css:{className:'+=brightness'}}, '+=2.6')
-			// .to('.warriors', 0.05, {css:{className:'-=brightness'}})
-			// .to('.warriors', secondFlash, {css:{className:'+=brightness'}}, '+=0.05')
-			// .to('.warriors', 0.05, {css:{className:'-=brightness'}})
-			// .to('.warriors', flashTime, {css:{className:'+=brightness'}}, '+=0.05')
-			// .to('.warriors', 0.55, {css:{className:'-=brightness'}}, '+=0.55');
-			var tldn7 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
-			tldn7.set('.brightness', {opacity: "0"})
-			// .to('.brightness', firsFlash, {opacity: "1"}, '+=2.6')
-			// .to('.brightness', 0.05, {opacity: "0"})
-			.to('.brightness', secondFlash, {opacity: "1"}, '+=0.0')
-			.to('.brightness', 4.0, {opacity: "0", ease: "expo.out"}, '+=0.0')
-			.to('.brightness', firsFlash, {opacity: "1"}, '-=0.0')
-			.to('.brightness', 4.0, {opacity: "0", ease: "expo.out"});	
+			// tldn1.set('.flash', {opacity: "0"})
+			// .to('.flash', secondFlash, {opacity: "1"}, '+=0.0')
+			// .to('.flash', 4.0, {opacity: "0", ease: "expo.out"}, '-=0.0')
+			// .to('.flash', firsFlash, {opacity: "1"}, '-=0.0')
+			// .to('.flash', 4.0, {opacity: "0", ease: "expo.out"});	
+
+			// var tldn5 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
+			// tldn5.set('.clouds2', {visibility: "visible"})
+			// .to('.clouds2', secondFlash, {visibility: "hidden"}, '+=0.0')
+			// .to('.clouds2', 4.0, {visibility: "visible"}, '-=0.0')
+			// .to('.clouds2', firsFlash, {visibility: "hidden"}, '-=0.0')
+			// .to('.clouds2', 4.0, {visibility: "visible"});		
 
 
-			var tldn1 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
-			tldn1.set('.flash', {opacity: "0"})
-			// .to('.flash', firsFlash, {opacity: "1"}, '+=2.6')
-			// .to('.flash', 0.05, {opacity: "0"})
-			.to('.flash', secondFlash, {opacity: "1"}, '+=0.0')
-			.to('.flash', 4.0, {opacity: "0", ease: "expo.out"}, '-=0.0')
-			.to('.flash', firsFlash, {opacity: "1"}, '-=0.0')
-			.to('.flash', 4.0, {opacity: "0", ease: "expo.out"});	
+						// var vood = new TimelineMax();
 
-
-
-			var tldn5 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
-			tldn5.set('.clouds2', {visibility: "visible"})
-			// .to('.clouds2', firsFlash, {visibility: "hidden"}, '+=2.6')
-			// .to('.clouds2', 0.05, {visibility: "visible"})
-			.to('.clouds2', secondFlash, {visibility: "hidden"}, '+=0.0')
-			.to('.clouds2', 4.0, {visibility: "visible"}, '-=0.0')
-			.to('.clouds2', firsFlash, {visibility: "hidden"}, '-=0.0')
-			.to('.clouds2', 4.0, {visibility: "visible"});		
-
-			// var tldn6 = new TimelineMax({repeat:-1, repeatDelay: repDelay});
-			// tldn6.set('.clouds', {visibility: "visible"})
-			// .to('.clouds', firsFlash, {visibility: "hidden"}, '+=2.6')
-			// // .to('.flash', 0.05, {visibility: "hidden"})
-			// .to('.clouds', secondFlash, {visibility: "hidden"}, '+=0.05')
-			// .to('.clouds', 0.05, {visibility: "visible"})
-			// .to('.clouds', flashTime, {visibility: "hidden"}, '+=0.05')
-			// .to('.clouds', 0.05, {visibility: "visible"});		
+// gsap.to('.voodoo', { duration: 0.2,  webkitFilter:"brightness(1)",
+//           filter:"brightness(1)",y: -26, opacity: 0.5, scale: 0.01,  ease: "expoScale(1, 2)"}, '-=0.2')
+// 			.to('.voodoo', { duration: 0.6, webkitFilter:"brightness(1)",
+//           filter:"brightness(1)",y: -22, opacity: 1, scale: 0.03, ease: "none"}, '+=0.0')	
+// 			.to('.voodoo', {duration: 3.5, webkitFilter:"brightness(1)",
+//           filter:"brightness(1)",y: -5, opacity: 1, scale: 0.09, ease: "expoScale(1, 2)"}, '-=0.0')	          		
+// 			.to('.voodoo', {duration: 0.1, webkitFilter:"brightness(1)",
+//           filter:"brightness(0.1)", y:  -20, opacity: 0.3, x: 0, scale: 0.13, ease: "expoScale(1, 2)"}, '+=0.5' )
+// 			.to('.voodoo',  {duration: 0.1, y:  -50, scale: 1, opacity: 0, x: 0, ease: "expoScale(1, 2)"} );
     }
-
-
   }
- // 	(function(){
-
-	// }());
 </script>
 <style scoped>
- 
+
 .plashken {
+	 /*color: #b52a2c;*/
 	position: absolute;
 	width: 100%;
  
@@ -186,7 +284,6 @@ import { TweenMax, TimelineMax} from 'gsap';
  
 }
 .warriors {
-
 	position: absolute;
 	display: flex;
 	z-index: 20;
@@ -198,20 +295,6 @@ import { TweenMax, TimelineMax} from 'gsap';
 	background-position: 43% 12px;
 	background-size: auto 150%;
 	background-image: url('./images/_hat/warriors.gif');
-
-	@media (--only-1600more-screen) {
-		background-size: auto 155%;
-    background-position: 45% 23px;
-  }
- 
-  @media (--only-xsmall-screen) {
-		background-size: 130%;
-    background-position: 45% 15px;
-  }
-  @media (--only-956less-screen) {
-		background-size: auto 130%;
-    background-position: 45% 15px;
-  }
 }
 .war1{
 	position: relative;
@@ -219,7 +302,7 @@ import { TweenMax, TimelineMax} from 'gsap';
  
 }
 .voodoo {
-	opacity: 0.0;
+	opacity: 1;
 	white-space: nowrap;
  
 	display: flex;
@@ -227,14 +310,11 @@ import { TweenMax, TimelineMax} from 'gsap';
 	justify-content: center;
 	height: 100%;
 	width: 100%;
- color: #ae7ee1;
+ color: #897ee1;
  font-family: 'Roboto Condensed';
 	position: absolute;
 	left: 130px;
 	font-size: 22vh;
- 
-
- 
 }
 .fog {
 	align-self: flex-end;	
@@ -251,7 +331,7 @@ import { TweenMax, TimelineMax} from 'gsap';
 	filter: brightness(35%);
 }
 .flash {
- 
+	opacity: 0;
 	position: absolute;
 	height: 100%;
 	width: 100%;
@@ -259,54 +339,33 @@ import { TweenMax, TimelineMax} from 'gsap';
 	background-position: center bottom;
 	background-size: cover;
 	background-image: url('./images/_hat/flash.jpg');
-	@media (--only-1600more-screen) {
-    background-position: center -70px;
-  }
-  @media (--only-medium-screen) {
-    background-position: center -50px;
-  }
+
 }
 .dvis {
 	visibility: visible;
 }
 .clouds {  
-	opacity: 0.5;
+	opacity: 0.3;
 	background-repeat: repeat-x;
 	position: absolute;
 	background-image: url('./images/_hat/clouds.png');
-	background-position: center -15px;
-	background-size: 40%  auto;
+	background-position: center 0px;
+	background-size: 300px  auto;
 	height: 100%;
 	width: 100%;
-	@media (--only-xsmall-screen) {
-		background-size: 65%  auto;
-  }
-  @media (--only-small-screen) {
-		background-size: 55%  auto;
-  }
-  @media (--only-medium-screen) {
-		background-size: 45%  auto;
-  }
+
 }
 .clouds2 {  
+	/*background-color: #dad;*/
+	opacity: 0.9;
 	background-repeat: repeat-x;
 	position: absolute;
 	background-image: url('./images/_hat/clouds.png');
-	background-position: center -15px;
-	background-size: 90%  auto;
+	background-position: center 0px;
+	background-size: 800px auto;
 	height: 100%;
 	width: 100%;
-	@media (--only-xsmall-screen) {
-		background-position: center 0px;
-		background-size: 100%  auto;
-  }
-  @media (--only-small-screen) {
-  	background-position: center 0px;
-		background-size: 100%  auto;
-  }
-  @media (--only-medium-screen) {
-		background-size: 95%  auto;
-  }
+	
 }
 .bgshad {
 background: rgb(0,0,0);
