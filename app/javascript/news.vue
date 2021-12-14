@@ -12,8 +12,8 @@
             </div>
           </div>
           <div
-            class="text-h5 px-2 pt-2 pb-2"
-            v-text="item.head">
+            class="px-2 pt-2 pb-2"
+            v-text=""><h2>{{item.head}}</h2>
           </div>
           <div class="px-2 body-1">
             {{item.desc}}… 
@@ -49,7 +49,7 @@
               <v-card 
               class="px-md-5 py-md-2">
                 <v-card-title class="pb-md-4">
-                  <span class="text-h5 ">{{item.head}}</span>
+                  <h5>{{item.head}}</h5>
                 </v-card-title>
                 <v-card-text >
                   <div v-if="!fullnews">

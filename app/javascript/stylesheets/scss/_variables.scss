@@ -52,6 +52,15 @@ $font-size-root: 1em ;
 	a:hover {
 		color: #ffdf80 	!important;
 	}
+  h1, h2, h3, h4, h5, {
+    line-height: 1.75rem;
+    font-family: $heading-font-family;
+  }
+  h2{
+    line-height: 1.75rem;
+    color: #9f9f9f  !important;
+  }
+
 }
  
 .fonta {
