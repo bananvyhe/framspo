@@ -12,13 +12,12 @@
             </div>
           </div>
           <div
-            class="px-2 pt-2 pb-2"
+            class="px-2 pt-2 pb-0"
             v-text=""><h2>{{item.head}}</h2>
           </div>
           <div class="px-2 body-1">
             {{item.desc}}… 
           </div>
- 
           <v-card-subtitle
           class="px-2 py-0 float-left">
           {{item.date}} 
