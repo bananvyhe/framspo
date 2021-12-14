@@ -38,8 +38,8 @@ $material-dark: (
   'background': #11120e,
  
 	'text': (
-    'primary': #d9d5c5,
-		'secondary': #d9d5c5,
+    'primary': #dadada,
+		'secondary': #dadada,
 	),
 
 );
@@ -49,7 +49,7 @@ $heading-font-family: 'Roboto Condensed';
 $font-size-root: 1em ;
 
 .v-application{
-  color: #666 !important;
+ 
 	a{
 		color: #80d0ff 	!important;
 		text-decoration: none;
@@ -60,7 +60,8 @@ $font-size-root: 1em ;
   h1, h2, h3, h4, h5, {
     line-height: 1.75rem;
     font-family: $heading-font-family;
-    color: #afa8b4 !important;
+    color: #a18c7f
+     !important;
   }
   h1{
     line-height: 2rem;
@@ -77,7 +78,7 @@ $font-size-root: 1em ;
 
 
 }
- 
+   
 .fonta {
   font-family: $heading-font-family;
 }
