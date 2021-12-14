@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 html {
   overflow-y: scroll;
@@ -28,7 +28,7 @@ $headings: (
     ),
   	'body-1': (
       'size': 1rem,
-      'line-height': 1.518rem,
+      'line-height': 1.38rem,
       'letter-spacing': 0.03125rem,
 
     ),
@@ -36,7 +36,8 @@ $headings: (
 $material-dark: (
   'background': #11120e,
 	'text': (
-		'secondary': #fff,
+    'primary': #d9d5c5,
+		'secondary': #d9d5c5,
 	),
 
 );
@@ -45,6 +46,7 @@ $body-font-family: 'Roboto Slab';
 $heading-font-family: 'Roboto Condensed';
 $font-size-root: 1em ;
 .v-application{
+  color: #666 !important;
 	a{
 		color: #80d0ff 	!important;
 		text-decoration: none;
@@ -55,12 +57,21 @@ $font-size-root: 1em ;
   h1, h2, h3, h4, h5, {
     line-height: 1.75rem;
     font-family: $heading-font-family;
-    color: #9f9f9f  !important;
+    // color: #5282b0  !important;
   }
+  h1{
+    line-height: 2rem;
+ 
+  }  
   h2{
     line-height: 1.75rem;
-    color: #9f9f9f  !important;
+ 
   }
+  h3{
+    line-height: 1.5rem;
+ 
+  }  
+
 
 }
  

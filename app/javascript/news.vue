@@ -7,12 +7,12 @@
           <div 
           class="align-top  float-left mr-1 px-3 py-md-1 mx-md-1">
           <!-- {backgroundImage: 'url('+ item.pic} -->
-            <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+            <div class ="pic px-0  align-center my-2" v-bind:style="">
               <!-- {{pos}} -->
             </div>
           </div>
           <div
-            class="px-2 pt-2 pb-0"
+            class="px-2 pt-2 pb-0 colr"
             v-text=""><h2>{{item.head}}</h2>
           </div>
           <div class="px-2 body-1">
@@ -243,6 +243,9 @@
   }
 </script>
 <style scoped>
+.colr{
+  color: #afa8b4;
+}
 .v-card__text{
   overflow: hidden;
 }
