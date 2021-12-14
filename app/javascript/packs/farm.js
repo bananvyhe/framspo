@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   	vuetify: new Vuetify({
 		  theme: { 
 		  	dark: {
+		  		primary: '#3b8839',
 		  	},
 		  },
   	}),

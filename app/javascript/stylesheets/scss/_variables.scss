@@ -30,11 +30,13 @@ $headings: (
       'size': 1rem,
       'line-height': 1.38rem,
       'letter-spacing': 0.03125rem,
-
+ 
     ),
 	);
+
 $material-dark: (
   'background': #11120e,
+ 
 	'text': (
     'primary': #d9d5c5,
 		'secondary': #d9d5c5,
@@ -45,6 +47,7 @@ $body-font-family: 'Roboto Slab';
 // $title-font: 'Roboto';
 $heading-font-family: 'Roboto Condensed';
 $font-size-root: 1em ;
+
 .v-application{
   color: #666 !important;
 	a{
@@ -57,7 +60,7 @@ $font-size-root: 1em ;
   h1, h2, h3, h4, h5, {
     line-height: 1.75rem;
     font-family: $heading-font-family;
-    // color: #5282b0  !important;
+    color: #afa8b4 !important;
   }
   h1{
     line-height: 2rem;

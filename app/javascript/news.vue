@@ -7,7 +7,7 @@
           <div 
           class="align-top  float-left mr-1 px-3 py-md-1 mx-md-1">
           <!-- {backgroundImage: 'url('+ item.pic} -->
-            <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+            <div class ="pic px-0  align-center my-2" v-bind:style="">
               <!-- {{pos}} -->
             </div>
           </div>
@@ -33,9 +33,8 @@
           </v-btn>  
            
           <v-btn
-          class="px-2 py-0 mx-4 but"
+          class="px-2 py-0 mx-2 but"
           @click="clickhandler(item.id, $event)"
-          color="primary"
           small>
             открыть
           </v-btn>   
@@ -244,7 +243,7 @@
 </script>
 <style scoped>
 .colr{
-  color: #afa8b4;
+
 }
 .v-card__text{
   overflow: hidden;
@@ -255,8 +254,8 @@
 }
 .but{
   position: absolute;
-  bottom: 2em;
-  right: 1em;
+  bottom: 1.5em;
+  right: 1.5em;
 
 }
 .row { position: relative;
