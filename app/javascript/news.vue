@@ -42,7 +42,7 @@
           <div v-if="item.id == empid">
             <v-dialog
               v-model="dialogVisible"
-              max-width="1240px"
+              max-width="1080px"
               width="95%">
               <v-card 
               class="px-md-5 py-md-2">
