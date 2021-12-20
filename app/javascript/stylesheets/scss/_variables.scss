@@ -47,7 +47,13 @@ $body-font-family: 'Roboto Slab';
 // $title-font: 'Roboto';
 $heading-font-family: 'Roboto Condensed';
 $font-size-root: 1em ;
-
+$grid-breakpoints:  (
+    'xs': 0,
+    'sm': 600px,
+    'md': 960px,
+    'lg': 1280px - 16px,
+    'xl': 1280px - 16px,
+);
 .v-application{
  
 	a{
