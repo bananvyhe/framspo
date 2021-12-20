@@ -74,7 +74,7 @@ import { gsap } from "gsap";
 		  		opacity: 0.1,
 		  		scale: 4.9,
 		  	})
-		  			  	.to(".voodoo", {
+		  	.to(".voodoo", {
 		  		duration: 4,
 		  		opacity: 0,
 		  		scale: 4.9,
@@ -116,19 +116,22 @@ import { gsap } from "gsap";
 	  		var tl =	gsap.timeline();
 				tl.set('.brightness', {opacity: "0"})
 				.to('.brightness', {
-					duration: 0.05, 
+					duration: 0.05,
+					delay: 0.5, 
 					opacity: "1"}, '+=0.0')
 				.to('.brightness', {
-					duration: 4.0, 
+					duration: 0.1, 
 					opacity: "0", 
-					ease: "expo.out"}, '+=0.0')
+					ease: "sine.in"}, '+=0.0')
 				.to('.brightness', {
 					duration: 0.05,
 					opacity: "1"}, '-=0.0')
 				.to('.brightness',{
-					duration: 4.0, 
+					duration: 3.0, 
 					opacity: "0", 
-					ease: "expo.out"});		  		
+					ease: "power4.out",})
+				.to('.brightness',{
+					delay: 2});		  		
 	  	}
 
 	  	function flash() {
@@ -137,18 +140,21 @@ import { gsap } from "gsap";
 					opacity: "0"})
 				.to('.flash', {
 					duration: 0.05,
+					delay: 0.5, 
 					opacity: "1"}, '+=0.0')
 				.to('.flash', {
-					duration: 4.0, 
+					duration: 0.1, 
 					opacity: "0", 
-					ease: "expo.out"}, '-=0.0')
+					ease: "sine.in"}, '-=0.0')
 				.to('.flash', {
 					duration: 0.05,
 					opacity: "1"}, '-=0.0')
-				.to('.flash', 4.0, {
-					duration: 4.0,
+				.to('.flash', {
+					duration: 3.0,
 					opacity: "0", 
-					ease: "expo.out"});		  		  		
+					ease: "power4.out"})
+				.to('.brightness',{
+					delay: 2});		  		  		
 	  	}
 			
 
@@ -185,10 +191,10 @@ import { gsap } from "gsap";
 
 			master.add(voodoo())
       .add(warriors(), "+=0")     //with a gap of 2 seconds
-      
+      .add(cloud(), "+=0") 
       .add(cloud2(), "+=0") 
- 			.add(brightness(), "+=0") 
- 			.add(flash(), "+=0") 
+ 			.add(brightness() ) 
+ 			.add(flash() ) 
 
 			
    //  	let tl =	gsap.timeline();
