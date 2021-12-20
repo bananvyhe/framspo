@@ -35,6 +35,7 @@
           <v-btn
           class="px-2 py-0 mx-2 but"
           @click="clickhandler(item.id, $event)"
+          disabled
           small>
             открыть
           </v-btn>   
