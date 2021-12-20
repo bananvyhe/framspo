@@ -48,23 +48,23 @@ gsap.registerPlugin(SlowMo);
  		
 				// });
 				gsap.set(".voodoo", {
-					x:"2900px",
-					// opacity: 0.4,	
+					x:"1900px",
+					// opacity: 0.6,	
 					scale: 0.55,
-					color: "#203c04",	
+					color: "#5a0607",	
 				});
 
 
 				var tl =	gsap.timeline();
 tl.to(".voodoo", {
 		  		 // repeat: 1,
-		  		x:"-2900px",
+		  		x:"-1900px",
 		  		scale: 0.55,
-					opacity: 0.4,	
+					// opacity: 0.6,	
 		  		duration: 2.4,  
-		  		delay: 1.8,
-		  		 ease: "slow(0.9, 0.9)",
-		  		 color: "#305a06"
+		  		delay: 1.6,
+		  		 ease: "slow(0.8, 0.8)",
+ 
 		  	})
  
 
@@ -142,14 +142,14 @@ tl.to(".voodoo", {
 				.to('.brightness', {
 					duration: 0.1,
 					ease: "sine.in",
-					delay: 0.8, 
+					delay: 0.5, 
 					opacity: "1"}, '+=0.0')
 				.to('.brightness', {
 					duration: 1.5, 
 					opacity: "0", 
 					ease: "sine.out"}, '+=0.0')
 				.to('.brightness', {
-					delay: 2.1,
+					delay: 2.2,
 					duration: 0.1,
 						ease: "sine.in",
 					opacity: "1"}, '-=0.0')
@@ -168,14 +168,14 @@ tl.to(".voodoo", {
 				.to('.flash', {
 					duration: 0.1,
 					ease: "sine.in",
-					delay: 0.8, 
+					delay: 0.5, 
 					opacity: "1"}, '+=0.0')
 				.to('.flash', {
 					duration: 1.5, 
 					opacity: "0", 
 					ease: "sine.out"}, '-=0.0')
 				.to('.flash', {
-					delay: 2.1,
+					delay: 2.2,
 					duration: 0.1,
 					ease: "sine.in",
 					opacity: "1"}, '-=0.0')
