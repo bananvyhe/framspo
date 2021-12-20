@@ -25,7 +25,9 @@
 	// import ScrambleText from 'scramble-text'; 
 	// import { VueTyper } from 'vue-typer'
 import { gsap } from "gsap";
+import { SlowMo } from "gsap/EasePack";
 
+gsap.registerPlugin(SlowMo);
   export default {
     data: function (){
       return {
@@ -41,44 +43,64 @@ import { gsap } from "gsap";
     mounted() {
     
 	    function voodoo() {
-	    	gsap.set(".voodoo", {
-					scale: 0.01,
-					opacity: 0,			
+	   //  	gsap.set(".voodoo", {
+				// 	scale: 0.01,
+ 		
+				// });
+				gsap.set(".voodoo", {
+					x:"2900px",
+					// opacity: 0.4,	
+					scale: 0.55,
+					color: "#203c04",	
 				});
 
+
 				var tl =	gsap.timeline();
-		  	tl.to(".voodoo", {
-		  		x: "-15px",
-		  		y:"-0px",
-		  		scale: 0.09,
-					opacity: 0.5,	
-		  		duration: 1,  
-		  		delay: 0.5,
+tl.to(".voodoo", {
+		  		 // repeat: 1,
+		  		x:"-2900px",
+		  		scale: 0.55,
+					opacity: 0.4,	
+		  		duration: 2.4,  
+		  		delay: 1.8,
+		  		 ease: "slow(0.9, 0.9)",
+		  		 color: "#305a06"
 		  	})
-		  	.to(".voodoo", {
-		  		x: "-15px",
-		  		y: "-20px",
-		  	 	color:"#b52a2c",
-		  		scale: 0.09,
-					opacity: 1,	
-		  		duration: 4,  
-		  		delay: 0,
-		  	}, '-=0.2')
-		  	.to(".voodoo", {
-		  		duration: 0.05,
-		  		opacity: 0.4,
-		  		scale: 4.9,
-		  	})
-		  	.to(".voodoo", {
-		  		duration: 0.2,
-		  		opacity: 0.1,
-		  		scale: 4.9,
-		  	})
-		  	.to(".voodoo", {
-		  		duration: 4,
-		  		opacity: 0,
-		  		scale: 4.9,
-		  	})
+ 
+
+
+		  	// tl.to(".voodoo", {
+		  	// 	x: "-15px",
+		  	// 	y:"-0px",
+		  	// 	scale: 0.09,
+					// opacity: 0.5,	
+		  	// 	duration: 1,  
+		  	// 	delay: 0.5,
+		  	// })
+		  	// .to(".voodoo", {
+		  	// 	x: "-15px",
+		  	// 	y: "-20px",
+		  	//  	color:"#b52a2c",
+		  	// 	scale: 0.09,
+					// opacity: 1,	
+		  	// 	duration: 4,  
+		  	// 	delay: 0,
+		  	// }, '-=0.2')
+		  	// .to(".voodoo", {
+		  	// 	duration: 0.05,
+		  	// 	opacity: 0.4,
+		  	// 	scale: 4.9,
+		  	// })
+		  	// .to(".voodoo", {
+		  	// 	duration: 0.2,
+		  	// 	opacity: 0.1,
+		  	// 	scale: 4.9,
+		  	// })
+		  	// .to(".voodoo", {
+		  	// 	duration: 4,
+		  	// 	opacity: 0,
+		  	// 	scale: 4.9,
+		  	// })
   	
 	  	}
 
@@ -89,7 +111,7 @@ import { gsap } from "gsap";
 
 				var tl =	gsap.timeline();
 				tl.to('.warriors', {
-					duration: 2,
+					duration: 1.6,
 					ease: "power1.out",
 					backgroundPositionY: 0,
 				});
@@ -97,39 +119,44 @@ import { gsap } from "gsap";
 
 	  	function cloud() {
 	    	// var tl2 = new TimelineMax({repeat:-1});
-	    	var tl =	gsap.timeline({repeat:-1});
+	    	var tl =	gsap.timeline();
 				tl.to('.clouds', {
+					repeat: -1,
 			 		duration: 18,
 					backgroundPositionX: -1, 
 					ease: "none",
 				});
 	  	}
 	  	function cloud2() {
-	  		var tl =	gsap.timeline({repeat:-1});
+	  		var tl =	gsap.timeline();
 	  		tl.to('.clouds2', {
+	  			repeat: -1,
 	  			duration: 18,
 	  			backgroundPositionX: -1, 
 	  			ease: "none",
 	  		});
 	  	}
 	  	function brightness() {
-	  		var tl =	gsap.timeline();
+	  		var tl =	gsap.timeline({repeat:-1});
 				tl.set('.brightness', {opacity: "0"})
 				.to('.brightness', {
-					duration: 0.05,
-					delay: 0.5, 
+					duration: 0.1,
+					ease: "sine.in",
+					delay: 0.8, 
 					opacity: "1"}, '+=0.0')
 				.to('.brightness', {
-					duration: 0.1, 
+					duration: 1.5, 
 					opacity: "0", 
-					ease: "sine.in"}, '+=0.0')
+					ease: "sine.out"}, '+=0.0')
 				.to('.brightness', {
-					duration: 0.05,
+					delay: 2.1,
+					duration: 0.1,
+						ease: "sine.in",
 					opacity: "1"}, '-=0.0')
 				.to('.brightness',{
-					duration: 3.0, 
+					duration: 1.5, 
 					opacity: "0", 
-					ease: "power4.out",})
+					ease: "sine.out",})
 				.to('.brightness',{
 					delay: 2});		  		
 	  	}
@@ -139,20 +166,23 @@ import { gsap } from "gsap";
 				tl.set('.flash', {
 					opacity: "0"})
 				.to('.flash', {
-					duration: 0.05,
-					delay: 0.5, 
+					duration: 0.1,
+					ease: "sine.in",
+					delay: 0.8, 
 					opacity: "1"}, '+=0.0')
 				.to('.flash', {
-					duration: 0.1, 
+					duration: 1.5, 
 					opacity: "0", 
-					ease: "sine.in"}, '-=0.0')
+					ease: "sine.out"}, '-=0.0')
 				.to('.flash', {
-					duration: 0.05,
+					delay: 2.1,
+					duration: 0.1,
+					ease: "sine.in",
 					opacity: "1"}, '-=0.0')
 				.to('.flash', {
-					duration: 3.0,
+					duration: 1.5,
 					opacity: "0", 
-					ease: "power4.out"})
+					ease: "sine.out"})
 				.to('.brightness',{
 					delay: 2});		  		  		
 	  	}
@@ -317,7 +347,7 @@ import { gsap } from "gsap";
 	height: 100%;
 	width: 100%;
  color: #897ee1;
- font-family: 'Roboto Condensed';
+ 
 	position: absolute;
 	left: 130px;
 	font-size: 22vh;
