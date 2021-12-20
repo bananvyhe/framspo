@@ -7,11 +7,12 @@
 
 	  	<div class="clouds2"></div>
 	  	<div class="bgshad"></div>
-	  	<div class="voodoo fonta">
+
+	  	<div class="clouds"></div>
+	  		  	<div class="voodoo fonta">
 	  		<!-- VooDoo power  -->
 	  		FREE PVP ZONE
 	  	</div>
-	  	<div class="clouds"></div>
 <!-- <div class="plashken"></div> -->
 	  	<div class="warriors">
  
@@ -51,7 +52,7 @@ gsap.registerPlugin(SlowMo);
 					x:"1900px",
 					// opacity: 0.6,	
 					scale: 0.55,
-					color: "#5a0607",	
+					color: "#4b1516",	
 				});
 
 
@@ -338,7 +339,7 @@ tl.to(".voodoo", {
  
 }
 .voodoo {
-	opacity: 1;
+	/*opacity: 1;*/
 	white-space: nowrap;
  
 	display: flex;
@@ -346,7 +347,7 @@ tl.to(".voodoo", {
 	justify-content: center;
 	height: 100%;
 	width: 100%;
- color: #897ee1;
+ /*color: #897ee1;*/
  
 	position: absolute;
 	left: 130px;
