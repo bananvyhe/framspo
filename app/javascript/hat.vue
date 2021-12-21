@@ -50,37 +50,33 @@ gsap.registerPlugin(SlowMo);
 				// });
 				gsap.set(".voodoo", {
 					// x:"-200px",
-
 					opacity: 0,	
 					scale: 0,
 					color: "#9f0000",	
 				});
 
-
 				var tl =	gsap.timeline();
 					tl.to(".voodoo", {
 		  		 // repeat: 1,
 		  		// x:"-1900px",
-		  		 
 		  		scale: 0.45,
 					opacity: 1,	
-		  		duration: 0.8,  
-		  		delay: 0.3,
+		  		duration: 0.5,  
+		  		delay: 0.1,
 		  		 ease: "expo",
- 
+		  		  
 		  	}).to(".voodoo", {
 		  		 // repeat: 1,
 		  		// x:"-1900px",
-		  		 
+		  		y:+10,
 		  		scale: 0.55,
 					opacity: 0,	
-		  		duration: 0.5,  
- 
-		  		 ease: "sine.out",
- 
+		  		duration: 2.5,  
+ 					// delay: 0.2,
+		  		ease: "my-wiggle",
 		  	})
 	  	}
-
+ 
 	  	function warriors() {
 	  		gsap.set(".warriors", {
 					backgroundPositionY: 165,
@@ -266,6 +262,7 @@ gsap.registerPlugin(SlowMo);
   }
 </script>
 <style scoped>
+ 
 
 .plashken {
 	 /*color: #b52a2c;*/
