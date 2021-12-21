@@ -49,60 +49,36 @@ gsap.registerPlugin(SlowMo);
  		
 				// });
 				gsap.set(".voodoo", {
-					x:"1900px",
-					// opacity: 0.6,	
-					scale: 0.55,
-					color: "#4b1516",	
+					// x:"-200px",
+
+					opacity: 0,	
+					scale: 0,
+					color: "#9f0000",	
 				});
 
 
 				var tl =	gsap.timeline();
-tl.to(".voodoo", {
+					tl.to(".voodoo", {
 		  		 // repeat: 1,
-		  		x:"-1900px",
+		  		// x:"-1900px",
+		  		 
+		  		scale: 0.45,
+					opacity: 1,	
+		  		duration: 0.8,  
+		  		delay: 0.3,
+		  		 ease: "expo",
+ 
+		  	}).to(".voodoo", {
+		  		 // repeat: 1,
+		  		// x:"-1900px",
+		  		 
 		  		scale: 0.55,
-					// opacity: 0.6,	
-		  		duration: 2.4,  
-		  		delay: 1.6,
-		  		 ease: "slow(0.8, 0.8)",
+					opacity: 0,	
+		  		duration: 0.5,  
+ 
+		  		 ease: "sine.out",
  
 		  	})
- 
-
-
-		  	// tl.to(".voodoo", {
-		  	// 	x: "-15px",
-		  	// 	y:"-0px",
-		  	// 	scale: 0.09,
-					// opacity: 0.5,	
-		  	// 	duration: 1,  
-		  	// 	delay: 0.5,
-		  	// })
-		  	// .to(".voodoo", {
-		  	// 	x: "-15px",
-		  	// 	y: "-20px",
-		  	//  	color:"#b52a2c",
-		  	// 	scale: 0.09,
-					// opacity: 1,	
-		  	// 	duration: 4,  
-		  	// 	delay: 0,
-		  	// }, '-=0.2')
-		  	// .to(".voodoo", {
-		  	// 	duration: 0.05,
-		  	// 	opacity: 0.4,
-		  	// 	scale: 4.9,
-		  	// })
-		  	// .to(".voodoo", {
-		  	// 	duration: 0.2,
-		  	// 	opacity: 0.1,
-		  	// 	scale: 4.9,
-		  	// })
-		  	// .to(".voodoo", {
-		  	// 	duration: 4,
-		  	// 	opacity: 0,
-		  	// 	scale: 4.9,
-		  	// })
-  	
 	  	}
 
 	  	function warriors() {
@@ -112,8 +88,9 @@ tl.to(".voodoo", {
 
 				var tl =	gsap.timeline();
 				tl.to('.warriors', {
-					duration: 1.6,
-					ease: "power1.out",
+					delay: 0.5,
+					duration: 1.2,
+					ease: "sine.in",
 					backgroundPositionY: 0,
 				});
 	  	}
@@ -146,20 +123,20 @@ tl.to(".voodoo", {
 					delay: 0.5, 
 					opacity: "1"}, '+=0.0')
 				.to('.brightness', {
-					duration: 1.5, 
+					duration: 1.4, 
 					opacity: "0", 
 					ease: "sine.out"}, '+=0.0')
 				.to('.brightness', {
-					delay: 2.2,
+					delay: 0.4,
 					duration: 0.1,
 						ease: "sine.in",
 					opacity: "1"}, '-=0.0')
 				.to('.brightness',{
-					duration: 1.5, 
+					duration: 2, 
 					opacity: "0", 
 					ease: "sine.out",})
 				.to('.brightness',{
-					delay: 2});		  		
+					delay: 3});		  		
 	  	}
 
 	  	function flash() {
@@ -172,20 +149,20 @@ tl.to(".voodoo", {
 					delay: 0.5, 
 					opacity: "1"}, '+=0.0')
 				.to('.flash', {
-					duration: 1.5, 
+					duration: 1.4, 
 					opacity: "0", 
 					ease: "sine.out"}, '-=0.0')
 				.to('.flash', {
-					delay: 2.2,
+					delay: 0.4,
 					duration: 0.1,
 					ease: "sine.in",
 					opacity: "1"}, '-=0.0')
 				.to('.flash', {
-					duration: 1.5,
+					duration: 2,
 					opacity: "0", 
 					ease: "sine.out"})
 				.to('.brightness',{
-					delay: 2});		  		  		
+					delay: 3});		  		  		
 	  	}
 			
 
@@ -350,8 +327,8 @@ tl.to(".voodoo", {
  /*color: #897ee1;*/
  
 	position: absolute;
-	left: 130px;
-	font-size: 22vh;
+	/*left: 100px;*/
+	font-size: 12vh;
 }
 .fog {
 	align-self: flex-end;	
