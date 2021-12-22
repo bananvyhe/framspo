@@ -12,8 +12,8 @@
             </div>
           </div>
           <div
-            class="px-2 pt-2 pb-1 colr"
-            v-text=""><h2>{{item.head}}</h2>
+            class="px-2 pt-2 pb-2 colr"
+            v-text=""><h3>{{item.head}}</h3>
           </div>
           <div class="px-2 body-1">
             {{item.desc}}… 
@@ -32,13 +32,13 @@
             источник
           </v-btn>  
            
-          <v-btn
+<!--           <v-btn
           class="px-2 py-0 mx-2 but"
           @click="clickhandler(item.id, $event)"
           disabled
           small>
             открыть
-          </v-btn>   
+          </v-btn>   --> 
   <!-- {{bottom}} -->
           <div v-if="item.id == empid">
             <v-dialog
@@ -247,7 +247,7 @@
   color: #9d9681; 
 }
 .colr{
-  color: #9d9681;
+  color: #509946;
 }
 .v-card__text{
   overflow: hidden;

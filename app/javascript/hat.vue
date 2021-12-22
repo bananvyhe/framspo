@@ -59,16 +59,16 @@ gsap.registerPlugin(SlowMo);
 					tl.to(".voodoo", {
 		  		 // repeat: 1,
 		  		// x:"-1900px",
-		  		scale: 0.45,
-					opacity: 1,	
+		  		scale: 0.35,
+					opacity: 0.8,	
 		  		duration: 0.5,  
 		  		delay: 0.1,
-		  		 ease: "expo",
+		  		 ease: "sine.in",
 		  		  
 		  	}).to(".voodoo", {
 		  		 // repeat: 1,
 		  		// x:"-1900px",
-		  		y:+10,
+		  		y:+5,
 		  		scale: 0.55,
 					opacity: 0,	
 		  		duration: 2.5,  
@@ -114,20 +114,22 @@ gsap.registerPlugin(SlowMo);
 	  		var tl =	gsap.timeline({repeat:-1});
 				tl.set('.brightness', {opacity: "0"})
 				.to('.brightness', {
-					duration: 0.1,
+					duration: 0.05,
 					ease: "sine.in",
 					delay: 0.5, 
-					opacity: "1"}, '+=0.0')
+					opacity: "1"}, 1.1)
 				.to('.brightness', {
+					delay: 0.3,
 					duration: 1.4, 
 					opacity: "0", 
 					ease: "sine.out"}, '+=0.0')
 				.to('.brightness', {
-					delay: 0.4,
-					duration: 0.1,
+					delay: 1.4,
+					duration: 0.05,
 						ease: "sine.in",
 					opacity: "1"}, '-=0.0')
 				.to('.brightness',{
+					delay: 0.3,
 					duration: 2, 
 					opacity: "0", 
 					ease: "sine.out",})
@@ -140,20 +142,22 @@ gsap.registerPlugin(SlowMo);
 				tl.set('.flash', {
 					opacity: "0"})
 				.to('.flash', {
-					duration: 0.1,
+					duration: 0.05,
 					ease: "sine.in",
 					delay: 0.5, 
-					opacity: "1"}, '+=0.0')
+					opacity: "1"}, 1.1)
 				.to('.flash', {
+					delay: 0.3,
 					duration: 1.4, 
 					opacity: "0", 
 					ease: "sine.out"}, '-=0.0')
 				.to('.flash', {
-					delay: 0.4,
-					duration: 0.1,
+					delay: 1.4,
+					duration: 0.05,
 					ease: "sine.in",
 					opacity: "1"}, '-=0.0')
 				.to('.flash', {
+					delay: 0.3,
 					duration: 2,
 					opacity: "0", 
 					ease: "sine.out"})
@@ -194,9 +198,9 @@ gsap.registerPlugin(SlowMo);
 			var master = gsap.timeline();
 
 			master.add(voodoo())
-      .add(warriors(), "+=0")     //with a gap of 2 seconds
-      .add(cloud(), "+=0") 
-      .add(cloud2(), "+=0") 
+      .add(warriors())     //with a gap of 2 seconds
+      .add(cloud()) 
+      .add(cloud2()) 
  			.add(brightness() ) 
  			.add(flash() ) 
 
