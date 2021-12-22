@@ -13,7 +13,7 @@
           </div>
           <div
             class="px-2 pt-2 pb-2 colr"
-            v-text=""><h3>{{item.head}}</h3>
+            v-text=""><h2>{{item.head}}</h2>
           </div>
           <div class="px-2 body-1">
             {{item.desc}}… 
@@ -247,7 +247,7 @@
   color: #9d9681; 
 }
 .colr{
-  color: #509946;
+  color: #60845b;
 }
 .v-card__text{
   overflow: hidden;
