@@ -247,7 +247,8 @@
   color: #9d9681; 
 }
 .colr{
-  color: #60845b;
+  /*color: #60845b;*/
+  color: #657d62;
 }
 .v-card__text{
   overflow: hidden;
