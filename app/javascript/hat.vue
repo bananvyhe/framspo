@@ -87,9 +87,9 @@ gsap.registerPlugin(SlowMo);
 
 				var tl =	gsap.timeline();
 				tl.to('.warriors', {
-					delay: 0.2,
-					duration: 1.2,
-					ease: "power4.in",
+					delay: 0.0,
+					duration: 1.1,
+					ease: "sine.in",
 					backgroundPositionY: 0,
 				});
 	  	}
