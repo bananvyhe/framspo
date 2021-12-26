@@ -19,7 +19,9 @@
 	  	</div>
 	  	<div class="warriors brightness"></div>
 	  	<div class="bgshad2"></div>
+
 	  </div>
+
 	</div>
 </template>
 <script>
@@ -37,12 +39,13 @@ gsap.registerPlugin(SlowMo);
       }
     },
     methods: {
+
     },
     created() { 
     
   	},
     mounted() {
-    
+     
 	    function voodoo() {
 	   //  	gsap.set(".voodoo", {
 				// 	scale: 0.01,
@@ -84,9 +87,9 @@ gsap.registerPlugin(SlowMo);
 
 				var tl =	gsap.timeline();
 				tl.to('.warriors', {
-					delay: 0.5,
+					delay: 0.2,
 					duration: 1.2,
-					ease: "sine.in",
+					ease: "power4.in",
 					backgroundPositionY: 0,
 				});
 	  	}
