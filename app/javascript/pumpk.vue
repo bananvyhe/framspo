@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="unit"> 
-      <div class="hpbar"><v-progress-linear value="15"></v-progress-linear></div>
+      <div class="hpbar"><v-progress-linear :value="hp"></v-progress-linear></div>
       <div class="character"></div>
     </div>
 	</div>
@@ -13,7 +13,7 @@ import { gsap } from "gsap";
   export default {
     data: function (){
       return {
-        
+        hp: 100
       }
     },
     methods: {
