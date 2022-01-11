@@ -2,15 +2,19 @@
   <div>
     <div class="unit"> 
       <div class="hpbar"><v-progress-linear :value="hp"></v-progress-linear></div>
-      <div class="character"></div>
+      <div class="character"></div><damagecomp></damagecomp>
     </div>
 	</div>
 </template>
 <script>
+	import Damagecomp from './damagecomp.vue'
 	// import ScrambleText from 'scramble-text'; 
 	// import { VueTyper } from 'vue-typer'
 import { gsap } from "gsap";
   export default {
+	  components: {
+	    'damagecomp': Damagecomp,
+	  },
     data: function (){
       return {
         hp: 100
