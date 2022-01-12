@@ -1,8 +1,8 @@
 <template>
   <div >
   {{hit}}
-  <div class="hitbox" v-on:click="hitcalc">
-  </div>
+  <!-- <div class="hitbox" v-on:click="hitcalc"> -->
+  <!-- </div> -->
   </div>
 </template>
 <script>

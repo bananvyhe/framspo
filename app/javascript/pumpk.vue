@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="unit"> 
+    <div class="unit" v-on:click="hitpumpk"> 
       <div class="hpbar"><v-progress-linear :value="hp"></v-progress-linear></div>
-      <div class="character"></div><damagecomp></damagecomp>
+      <div class="character"></div>
+      <damagecomp ref="hit"></damagecomp>
     </div>
 	</div>
 </template>
@@ -21,7 +22,9 @@ import { gsap } from "gsap";
       }
     },
     methods: {
-
+    	hitpumpk(){
+    		this.$refs.hit.hitcalc();
+    	}
     },
     created() { 
     
