@@ -1,9 +1,9 @@
 <template>
   <div>
+  	<damagecomp ref="hit"></damagecomp>
     <div class="unit" v-on:click="hitpumpk"> 
       <div class="hpbar"><v-progress-linear :value="hp"></v-progress-linear></div>
       <div class="character"></div>
-      <damagecomp ref="hit"></damagecomp>
     </div>
 	</div>
 </template>
@@ -36,9 +36,10 @@ import { gsap } from "gsap";
           m1.to(".character",{
             duration: 1,
             repeat:-1,
+            repeatDelay: 1,
             backgroundPosition: "-528px",
             ease: "steps(11)"
-          });
+          })
         }
         var master = gsap.timeline();
         master.add(pumpk())
