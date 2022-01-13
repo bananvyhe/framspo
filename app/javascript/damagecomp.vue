@@ -25,12 +25,12 @@ export default {
       this.hit = (((this.basedamage * (this.lvl/10 ))  )* (Math.random() * (0.120 - 0.0200) + 0.3).toFixed(2)*10).toFixed()
       var m1 = gsap.timeline();
       m1.from(".infodmg",{
-         y:"20px",
+         y:"10px",
         opacity: 1, 
       })
       .to(".infodmg",{
         opacity: 0, 
-        y:"-10px",
+        y:"-40px",
         duration: 6,
       })
     }
@@ -39,6 +39,7 @@ export default {
 </script>
 <style scoped>
 .infodmg{
+  position: absolute;
   opacity: 0;
 }
 /*.hitbox{

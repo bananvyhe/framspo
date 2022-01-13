@@ -1,5 +1,9 @@
 <template>
   <div class=" py-0 px-0"> 
+<!-- 
+    v-bind:spritesheet="require('./images/sprites/monsters/pumpkin.png')"
+    v-bind:json="require('./images/sprites/monsters/pumpkin.json')" -->
+    <pumpk></pumpk>
     <v-card v-for="(item, index) in alld " :key= "item.id" 
       class="px-1 my-2 py-2 ">
       <v-row>
@@ -7,7 +11,7 @@
           <div 
           class="align-top  float-left mr-1 px-3 py-md-1 mx-md-1">
           <!-- {backgroundImage: 'url('+ item.pic} -->
-            <div class ="pic px-0  align-center my-2" v-bind:style="{backgroundImage: 'url('+ item.pic}">
+            <div class ="pic px-0  align-center my-2" v-bind:style=" ">
               <!-- {{pos}} -->
             </div>
           </div>
@@ -31,14 +35,32 @@
             text x-small>
             источник
           </v-btn>  
-           
-<!--           <v-btn
-          class="px-2 py-0 mx-2 but"
-          @click="clickhandler(item.id, $event)"
-          disabled
-          small>
-            открыть
-          </v-btn>   --> 
+
+          <div v-if="loa >= 3">
+            <v-btn
+            class="px-2 py-0 mx-2 but"
+            @click="clickhandler(item.id, $event)"
+            small>
+              открыть
+            </v-btn>                
+          </div>
+          <div v-else>
+            <v-tooltip top  >
+              <template v-slot:activator="{ on, attrs}">
+                <div v-on="on" v-bind="attrs" class="disdiv"  >
+                  <v-btn 
+                    class="px-2 py-0 mx-2 but"
+                    @click="clickhandler(item.id, $event)"
+                    disabled
+                    small>
+                    открыть
+                </v-btn>                    
+                </div>
+              </template>
+              <span>недостаточно loa</span>
+            </v-tooltip> 
+          </div>
+
   <!-- {{bottom}} -->
           <div v-if="item.id == empid">
             <v-dialog
@@ -83,10 +105,7 @@
         </v-col>
       </v-row>
     </v-card>
-
-       
-
-<!--           <v-expand-transition>
+      <!--  <v-expand-transition>
             <div v-show="dialogVisible">
               <v-divider></v-divider>
               <v-card-text>
@@ -99,28 +118,30 @@
               </v-card-text>
             </div>
           </v-expand-transition> -->
-          <div class="d-flex justify-center" > 
-
-                <v-progress-circular 
-    
+    <div class="d-flex justify-center" > 
+      <v-progress-circular 
     indeterminate 
-    color="green" v-if="this.bottom == true && alld.length != 0"></v-progress-circular>   
-          </div>
-
- 
-
-   
+    color="green" 
+    v-if="this.bottom == true && alld.length != 0">
+      </v-progress-circular>   
+    </div>
   </div>
 </template>
 <script>
+  import { gsap } from "gsap";
+  import Spriteling from 'spriteling' 
   import axios from 'axios'
+  import Pumpk from './pumpk.vue'
   export default {
- 
+    components: {
+      'pumpk': Pumpk
+    }, 
     data: function (){
       return {
+        loa: 0,
         pos: 0,
         bottom: false,
- 
+
         fullnews: '',
         dialogVisible: false,
         empid: '',
@@ -130,7 +151,6 @@
     created(){
       var timer;
       window.addEventListener('scroll', () => {
-
         if(timer) {
           window.clearTimeout(timer);
         }
@@ -139,7 +159,6 @@
           self.bottom = self.bottomVisible()
           console.log("vis")
         }, 10);
-      
       })
     },
     watch: {
@@ -160,6 +179,14 @@
       this.addBeer()
     },
     methods: {
+
+      animationStarted: function(startFrame, stopFrame){
+        console.log('animation started:['+startFrame+','+stopFrame+']');
+      },      
+      ready: function(){
+        this.$refs.animation.playLegacy(9);
+        this.$refs.animation.play(1, 11);
+      },
     bottomVisible() {
       var scrollHeight = Math.max(
         document.body.scrollHeight, document.documentElement.scrollHeight,
@@ -243,6 +270,12 @@
   }
 </script>
 <style scoped>
+.disdiv{
+  /*background-color: #dad;  */
+  position: absolute;
+  bottom: 1.5em;
+  right: 1.5em;
+}
 .date{
   color: #9d9681; 
 }
@@ -257,12 +290,7 @@
 
   word-break: normal;
 }
-.but{
-  position: absolute;
-  bottom: 1.5em;
-  right: 1.5em;
-
-}
+ 
 .row { position: relative;
   
 }
