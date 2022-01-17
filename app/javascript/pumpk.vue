@@ -1,10 +1,21 @@
 <template>
   <div>
-  	
-    <div class="unit" v-on:click="hitpumpk"> <damagecomp ref="hitt"></damagecomp>
-      <div class="hpbar"><v-progress-linear :value="hp"></v-progress-linear></div>
+ 
+    <div v-if="loc == 'alive'"   class="unit" v-on:click="handler('foo','bar')"> 
+    	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
+    	<damagecomp ref="hitt"></damagecomp>
+      <div class="hpbar">
+      	<v-progress-linear :value="hp"></v-progress-linear>
+      </div>
       <div class="character"></div>
     </div>
+     <div v-if="loc == 'death'"   class="off" v-on:click="handler('foo','bar')"> 
+    	<damagecomp ref="hitt"></damagecomp>
+      <div class="hpbar">
+      	<v-progress-linear :value="hp"></v-progress-linear>
+      </div>
+      <div class="death"></div>
+    </div>   
 	</div>
 </template>
 <script>
@@ -20,11 +31,20 @@ import { gsap } from "gsap";
       return {
       	hpoints: 124,
         hp: 100,
-        dmg: ''
+        dmg: '',
+        loc: ''
       }
     },
     methods: {
+    	handler(arg1,arg2){
+    		if (localStorage.hp == "death"){
+    			console.log("pumpk is dead!")
+    		}else{
+    			this.hitpumpk()
+    		}
+    	},
     	hitpumpk(){
+    		var interval = 15000;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -32,35 +52,69 @@ import { gsap } from "gsap";
         this.hpoints = hpleft
         this.hp = percentcut
         console.log(this.hp)
-        if (this.hp <= 0){
-      			localStorage.hp = "death"
-      			console.log(localStorage.hp)
+        if (this.hpoints <= 0){
+      		localStorage.hp = "death"
+      		reset();
+      		console.log(localStorage.hp)
         }else{
-        	localStorage.hp = "alive"
-        	console.log(localStorage.hp)
+        	// localStorage.hp = "alive"
+        	console.log("else hitpumpk ")
         }
-        // if (this.hpoints <= 0){
-        // 	var m2 = gsap.timeline();
-        // 	 m2.to(".character",{
-        //     duration: 1,
-        //     repeat:-1,
-        //     repeatDelay: 1,
-        //     backgroundPosition: "-528px",
-        //     ease: "steps(11)"
-        //   })
-
-        // }
-
+        function reset(){
+      		// занесение в локалсторадж даты окончания таймера
+				  localStorage.endTime = +new Date + interval;
+				  console.log("сброс таймера")
+				}
     	}
     },
-    created() { 
-    
-  	},
     mounted() {
+    	this.loc = localStorage.hp
       window.addEventListener('load', () => {
-        function pumpk() {
-        	
+      	
+      	// console.log(+new Date + interval)
+      	// timer res pumpk
+      	
 
+				// if( localStorage.hp == "death"){
+				// 	reset();
+				// }
+				setInterval(function(){
+
+					if( localStorage.hp == "death" ){
+						// занесение в переменную оставшиеся милисекунды до окончания(обратный отсчет)
+			    	var remaining = localStorage.endTime - new Date;
+			  	}
+			  	// если отсчет не завершился то присваиваем статус "мертвый" в локалсорадж
+			    if( remaining >= 0 ){
+			      localStorage.hp = "death"
+			      console.log("dead")
+			      console.log(remaining)
+
+			    }else if ( remaining < 0 ){
+			     
+			      
+			      var alive = gsap.timeline();
+			      alive.to(".off",{
+	 						className: "+=unit",
+	 					})
+	 					var m1 = gsap.timeline();
+	 					m1.to(".death",{
+	 						className: "+=character",
+	 							onComplete: ressurect
+	 					})
+	 					console.log("alive")
+	 					localStorage.hp = "alive"
+ 
+			    }
+			  }, 1000);		
+			  var self = this
+			  function ressurect() {	
+			  	self.hp = 100
+			  	self.hpoints = 124
+			  	pumpk()
+			  }
+
+        function pumpk() {
           var m1 = gsap.timeline();
           m1.to(".character",{
             duration: 1,
@@ -84,17 +138,17 @@ import { gsap } from "gsap";
 			          	duration: 1,
 			          	backgroundPosition: "-960px",
 			          	ease: "steps(20)",
-			          	 
+			          	onComplete: end
 			          })
-					  		.call(removeElement(".unit"))
-			          function removeElement(element) {
-								  if (typeof(element) === "string") {
-								    element = document.querySelector(element);
-								  }
-								  return function() {
-								    element.parentNode.removeChild(element);
-								  };
-								}
+					  	// 	.call(removeElement(".unit"))
+			     //      function removeElement(element) {
+								//   if (typeof(element) === "string") {
+								//     element = document.querySelector(element);
+								//   }
+								//   return function() {
+								//     element.parentNode.removeChild(element);
+								//   };
+								// }
 
 	 							function end(){
 	 								m2.to(".unit",{
@@ -102,18 +156,22 @@ import { gsap } from "gsap";
 	 								})
 	 							}
 					  	}
-	 
-
 						}
           }
         }
         var master = gsap.timeline();
-        master.add(pumpk())
+        if (localStorage.hp == "alive"){
+        	master.add(pumpk())
+        }
+        
       })
     }
   }
 </script>
 <style scoped>
+.hpoints{
+
+}
 .off{
 	opacity: 0;
 }
@@ -134,6 +192,7 @@ import { gsap } from "gsap";
 cursor: url("./images/sword.png"), pointer;
  
 }
+
 .character {
 
   background: url(./images/sprites/monsters/pumpkina.png);
