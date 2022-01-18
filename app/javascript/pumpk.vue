@@ -56,10 +56,14 @@ import { gsap } from "gsap";
         if (this.hpoints <= 0){
       		localStorage.hp = "death"
       		reset();
-      		var loasend  = Math.floor(Math.random() * 6) + 3;
-      		this.$store.commit('increment', loasend)
+      		var min = 2
+			    var max = 5
+			    var loa = Math.random() * (max - min) + min;
+			    loa =  Math.round(loa)
+			    loa = Number(loa)
+      		this.$store.commit('increment', loa)
       		console.log(localStorage.loa)
-      		console.log(loasend)
+      		console.log(loa)
         }else{
         	// localStorage.hp = "alive"
         	console.log("else hitpumpk ")

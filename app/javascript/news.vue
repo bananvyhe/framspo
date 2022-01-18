@@ -36,7 +36,7 @@
             источник
           </v-btn>  
  
-          <div v-if=" loa >= 18">
+          <div v-if=" loa >= 5">
             <div class="disdiv">
               <v-btn
               class="px-2 py-0 mx-2 but"
