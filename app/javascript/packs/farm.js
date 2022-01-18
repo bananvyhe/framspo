@@ -12,7 +12,6 @@ import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
 import Hat from '../hat.vue'
 
-
 // import Vuetify from 'vuetify'
 // Vue.use(Vuetify)
 
@@ -52,6 +51,8 @@ Vue.use(Vuetify, {
 		VCardText,
 		VDialog,
 		VProgressCircular,
+		VProgressLinear,
+		VTooltip,
 	}
 }) 
 import Vuetify, {
@@ -89,6 +90,8 @@ import Vuetify, {
 	VCardText,
 	VDialog,
 	VProgressCircular,
+	VProgressLinear,
+	VTooltip,
 } from 'vuetify/lib'
 import colors from 'vuetify/lib/util/colors'
 
