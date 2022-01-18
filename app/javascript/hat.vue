@@ -343,7 +343,7 @@ gsap.registerPlugin(SlowMo);
 	height: 100%;
 	width: 100%;
  
-	background-image: url('./images/_hat/fog.jpg');
+	background-image: url('./images/_hat/fog2.jpg');
 }
 .brightness{
 	filter: brightness(35%);
@@ -366,7 +366,7 @@ gsap.registerPlugin(SlowMo);
 	opacity: 0.3;
 	background-repeat: repeat-x;
 	position: absolute;
-	background-image: url('./images/_hat/clouds.png');
+	background-image: url('./images/_hat/clouds2.png');
 	background-position: center 0px;
 	background-size: 300px  auto;
 	height: 100%;
