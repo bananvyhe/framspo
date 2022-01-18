@@ -1,6 +1,5 @@
 <template>
   <div>
- 
     <div v-if="loc == 'alive'"   class="unit mb-0" v-on:click="handler('foo','bar')"> 
     	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
     	<damagecomp ref="hitt"></damagecomp>
@@ -46,7 +45,7 @@ import { gsap } from "gsap";
     		}
     	},
     	hitpumpk(){
-    		var interval = 15000000;
+    		var interval = 15000;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -79,8 +78,10 @@ import { gsap } from "gsap";
     	}
  		},
     mounted() {
+    	if (localStorage.hp){
+    		this.loc = localStorage.hp
+    	}
     	
-    	this.loc = localStorage.hp
       window.addEventListener('load', () => {
       	
       	// console.log(+new Date + interval)
