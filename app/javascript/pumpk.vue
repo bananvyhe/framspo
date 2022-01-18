@@ -45,7 +45,7 @@ import { gsap } from "gsap";
     		}
     	},
     	hitpumpk(){
-    		var interval = 15000;
+    		var interval = 15000000;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -72,12 +72,14 @@ import { gsap } from "gsap";
     	}
     },
  		created() {
+
 			if (localStorage.hp != "death"){
     		this.loc = "alive"
     		console.log("666")
     	}
  		},
     mounted() {
+
     	if (localStorage.hp){
     		this.loc = localStorage.hp
     	}
@@ -173,7 +175,7 @@ import { gsap } from "gsap";
           }
         }
         var master = gsap.timeline();
-        if (localStorage.hp == "alive"){
+        if (localStorage.hp == "alive" || !localStorage.hp){
         	master.add(pumpk())
         }
         

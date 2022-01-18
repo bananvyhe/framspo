@@ -96,7 +96,12 @@ import Vuetify, {
 	VTooltip,
 } from 'vuetify/lib'
 import colors from 'vuetify/lib/util/colors'
+ 	if (!localStorage.loa){
+		localStorage.loa = 0
+		console.log("0")
+  }
 const store = new Vuex.Store({
+
   state: {
     loa: localStorage.loa
   },
