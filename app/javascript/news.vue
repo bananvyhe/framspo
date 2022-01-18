@@ -3,7 +3,7 @@
 <!-- 
     v-bind:spritesheet="require('./images/sprites/monsters/pumpkin.png')"
     v-bind:json="require('./images/sprites/monsters/pumpkin.json')" -->
-    <pumpk></pumpk>
+    <!-- <pumpk></pumpk> -->
     <v-card v-for="(item, index) in alld " :key= "item.id" 
       class="px-1 my-2 py-2 ">
       <v-row>
