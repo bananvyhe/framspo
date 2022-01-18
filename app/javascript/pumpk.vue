@@ -72,11 +72,14 @@ import { gsap } from "gsap";
 				}
     	}
     },
- 
-    mounted() {
-    	if (localStorage.hp != "death"){
+ 		created() {
+			if (localStorage.hp != "death"){
     		this.loc = "alive"
+    		console.log("666")
     	}
+ 		},
+    mounted() {
+    	
     	this.loc = localStorage.hp
       window.addEventListener('load', () => {
       	
