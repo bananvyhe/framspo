@@ -32,7 +32,7 @@ import { SlowMo } from "gsap/EasePack";
   import Pumpk from './pumpk.vue'
 gsap.registerPlugin(SlowMo);
   export default {
-  		        components: {
+  	components: {
       'pumpk': Pumpk
     }, 
     data: function (){

@@ -141,7 +141,7 @@
         loa:  '',
         pos: 0,
         bottom: false,
-        loc: false,
+        // loc: false,
         fullnews: '',
         dialogVisible: false,
         empid: '',
