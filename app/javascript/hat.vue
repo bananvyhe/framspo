@@ -312,7 +312,7 @@ gsap.registerPlugin(SlowMo);
 	width: 100%;
 	background-position: 43% 12px;
 	background-size: auto 150%;
-	background-image: url('./images/_hat/warriors.gif');
+	background-image: url('./images/_hat/warriors2.png');
 }
 .war1{
 	position: relative;
@@ -356,7 +356,7 @@ gsap.registerPlugin(SlowMo);
 	background-repeat: no-repeat;
 	background-position: center bottom;
 	background-size: cover;
-	background-image: url('./images/_hat/flash.jpg');
+	background-image: url('./images/_hat/flash2.jpg');
 
 }
 .dvis {
