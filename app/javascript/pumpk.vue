@@ -74,6 +74,9 @@ import { gsap } from "gsap";
     },
  
     mounted() {
+    	if (localStorage.hp != "death"){
+    		this.loc = "alive"
+    	}
     	this.loc = localStorage.hp
       window.addEventListener('load', () => {
       	
