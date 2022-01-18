@@ -129,7 +129,6 @@
 </template>
 <script>
   import { gsap } from "gsap";
-  import Spriteling from 'spriteling' 
   import axios from 'axios'
   import Pumpk from './pumpk.vue'
   export default {
