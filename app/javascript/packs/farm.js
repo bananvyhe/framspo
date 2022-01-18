@@ -7,7 +7,7 @@
 
 import Vue from 'vue'
 
-import '@mdi/font/css/materialdesignicons.css'
+// import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
 import Hat from '../hat.vue'
