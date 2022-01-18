@@ -1,7 +1,7 @@
 <template>
   <div>
  
-    <div v-if="loc == 'alive'"   class="unit" v-on:click="handler('foo','bar')"> 
+    <div v-if="loc == 'alive'"   class="unit mb-0" v-on:click="handler('foo','bar')"> 
     	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
     	<damagecomp ref="hitt"></damagecomp>
       <div class="hpbar">
@@ -23,9 +23,11 @@
 	// import ScrambleText from 'scramble-text'; 
 	// import { VueTyper } from 'vue-typer'
 import { gsap } from "gsap";
+
   export default {
 	  components: {
 	    'damagecomp': Damagecomp,
+
 	  },
     data: function (){
       return {
@@ -44,7 +46,7 @@ import { gsap } from "gsap";
     		}
     	},
     	hitpumpk(){
-    		var interval = 15000;
+    		var interval = 15000000;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -55,7 +57,10 @@ import { gsap } from "gsap";
         if (this.hpoints <= 0){
       		localStorage.hp = "death"
       		reset();
-      		console.log(localStorage.hp)
+      		var loasend  = Math.floor(Math.random() * 6) + 3;
+      		this.$store.commit('increment', loasend)
+      		console.log(localStorage.loa)
+      		console.log(loasend)
         }else{
         	// localStorage.hp = "alive"
         	console.log("else hitpumpk ")
@@ -67,6 +72,7 @@ import { gsap } from "gsap";
 				}
     	}
     },
+ 
     mounted() {
     	this.loc = localStorage.hp
       window.addEventListener('load', () => {

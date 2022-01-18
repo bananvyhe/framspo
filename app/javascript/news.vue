@@ -1,9 +1,9 @@
 <template>
-  <div class=" py-0 px-0"> 
+  <div class=" py-0 px-0"> <div style="display:none;">{{loa = this.$store.state.loa}}</div> 
 <!-- 
     v-bind:spritesheet="require('./images/sprites/monsters/pumpkin.png')"
     v-bind:json="require('./images/sprites/monsters/pumpkin.json')" -->
-    <!-- <pumpk></pumpk> -->
+    
     <v-card v-for="(item, index) in alld " :key= "item.id" 
       class="px-1 my-2 py-2 ">
       <v-row>
@@ -35,14 +35,17 @@
             text x-small>
             источник
           </v-btn>  
-
-          <div v-if="loa >= 3">
-            <v-btn
-            class="px-2 py-0 mx-2 but"
-            @click="clickhandler(item.id, $event)"
-            small>
-              открыть
-            </v-btn>                
+ 
+          <div v-if=" loa >= 18">
+            <div class="disdiv">
+              <v-btn
+              class="px-2 py-0 mx-2 but"
+              @click="clickhandler(item.id, $event)"
+              small>
+                открыть
+              </v-btn>                 
+            </div>
+             
           </div>
           <div v-else>
             <v-tooltip top  >
@@ -130,17 +133,15 @@
 <script>
   import { gsap } from "gsap";
   import axios from 'axios'
-  import Pumpk from './pumpk.vue'
+
   export default {
-    components: {
-      'pumpk': Pumpk
-    }, 
+
     data: function (){
       return {
-        loa: 0,
+        loa:  '',
         pos: 0,
         bottom: false,
-
+        loc: false,
         fullnews: '',
         dialogVisible: false,
         empid: '',
@@ -161,6 +162,7 @@
       })
     },
     watch: {
+ 
       dialogVisible(val){
         if (val == false){
           this.fullnews = ''
@@ -213,10 +215,7 @@
        // this.fullnews = '' 
     },
     clickhandler( event) {
-      // if (event == this.empid){
-        // this.dialogVisible = !this.dialogVisible;
-
-      // }else{
+     this.$store.commit('decrement') 
     this.dialogVisible = true;
      axios({
         method: 'post',
@@ -228,11 +227,11 @@
         if (response.data){
           console.log(response.data)
           this.fullnews = response.data.fullarticle
-          // this.bigimage = response.data.biglink
+ 
         }
       }); 
       this.empid = event;
-      // }
+ 
     },
       addBeer() {
         axios({

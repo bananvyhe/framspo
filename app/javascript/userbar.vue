@@ -1,17 +1,30 @@
 <template>
   <div>
-     {{loa}} loa
+     {{ this.$store.state.loa}} loa
   </div>
 </template>
 
 <script>
-import News from './news.vue'
+
 export default {
+
   data: function () {
     return {
-      loa: 0
+      loa: "",
     }
-  }
+  },
+  mutations: {
+    // increment (state) {
+    //   state.loa++
+    // }
+  },
+  mounted(){
+    // this.$store.commit('increment')
+ 
+  },
+  computed: {
+
+  }  
 }
 </script>
 

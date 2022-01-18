@@ -19,7 +19,7 @@
 	  	</div>
 	  	<div class="warriors brightness"></div>
 	  	<div class="bgshad2"></div>
-
+<pumpk class="pumpkin"></pumpk>
 	  </div>
 
 	</div>
@@ -29,9 +29,12 @@
 	// import { VueTyper } from 'vue-typer'
 import { gsap } from "gsap";
 import { SlowMo } from "gsap/EasePack";
-
+  import Pumpk from './pumpk.vue'
 gsap.registerPlugin(SlowMo);
   export default {
+  		        components: {
+      'pumpk': Pumpk
+    }, 
     data: function (){
       return {
       	repDelay: 8
@@ -269,7 +272,12 @@ gsap.registerPlugin(SlowMo);
   }
 </script>
 <style scoped>
- 
+ .pumpkin {
+ 	position: absolute;
+ 	bottom: 0;
+ 	right: 0;
+ 	z-index: 1000;
+ }
 
 .plashken {
 	 /*color: #b52a2c;*/

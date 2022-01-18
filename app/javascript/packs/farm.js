@@ -11,7 +11,9 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
 import Hat from '../hat.vue'
-
+import Vuex from 'vuex'
+import 'es6-promise/auto'
+Vue.use(Vuex)
 // import Vuetify from 'vuetify'
 // Vue.use(Vuetify)
 
@@ -94,7 +96,28 @@ import Vuetify, {
 	VTooltip,
 } from 'vuetify/lib'
 import colors from 'vuetify/lib/util/colors'
+const store = new Vuex.Store({
+  state: {
+    loa: localStorage.loa
+  },
+  mutations: {
+    increment (state, n) {
+    	var loasend = Number(n)
+    	var n = Number(localStorage.loa)
+    	var fin = loasend + n
+      state.loa = fin
+      localStorage.loa = fin
 
+    },
+    decrement (state) {
+    	var n = Number(localStorage.loa)
+    	var b = n-3
+      state.loa = b
+      localStorage.loa = b
+
+    }
+  }
+})
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
   	vuetify: new Vuetify({
@@ -104,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		  	},
 		  },
   	}),
+  	store: store,
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)
@@ -112,8 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
   var hat = document.getElementById("hat") 
   if (hat != null) {
 	  new Vue({
- 
 	    el: '#hat',
+	    store: store,
 	    render: h => h(Hat) 
 	  })
 	}
