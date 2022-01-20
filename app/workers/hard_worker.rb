@@ -71,7 +71,7 @@ class HardWorker < ApplicationController
 	  	# puts head 
 	  	link = row.css('h3 a').attr('href').to_s
 	  	# puts link 
-	  	pic = row.css('img').attr('data-img-url').to_s
+	  	pic = row.css('img').attr('src').to_s
 	  	# puts pic
 	  	desc = row.css('.td-excerpt').inner_text.to_s
 	  	# puts desc
