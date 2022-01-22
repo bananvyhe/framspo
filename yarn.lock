@@ -2285,6 +2285,11 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
+crypto-js@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
+
 css-blank-pseudo@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/css-blank-pseudo/-/css-blank-pseudo-0.1.4.tgz#dfdefd3254bf8a82027993674ccf35483bfcb3c5"
@@ -4255,6 +4260,11 @@ loader-utils@^2.0.0:
     big.js "^5.2.2"
     emojis-list "^3.0.0"
     json5 "^2.1.2"
+
+localstorage-slim@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/localstorage-slim/-/localstorage-slim-2.2.0.tgz#84638dc03c35bb6d22568f571f08e4c607559044"
+  integrity sha512-YyfTXXCRY9Sjf2dZlSyYQPuUhdOf0ucuWEoSdMcg2u9SAIjWtlsMvP91QeYNealXCy1BrnE9m3ejY82cYtgONQ==
 
 locate-path@^3.0.0:
   version "3.0.0"
