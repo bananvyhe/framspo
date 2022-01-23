@@ -83,8 +83,8 @@ import ls from 'localstorage-slim';
     	}
  		},
     mounted() {
-  ls.set('hey', 'alive'); 
-	var crypto = ls.get('hey')
+  // ls.set('hey', 'alive'); 
+	// var crypto = ls.get('hey')
 			// var crypto = ls.get('hey')
 			console.log(crypto)
 
