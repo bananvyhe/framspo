@@ -85,6 +85,10 @@ import ls from 'localstorage-slim';
     	}
  		},
     mounted() {
+    	if(ls.get('endTimer') == "death"){
+
+    		ls.set('hey', "alive") 
+    	} 
   // ls.set('hey', 'alive'); 
 	// var crypto = ls.get('hey')
 			// var crypto = ls.get('hey')
