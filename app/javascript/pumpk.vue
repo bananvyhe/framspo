@@ -45,7 +45,7 @@ import ls from 'localstorage-slim';
     		}
     	},
     	hitpumpk(){
-    		var interval = 15000000;
+    		var interval = 15000;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -70,8 +70,10 @@ import ls from 'localstorage-slim';
         }
         function reset(){
       		// занесение в локалсторадж даты окончания таймера
-				  ls.set('endTimer', +new Date + interval)  
-				  console.log("сброс таймера")
+      		var endt =  +new Date + interval
+				   ls.set('endTimer', endt)  
+				  // console.log("endt")
+				  // console.log(endt)
 				}
     	}
     },
@@ -86,7 +88,7 @@ import ls from 'localstorage-slim';
   // ls.set('hey', 'alive'); 
 	// var crypto = ls.get('hey')
 			// var crypto = ls.get('hey')
-			console.log(crypto)
+			// console.log(crypto)
 
 
 
@@ -107,11 +109,13 @@ import ls from 'localstorage-slim';
 
 					if( ls.get('hey') == "death" ){
 						// занесение в переменную оставшиеся милисекунды до окончания(обратный отсчет)
-			    	var remaining = ls.get('endTimer') - new Date;
+						var getendt = ls.get('endTimer')
+			    	var remaining = getendt - new Date;
+			    	console.log(getendt)
 			  	}
 			  	// если отсчет не завершился то присваиваем статус "мертвый" в локалсорадж
 			    if( remaining >= 0 ){
-			      ls.set('endTimer', "death") 
+			      ls.set('hey', "death") 
 			      console.log("dead")
 			      console.log(remaining)
 
@@ -128,7 +132,7 @@ import ls from 'localstorage-slim';
 	 							onComplete: ressurect
 	 					})
 	 					console.log("alive")
-	 					ls.set('endTimer', "alive") 
+	 					ls.set('hey', "alive") 
  
 			    }
 			  }, 1000);		
