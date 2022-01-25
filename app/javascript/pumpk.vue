@@ -45,7 +45,7 @@ import ls from 'localstorage-slim';
     		}
     	},
     	hitpumpk(){
-    		var interval = 15000;
+    		var interval = 15000000;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
