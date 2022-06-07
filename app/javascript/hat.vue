@@ -99,6 +99,11 @@ gsap.registerPlugin(SlowMo);
 
 	  	function cloud() {
 	    	// var tl2 = new TimelineMax({repeat:-1});
+	    	gsap.set(".clouds", {
+					// x:"-200px",
+					scale: 1.2,
+				});
+
 	    	var tl =	gsap.timeline();
 				tl.to('.clouds', {
 					repeat: -1,
@@ -386,7 +391,7 @@ gsap.registerPlugin(SlowMo);
 	opacity: 0.9;
 	background-repeat: repeat-x;
 	position: absolute;
-	background-image: url('./images/_hat/clouds.png');
+	background-image: url('./images/_hat/clouds2.png');
 	background-position: center 0px;
 	background-size: 800px auto;
 	height: 100%;
