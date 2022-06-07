@@ -17,7 +17,7 @@
           </div>
           <div
             class="px-2 pt-2 pb-2 colr"
-            v-text=""><h2>{{item.head}}</h2>
+            v-text=""><h3>{{item.head}}</h3>
           </div>
           <div class="px-2 body-1">
             {{item.desc}}… 
