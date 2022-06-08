@@ -13,6 +13,7 @@
     "es6-promise": "^4.2.8",
     "gsap": "^3.8.0",
     "localstorage-slim": "^2.2.0",
+    "pinia": "^2.0.14",
     "sass-loader": "^10",
     "style-loader": "^2",
     "turbolinks": "^5.2.0",
