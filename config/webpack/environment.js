@@ -3,7 +3,7 @@ const { environment } = require('@rails/webpacker')
 const { VueLoaderPlugin } = require('vue-loader')
 const vue = require('./loaders/vue')
 const vuetify = require('./loaders/vuetify')
-
+const mjs = require('./loaders/mjs')
 // const sassLoader = environment.loaders.get('sass')
 // const sassLoaderConfig = sassLoader.use.find(function(element) {
 //   return element.loader == 'sass-loader'
@@ -21,4 +21,5 @@ options.additionalData = `@import "app/javascript/stylesheets/scss/_variables.sc
 environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
 environment.loaders.prepend('vue', vue)
 environment.loaders.prepend('vuetify', vuetify)
+environment.loaders.prepend('mjs', mjs)
 module.exports = environment
