@@ -1,27 +1,23 @@
 <template>
   <div class="hat">
-  	<!-- <div class="blank"></div> -->
   	<div class="container">
-	  	<div class="fog"></div>
+<!-- 	  	<div class="fog"></div>
 	  	<div class="flash"></div>
 
 	  	<div class="clouds2"></div>
 	  	<div class="bgshad"></div>
 
 	  	<div class="clouds"></div>
-	  		  	<div class="voodoo fonta">
-	  		<!-- VooDoo power  -->
+	  	<div class="voodoo fonta">
 	  		FREE PVP ZONE
 	  	</div>
-<!-- <div class="plashken"></div> -->
 	  	<div class="warriors">
  
 	  	</div>
 	  	<div class="warriors brightness"></div>
-	  	<div class="bgshad2"></div>
-<pumpk class="pumpkin"></pumpk>
-	  </div>
-
+	  	<div class="bgshad2"></div> -->
+			<pumpk class="pumpkin"></pumpk>
+		</div>
 	</div>
 </template>
 <script>

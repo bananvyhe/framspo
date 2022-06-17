@@ -9,16 +9,22 @@ export const useLogStore = defineStore("logStore", {
 
   getters: {
   	thislog(){
-  		return this.loa
+  	return this.loa
   	}
   },
 
   actions: {
-    logined() {
-      this.log = true
+    increments(loa) {
+    	console.log( "-----------")
+			console.log(loa)
+			console.log( "-----------")
+ 			this.loa += loa
     },
-    logouted() {
-      this.log = false
+    decrement() {
+    	var n = Number(ls.get('load'))
+    	var b = n-3
+      state.loa = b
+      ls.set('load', b)
     }
   }  
  

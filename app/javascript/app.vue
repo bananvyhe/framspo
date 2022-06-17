@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <v-app-bar  app dense hide-on-scroll  class="py-0 ">
+      <v-app-bar  app dense hide-on-scroll  class="py-0">
         <v-container  class="py-0 fill-height">
           <div class="my-0" >
             {{message}}<i> {{ tl }}</i> 

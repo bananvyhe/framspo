@@ -14,6 +14,14 @@ import Hat from '../hat.vue'
 import Vuex from 'vuex'
 import 'es6-promise/auto'
 
+import VueCompositionAPI from '@vue/composition-api'
+Vue.use(VueCompositionAPI)
+
+import { createPinia, PiniaVuePlugin} from 'pinia'
+const pinia = createPinia()
+Vue.use(pinia)
+Vue.use(PiniaVuePlugin)
+
 import ls from 'localstorage-slim';
 import encUTF8 from 'crypto-js/enc-utf8';
 import AES from 'crypto-js/aes';
@@ -119,8 +127,8 @@ import colors from 'vuetify/lib/util/colors'
 		ls.set('load', 0)  
 		console.log("0")
   }
-const store = new Vuex.Store({
 
+const store = new Vuex.Store({
   state: {
     loa: ls.get('load')
   },
@@ -137,8 +145,7 @@ const store = new Vuex.Store({
     	var n = Number(ls.get('load'))
     	var b = n-3
       state.loa = b
-      ls.set('load', b) 
-
+      ls.set('load', b)
     }
   }
 })
@@ -152,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		  },
   	}),
   	store: store,
+  	pinia,
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)

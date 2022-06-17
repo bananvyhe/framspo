@@ -18,12 +18,15 @@
 	</div>
 </template>
 <script>
+  import { mapState, mapActions } from 'pinia' 
+  import { useLogStore } from 'store.js'
+  
 	import Damagecomp from './damagecomp.vue'
 	// import ScrambleText from 'scramble-text'; 
 	// import { VueTyper } from 'vue-typer'
-import { gsap } from "gsap";
-import ls from 'localstorage-slim';
-  export default {
+  import { gsap } from "gsap";
+  import ls from 'localstorage-slim';
+    export default {   
 	  components: {
 	    'damagecomp': Damagecomp,
 
@@ -37,6 +40,7 @@ import ls from 'localstorage-slim';
       }
     },
     methods: {
+      ...mapActions(useLogStore, ["increments"]),         
     	handler(arg1,arg2){
     		if (ls.get('hey') == "death"){
     			console.log("pumpk is dead!")
@@ -45,7 +49,8 @@ import ls from 'localstorage-slim';
     		}
     	},
     	hitpumpk(){
-    		var interval = 15000000;
+    		// var interval = 15000000;
+        var interval = 3500;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -62,6 +67,7 @@ import ls from 'localstorage-slim';
 			    loa =  Math.round(loa)
 			    loa = Number(loa)
       		this.$store.commit('increment', loa)
+          this.increments(loa)
       		console.log(ls.get('load'))
       		console.log(loa)
         }else{

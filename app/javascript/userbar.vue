@@ -1,6 +1,8 @@
 <template>
-  <div>
-     {{ this.$store.state.loa}} loa <br>fsf{{this.logstat}}
+  <div class="d-flex align-right">
+     <!-- {{ this.$store.state.loa}} loa  -->
+     <div class="loa  px-2">{{ this.logstat}}</div> <div class="skull"></div>
+     
   </div>
 </template>
 
@@ -34,5 +36,9 @@ export default {
 </script>
 
 <style scoped>
- 
+ .skull{
+  height: 20px;
+  width: 20px;
+  background-image: url('./images/skull.png');
+ }
 </style>
