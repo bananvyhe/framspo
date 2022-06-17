@@ -34,8 +34,8 @@ export default {
   },
   data: function () {
     return {
-      message: "Lineage Eternal ",
-      tl: "reboot TL mmorpg NFT"
+      message: "Trone and Liberty ",
+      tl: "mmorpg"
     }
   }
 }
