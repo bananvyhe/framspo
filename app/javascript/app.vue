@@ -34,7 +34,7 @@ export default {
   },
   data: function () {
     return {
-      message: "Trone and Liberty ",
+      message: "Throne and Liberty ",
       tl: "mmorpg"
     }
   }
