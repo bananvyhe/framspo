@@ -1,7 +1,7 @@
 <template>
   <div class="hat">
   	<div class="container">
-<!-- 	  	<div class="fog"></div>
+	  	<div class="fog"></div>
 	  	<div class="flash"></div>
 
 	  	<div class="clouds2"></div>
@@ -15,7 +15,7 @@
  
 	  	</div>
 	  	<div class="warriors brightness"></div>
-	  	<div class="bgshad2"></div> -->
+	  	<div class="bgshad2"></div>
 			<pumpk class="pumpkin"></pumpk>
 		</div>
 	</div>
