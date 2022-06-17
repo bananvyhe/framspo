@@ -49,8 +49,8 @@
     		}
     	},
     	hitpumpk(){
-    		// var interval = 15000000;
-        var interval = 3500;
+    		var interval = 15000000;
+        // var interval = 3500;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
