@@ -1,5 +1,8 @@
 <template>
-  <div class=" py-0 px-0"> <div style="display:none;">{{loa = this.$store.state.loa}}</div> 
+  <div class=" py-0 px-0"> 
+    <div style="display:none;">
+    {{loa = this.logstat}}
+  </div> 
 <!-- 
     v-bind:spritesheet="require('./images/sprites/monsters/pumpkin.png')"
     v-bind:json="require('./images/sprites/monsters/pumpkin.json')" -->
@@ -131,6 +134,8 @@
   </div>
 </template>
 <script>
+  import { mapState, mapActions } from 'pinia' 
+  import { useLogStore } from 'store.js'
   import { gsap } from "gsap";
   import axios from 'axios'
 
@@ -179,8 +184,14 @@
     mounted(){
       this.addBeer()
     },
+    computed: {
+    // ...mapState(useLogStore, ['thislog'])
+      ...mapState(useLogStore, {
+        logstat: "thislog",
+      })
+    },  
     methods: {
-
+      ...mapActions(useLogStore, ["decrement"]),
       animationStarted: function(startFrame, stopFrame){
         console.log('animation started:['+startFrame+','+stopFrame+']');
       },      
@@ -215,9 +226,10 @@
        // this.fullnews = '' 
     },
     clickhandler( event) {
-     this.$store.commit('decrement') 
-    this.dialogVisible = true;
-     axios({
+     // this.$store.commit('decrement') 
+      this.decrement()
+      this.dialogVisible = true;
+      axios({
         method: 'post',
         url: '/fullnews',
         data: {
