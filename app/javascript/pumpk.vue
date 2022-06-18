@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="loc == 'alive'"   class="unit mb-0" v-on:click="handler('foo','bar')"> 
+    <div v-if="loc == 'alive'" class="unit mb-0" v-on:click="handler('foo','bar')"> 
     	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
     	<damagecomp ref="hitt"></damagecomp>
       <div class="hpbar">
@@ -8,11 +8,9 @@
       </div>
       <div class="character"></div>
     </div>
-     <div v-if="loc == 'death'"   class="off" v-on:click="handler('foo','bar')"> 
+    <div v-if="loc == 'death'"   class="off" v-on:click="handler('foo','bar')"> 
     	<damagecomp ref="hitt"></damagecomp>
-      <div class="hpbar">
-      	<v-progress-linear :value="hp"></v-progress-linear>
-      </div>
+ 
       <div class="death"></div>
     </div>   
 	</div>
@@ -227,13 +225,10 @@
   width: 48px;
 }
 .unit:hover{
-
-cursor: url("./images/sword.png"), pointer;
- 
+  cursor: url("./images/sword.png"), pointer;
 }
 
 .character {
-
   background: url(./images/sprites/monsters/pumpkina.png);
   width: 48px;  height:48px; 
 }
