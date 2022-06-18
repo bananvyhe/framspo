@@ -19,6 +19,7 @@ export const useLogStore = defineStore("logStore", {
 			console.log(loa)
 			console.log( "-----------")
  			this.loa += loa
+ 			ls.set('load', this.loa) 
     },
     decrement() {
     	this.loa -= 3

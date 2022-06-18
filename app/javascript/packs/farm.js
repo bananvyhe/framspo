@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }).$mount()
   document.body.appendChild(app.$el)
 
-  console.log(app)
+   
   var hat = document.getElementById("hat") 
   if (hat != null) {
 	  new Vue({

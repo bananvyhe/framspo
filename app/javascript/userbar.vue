@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex align-right">
+  <div class="d-flex ">
      <!-- {{ this.$store.state.loa}} loa  -->
      <div class="loa  px-2">{{ this.logstat}}</div> <div class="skull"></div>
      
