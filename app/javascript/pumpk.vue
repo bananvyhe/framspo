@@ -42,12 +42,25 @@
     methods: {
       ...mapActions(useLogStore, ["increments"]),         
     	handler(arg1,arg2){
+        this.hitn()
     		if (ls.get('hey') == "death"){
     			console.log("pumpk is dead!")
     		}else{
     			this.hitpumpk()
     		}
     	},
+      hitn(){
+        var hitn = gsap.timeline();
+        hitn.to(".character",{
+           x: -4,
+           duration: 0.2,  
+           ease: "elastic.in",
+        }).to(".character", {
+          x: 0,
+          duration: 0.2,  
+          ease: "elastic.out", 
+        })    
+      },
     	hitpumpk(){
     		var interval = 15000000;
         // var interval = 3500;
@@ -99,24 +112,17 @@
 	// var crypto = ls.get('hey')
 			// var crypto = ls.get('hey')
 			// console.log(crypto)
-
-
-
     	if (ls.get('hey')){
     		this.loc = ls.get('hey')
     	}
     	
       window.addEventListener('load', () => {
-      	
       	// console.log(+new Date + interval)
       	// timer res pumpk
-      	
-
 				// if( localStorage.hp == "death"){
 				// 	reset();
 				// }
 				setInterval(function(){
-
 					if( ls.get('hey') == "death" ){
 						// занесение в переменную оставшиеся милисекунды до окончания(обратный отсчет)
 						var getendt = ls.get('endTimer')
@@ -128,10 +134,7 @@
 			      ls.set('hey', "death") 
 			      console.log("dead")
 			      console.log(remaining)
-
 			    }else if ( remaining < 0 ){
-			     
-			      
 			      var alive = gsap.timeline();
 			      alive.to(".off",{
 	 						className: "+=unit",
@@ -143,7 +146,6 @@
 	 					})
 	 					console.log("alive")
 	 					ls.set('hey', "alive") 
- 
 			    }
 			  }, 1000);		
 			  var self = this
@@ -188,7 +190,6 @@
 								//     element.parentNode.removeChild(element);
 								//   };
 								// }
-
 	 							function end(){
 	 								m2.to(".unit",{
 	 									className: "+=off",
@@ -202,7 +203,6 @@
         if (ls.get('hey') == "alive" || !ls.get('hey')){
         	master.add(pumpk())
         }
-        
       })
     }
   }
