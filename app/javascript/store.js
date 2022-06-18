@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import ls from 'localstorage-slim'; 
  
 export const useLogStore = defineStore("logStore", {
-	
+
   state: () => ({
     loa: ls.get('load')
   }),
@@ -21,10 +21,12 @@ export const useLogStore = defineStore("logStore", {
  			this.loa += loa
     },
     decrement() {
-    	var n = Number(ls.get('load'))
-    	var b = n-3
-      state.loa = b
-      ls.set('load', b)
+    	this.loa -= 3
+    	 ls.set('load', this.loa)
+    	// var n = Number(ls.get('load'))
+    	// var b = n-3
+     //  state.loa = b
+     //  ls.set('load', b)
     }
   }  
  

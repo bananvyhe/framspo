@@ -11,7 +11,7 @@ import Vue from 'vue'
 import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
 import Hat from '../hat.vue'
-import Vuex from 'vuex'
+// import Vuex from 'vuex'
 import 'es6-promise/auto'
 
 import VueCompositionAPI from '@vue/composition-api'
@@ -40,7 +40,7 @@ ls.config.decrypter = (data, secret) => {
 // ls.set('hey', 'Bonjour', { encrypt: true }); 
 // var crypto = ls.get('hey', { decrypt: true })
 
-Vue.use(Vuex)
+// Vue.use(Vuex)
 // import Vuetify from 'vuetify'
 // Vue.use(Vuetify)
 
@@ -128,27 +128,27 @@ import colors from 'vuetify/lib/util/colors'
 		console.log("0")
   }
 
-const store = new Vuex.Store({
-  state: {
-    loa: ls.get('load')
-  },
-  mutations: {
-    increment (state, n) {
-    	var loasend = Number(n)
-    	var n = Number(ls.get('load'))
-    	var fin = loasend + n
-      state.loa = fin
-      ls.set('load', fin) 
+// const store = new Vuex.Store({
+//   state: {
+//     loa: ls.get('load')
+//   },
+//   mutations: {
+//     increment (state, n) {
+//     	var loasend = Number(n)
+//     	var n = Number(ls.get('load'))
+//     	var fin = loasend + n
+//       state.loa = fin
+//       ls.set('load', fin) 
 
-    },
-    decrement (state) {
-    	var n = Number(ls.get('load'))
-    	var b = n-3
-      state.loa = b
-      ls.set('load', b)
-    }
-  }
-})
+//     },
+//     decrement (state) {
+//     	var n = Number(ls.get('load'))
+//     	var b = n-3
+//       state.loa = b
+//       ls.set('load', b)
+//     }
+//   }
+// })
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
   	vuetify: new Vuetify({
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		  	},
 		  },
   	}),
-  	store: store,
+  	// store: store,
   	pinia,
     render: h => h(App)
   }).$mount()
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (hat != null) {
 	  new Vue({
 	    el: '#hat',
-	    store: store,
+	    // store: store,
 	    render: h => h(Hat) 
 	  })
 	}

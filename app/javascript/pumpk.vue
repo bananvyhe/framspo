@@ -66,7 +66,7 @@
 			    var loa = Math.random() * (max - min) + min;
 			    loa =  Math.round(loa)
 			    loa = Number(loa)
-      		this.$store.commit('increment', loa)
+      		// this.$store.commit('increment', loa)
           this.increments(loa)
       		console.log(ls.get('load'))
       		console.log(loa)
