@@ -4,7 +4,7 @@
     	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
     	<damagecomp ref="hitt"></damagecomp>
       <div class="hpbar">
-      	<v-progress-linear :value="hp"></v-progress-linear>
+      	<v-progress-linear :value="hp" color="success"></v-progress-linear>
       </div>
       <div class="character"></div>
     </div>
