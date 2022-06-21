@@ -1,8 +1,16 @@
 <template>
   <div class="main mx-0 my-0">
-      <div class="d-flex justify-center">
-        <div class="goldenore"></div> 
-      </div>
+  
+    <div class="d-flex justify-center">
+      <v-tooltip top  >
+        <template v-slot:activator="{ on, attrs}">
+          <span  v-bind="attrs" v-on="on" class="goldenore">
+          </span>
+        </template>
+        <span><span style="color:#ffe79f;">Большой золотой самородок</span> <br><span class="caption">можн забрать после регистрации</span></span>
+      </v-tooltip> 
+    </div>
+
     <div v-if="loc == 'alive'" class="unit  " v-on:click="handler('foo','bar')"> 
     	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
     	<damagecomp ref="hitt"></damagecomp>
@@ -229,16 +237,24 @@
   }
 </script>
 <style scoped>
+.disdiv{
+  /*background-color: #dad;  */
+  position: absolute;
+  bottom: 1.5em;
+  right: 1.5em;
+}
 .main{
   position: relative;
 }
 .goldenore{
+  z-index: 1;
   position: absolute;
   opacity: 0;
   bottom: 0px;
   width: 38px;
   height: 38px;
   background: url(./images/goldenoremini.png);
+  cursor: pointer;
 }
 .hpoints{
 
@@ -264,6 +280,8 @@
 }
 
 .character {
+  z-index: 2;
+  position: relative;
   background: url(./images/sprites/monsters/pumpkina.png);
   image-rendering: pixelated;
   width: 48px;  height:48px; 
