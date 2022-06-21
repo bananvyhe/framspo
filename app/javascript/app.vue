@@ -16,7 +16,7 @@
       <v-main>
         <v-container class="pt-0 cont">
           <div id="hat"></div>
-          <pumpk class="pumpkin "></pumpk>
+          <pumpk class="pumpkin"></pumpk>
           <news></news>
         </v-container>
       </v-main>
@@ -49,8 +49,8 @@ export default {
   }
  .pumpkin {
   position: absolute;
-  top: 70px;
-  right: 5px;
+  top: 60px;
+  right: 18px;
   z-index: 1000;
  }
  .subt{

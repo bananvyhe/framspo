@@ -1,18 +1,22 @@
 <template>
-  <div>
-    <div v-if="loc == 'alive'" class="unit mb-0" v-on:click="handler('foo','bar')"> 
+  <div class="main mx-0 my-0">
+
+    <div v-if="loc == 'alive'" class="unit  " v-on:click="handler('foo','bar')"> 
     	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
     	<damagecomp ref="hitt"></damagecomp>
       <div class="hpbar">
       	<v-progress-linear :value="hp" color="success"></v-progress-linear>
       </div>
-      <div class="character"></div>
+      <div class="character "></div>
     </div>
+
     <div v-if="loc == 'death'"   class="off" v-on:click="handler('foo','bar')"> 
     	<damagecomp ref="hitt"></damagecomp>
- 
       <div class="death"></div>
-    </div>   
+    </div>  
+
+    <!-- <div class="goldenore d-flex justify-center"></div>  -->
+
 	</div>
 </template>
 <script>
@@ -61,7 +65,7 @@
       },
     	hitpumpk(){
     		var interval = 15000000;
-        // var interval = 3500;
+        // var interval = 6500;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -154,6 +158,10 @@
 			  }
 
         function pumpk() {
+          gsap.set(".character", {
+            scale: 1.5,
+          });
+
           var m1 = gsap.timeline();
           m1.to(".character",{
             duration: 1,
@@ -206,6 +214,17 @@
   }
 </script>
 <style scoped>
+.main{
+  position: relative;
+}
+.goldenore{
+  position: absolute;
+  bottom: 0px;
+  width: 38px;
+  height: 38px;
+  /*background-color: #dad;*/
+  background: url(./images/goldenoremini.png);
+}
 .hpoints{
 
 }
@@ -213,15 +232,16 @@
 	opacity: 0;
 }
 .death{
+  image-rendering: pixelated;
 	background: url(./images/sprites/monsters/pumpkinbow.png);
-  width: 48px;  height:48px; 
+  width: 48px;  height: 48px; 
 }
 .hpbar{
-  margin: 0 10px ;
-  margin-bottom: -8px;
+  margin: 0 7px ;
+  /*margin-bottom: -10px;*/
 }
 .unit{
-	margin: 0.5em;
+	/*margin: 0.5em;*/
   width: 48px;
 }
 .unit:hover{
@@ -230,6 +250,7 @@
 
 .character {
   background: url(./images/sprites/monsters/pumpkina.png);
+  image-rendering: pixelated;
   width: 48px;  height:48px; 
 }
 </style>

@@ -40,5 +40,6 @@ export default {
   height: 20px;
   width: 20px;
   background-image: url('./images/skull.png');
+  image-rendering: pixelated;
  }
 </style>
