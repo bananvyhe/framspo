@@ -2,7 +2,7 @@
   <div class="main mx-0 my-0">
   
     <div class="d-flex justify-center">
-      <v-tooltip top  >
+      <v-tooltip top class="drop">
         <template v-slot:activator="{ on, attrs}">
           <span  v-bind="attrs" v-on="on" class="goldenore">
           </span>
@@ -73,7 +73,7 @@
       },
     	hitpumpk(){
     		var interval = 15000000;
-        // var interval = 6500;
+        // var interval = 16500;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -148,6 +148,7 @@
             var m3 = gsap.timeline();
             m3.to(".goldenore",{
               opacity: 0,
+              display: "none",
               duration: 1
             })
 			      var alive = gsap.timeline();
@@ -219,7 +220,8 @@
                   function oregen(){
                     var m3 = gsap.timeline();
                     m3.to(".goldenore",{
-                      opacity: 1
+                      opacity: 1,
+                      display: "inline"
  
                     })
                   }
@@ -247,6 +249,7 @@
   position: relative;
 }
 .goldenore{
+  display: none;
   z-index: 1;
   position: absolute;
   opacity: 0;
