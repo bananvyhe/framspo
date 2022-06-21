@@ -1,6 +1,8 @@
 <template>
   <div class="main mx-0 my-0">
-
+      <div class="d-flex justify-center">
+        <div class="goldenore"></div> 
+      </div>
     <div v-if="loc == 'alive'" class="unit  " v-on:click="handler('foo','bar')"> 
     	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
     	<damagecomp ref="hitt"></damagecomp>
@@ -14,8 +16,6 @@
     	<damagecomp ref="hitt"></damagecomp>
       <div class="death"></div>
     </div>  
-
-    <!-- <div class="goldenore d-flex justify-center"></div>  -->
 
 	</div>
 </template>
@@ -137,12 +137,19 @@
 			      console.log("dead")
 			      console.log(remaining)
 			    }else if ( remaining < 0 ){
+            var m3 = gsap.timeline();
+            m3.to(".goldenore",{
+              opacity: 0,
+              duration: 1
+            })
 			      var alive = gsap.timeline();
 			      alive.to(".off",{
+              delay: 2,
 	 						className: "+=unit",
 	 					})
 	 					var m1 = gsap.timeline();
 	 					m1.to(".death",{
+              delay: 2,
 	 						className: "+=character",
 	 							onComplete: ressurect
 	 					})
@@ -199,7 +206,15 @@
 	 							function end(){
 	 								m2.to(".unit",{
 	 									className: "+=off",
+                    onComplete: oregen
 	 								})
+                  function oregen(){
+                    var m3 = gsap.timeline();
+                    m3.to(".goldenore",{
+                      opacity: 1
+ 
+                    })
+                  }
 	 							}
 					  	}
 						}
@@ -219,10 +234,10 @@
 }
 .goldenore{
   position: absolute;
+  opacity: 0;
   bottom: 0px;
   width: 38px;
   height: 38px;
-  /*background-color: #dad;*/
   background: url(./images/goldenoremini.png);
 }
 .hpoints{
