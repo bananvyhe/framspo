@@ -6,8 +6,9 @@
         <template v-slot:activator="{ on, attrs}">
           <span  v-bind="attrs" v-on="on" class="goldenore">
           </span>
+          <span  class="energy"></span>
         </template>
-        <span><span style="color:#ffe79f;">Большой золотой самородок</span> <br><span class="caption">можн забрать после регистрации</span></span>
+        <span><span style="color:#ffe79f;">Большой золотой самородок</span> <br><span class="caption">можно забрать после регистрации</span></span>
       </v-tooltip> 
     </div>
 
@@ -218,10 +219,28 @@
                     onComplete: oregen
 	 								})
                   function oregen(){
+                    var m4 = gsap.timeline();
+                      m4.to(".energy",{
+                         
+                        opacity: 1,
+                        display: "inline"
+ 
+                      }).to(".energy",{
+                        delay:0.7,
+
+                        display: "none"
+ 
+                      })                      
+                    gsap.set(".goldenore", {
+                      y: +15,
+                    });
                     var m3 = gsap.timeline();
                     m3.to(".goldenore",{
+                      y: 0,
                       opacity: 1,
-                      display: "inline"
+                      display: "inline",
+                      duration: 1.5,
+                      ease: "power4.out",
  
                     })
                   }
@@ -239,6 +258,15 @@
   }
 </script>
 <style scoped>
+.energy{
+    display: none;
+    opacity: 0;
+  top:22px;
+  position: absolute;
+  width: 150px;
+  height: 70px;
+  background: url(./images/energy27.gif);
+}
 .disdiv{
   /*background-color: #dad;  */
   position: absolute;
@@ -252,6 +280,7 @@
   display: none;
   z-index: 1;
   position: absolute;
+  
   opacity: 0;
   bottom: 0px;
   width: 38px;
