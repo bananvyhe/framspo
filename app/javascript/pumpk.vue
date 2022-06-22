@@ -22,8 +22,12 @@
     </div>
 
     <div v-if="loc == 'death'"   class="off" v-on:click="handler('foo','bar')"> 
+      <div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div> 
     	<damagecomp ref="hitt"></damagecomp>
-      <div class="death"></div>
+      <div class="hpbar">
+        <v-progress-linear :value="hp" color="success"></v-progress-linear>
+      </div>
+      <div class="death" style="transform: scale(1.5, 1.5);" ></div>
     </div>  
 
 	</div>
@@ -116,11 +120,10 @@
  		},
     mounted() {
     	if(ls.get('endTimer') == "death"){
-
     		ls.set('hey', "alive") 
     	} 
-  // ls.set('hey', 'alive'); 
-	// var crypto = ls.get('hey')
+      // ls.set('hey', 'alive'); 
+	   // var crypto = ls.get('hey')
 			// var crypto = ls.get('hey')
 			// console.log(crypto)
     	if (ls.get('hey')){
