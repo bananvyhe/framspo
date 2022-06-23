@@ -6,7 +6,16 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
-
+// import axios from 'axios'
+import router from './router'
+import VueAxios from 'vue-axios'
+import { securedAxiosInstance, plainAxiosInstance } from './backend/axios'
+Vue.config.productionTip = false
+// Vue.use(VueAxios, axios)
+ Vue.use(VueAxios, {
+  secured: securedAxiosInstance,
+  plain: plainAxiosInstance
+})
 // import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/dist/vuetify.min.css'
 import App from '../app.vue'
@@ -159,6 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		  },
   	}),
   	// store: store,
+  	router,
+  	securedAxiosInstance,
+  	plainAxiosInstance,
+  	// axios,
   	pinia,
     render: h => h(App)
   }).$mount()
