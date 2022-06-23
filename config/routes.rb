@@ -2,6 +2,13 @@ Rails.application.routes.draw do
   get 'news/index'
 	require "sidekiq/web"
 
+  post 'refresh', controller: :refresh, action: :create
+  post 'signin', controller: :signin, action: :create
+  post 'signup', controller: :signup, action: :create
+  delete 'signin', controller: :signin, action: :destroy
+
+  resources :todos
+  
  	# resources :news do
   	post :news, to: "news#create"
   	post :fullnews, to: "news#fullnews"
