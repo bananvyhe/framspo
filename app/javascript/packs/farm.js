@@ -55,6 +55,8 @@ ls.config.decrypter = (data, secret) => {
 
 Vue.use(Vuetify, {
 	components: {
+		VTextField,
+    VForm,		
 		// VRadio,
 		// VRadioGroup,
 		// VTextField,
@@ -94,6 +96,8 @@ Vue.use(Vuetify, {
 	}
 }) 
 import Vuetify, {
+	VTextField,
+  VForm,	
 	// VRadio,
 	// VRadioGroup,
 	// VTextField,

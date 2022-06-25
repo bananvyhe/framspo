@@ -1,4 +1,5 @@
 class SigninController < ApplicationController
+	skip_before_action :verify_authenticity_token
 	before_action :authorize_access_request!, only: [:destroy]
 
 	def create
@@ -18,6 +19,7 @@ class SigninController < ApplicationController
     end
   end
   def destroy
+  	puts "122222destroy222222222"
     session = JWTSessions::Session.new(payload: payload)
     session.flush_by_access_payload
     render json: :ok

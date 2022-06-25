@@ -15,7 +15,11 @@
       </v-app-bar>       
       <v-main>
         <v-container class="pt-0 cont">
-          <div id="hat"></div>
+           <router-view></router-view>
+
+          <!-- <div id="hat"></div> -->
+
+
           <pumpk class="pumpkin"></pumpk>
           <news></news>
         </v-container>

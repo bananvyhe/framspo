@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  match '*path', via: [:options], to: lambda {|_| [204, { 'Content-Type' => 'text/plain' }]}
   get 'news/index'
 	require "sidekiq/web"
 

@@ -4,12 +4,16 @@ import ls from 'localstorage-slim';
 export const useLogStore = defineStore("logStore", {
 
   state: () => ({
-    loa: ls.get('load')
+    loa: ls.get('load'),
+    log: localStorage.signedIn ? true : false 
   }),
 
   getters: {
+  	thisloa(){
+  		return this.loa
+  	},
   	thislog(){
-  	return this.loa
+  		return this.log
   	}
   },
 
@@ -24,11 +28,14 @@ export const useLogStore = defineStore("logStore", {
     decrement() {
     	this.loa -= 3
     	 ls.set('load', this.loa)
-    	// var n = Number(ls.get('load'))
-    	// var b = n-3
-     //  state.loa = b
-     //  ls.set('load', b)
-    }
+    },
+    logined() {
+      this.log = true
+    },
+    logouted() {
+      this.log = false
+  	}
+     
   }  
  
 })
