@@ -9,7 +9,7 @@
         <!-- <label for="password">Пароль</label> -->
         <v-text-field v-model="password" type="password" class="form-control" id="password" placeholder="Password"></v-text-field>
       </div>
-      <v-btn type="submit" class="btn btn-primary my-3">Sign in</v-btn>
+      <v-btn type="submit" class="btn btn-primary my-3"  > Войти </v-btn>
       <div>
       
     </div>
@@ -74,7 +74,9 @@ export default {
       localStorage.signedIn = true
       this.error = ''
       // this.$router.replace('/todos')
-      this.$router.replace('/')
+      // router.push({ path: '/users/eduardo' })
+      // this.$router.replace('/')
+ this.$router.push('/Join')
     },
     signinFailed (error) {
        this.logouted()
@@ -86,7 +88,7 @@ export default {
     checkSignedIn () {
       if (localStorage.signedIn) {
         // this.$router.replace('/todos')
-        this.$router.replace('/')
+        // this.$router.replace('/') 
         // store.thislog = true
         // uselogStore.$patch({
         //   thislog: true

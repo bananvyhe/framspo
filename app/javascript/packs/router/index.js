@@ -17,7 +17,7 @@ export default new Router({
       component: Hat
     },
     {
-      path: '/Signup',
+      path: '/Join',
       name: 'Hatlog',
       component: Hatlog
     },
