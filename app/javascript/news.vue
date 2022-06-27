@@ -187,7 +187,7 @@
     computed: {
     // ...mapState(useLogStore, ['thislog'])
       ...mapState(useLogStore, {
-        logstat: "thislog",
+        logstat: "thisloa",
       })
     },  
     methods: {
