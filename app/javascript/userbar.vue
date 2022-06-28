@@ -1,7 +1,8 @@
 <template>
   <div class="d-flex ">
-    {{this.logstat}}
+    <!-- {{this.logstat}} -->
       <div v-if="this.logstat == true" >
+
         <v-btn
           x-small 
           text
@@ -55,18 +56,23 @@
 <!--         <router-link class="mx-1" to="/Signup">Регистрация</router-link>
         <router-link class="mx-2 pr-1" to="/Signin">Войти</router-link> -->
       </div>
-    <div class="loa  px-2">{{ this.loastat}}</div> <div class="skull"></div>
+      <div class="useraction d-flex"> 
+        <inv class="inve" v-if="this.logstat == true"></inv>
+        <div class="loa  px-2">{{ this.loastat}}</div> <div class="skull"></div>
+      </div>
+    
   </div>
 </template>
 
 <script>
+  import Inv from './packs/components/inventory.vue';  
   import { mapState } from 'pinia'
   import { mapActions } from 'pinia'
   import { useLogStore } from 'store.js'
   import Signup from './packs/components/Signup.vue';
   import Signin from './packs/components/Signin.vue';
 export default {
-  components: { Signup, Signin },
+  components: { Signup, Signin, Inv},
   data: function () {
     return {
       loa: "",
@@ -108,6 +114,13 @@ export default {
 </script>
 
 <style scoped>
+.inve{
+  margin-top: -11px;
+}
+.useraction{
+  /*background-color: #ada;*/
+  position: relative;
+}
 .sign{
   width: 380px;
 }
