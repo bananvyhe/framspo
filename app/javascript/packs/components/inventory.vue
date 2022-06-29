@@ -7,17 +7,30 @@
       offset-y>
       <template v-slot:activator="{ on, attrs }">
         <div
-            class="inv d-flex"
+          class="inv d-flex"
           color="indigo"
           dark
           v-bind="attrs"
           v-on="on">
- 
         </div>
       </template>
+      <v-card
+        elevation="2"
+        min-height="200">
+        <div v-if="items == 0" ><h4>пустой инвентарь</h4></div>
+        <draggable class="inv" v-model="Array.from(items)"  @end="itemMoved">
+          <div v-for="(item, index) in items" class="one-item" v-on:click="oneClick(item.item_name, item.id)"> 
+            <el-tooltip  class="smalltext"  placement="bottom">
+              <div slot="content">
+                <h5 style="padding-left: 0.5em;">{{item.item_name}}</h5><p>{{item.description}}</p>
+              </div>
+              <div v-bind:style="{backgroundImage: `url('items${item.image.slice(9)}')`}" class="item-inv"><div v-if="item.qty != 0">{{item.qty}}</div>
+              </div>
+            </el-tooltip>
+          </div>          
+        </draggable>
 
-      <v-card>
-       scscsc
+
       </v-card>
     </v-menu>
 
@@ -91,7 +104,6 @@
 import { mapState, mapActions } from 'pinia' 
 import { useLogStore } from 'store.js'
 // import { mapGetters } from 'vuex';
-
 import axios from 'axios'  
 import draggable from "vuedraggable"
 export default {

@@ -2,7 +2,7 @@
   <div class="hat">
   	<div class="container">
 	  	<!-- <div class="fog"></div> -->
-	  	<div class="flash"></div>
+<!-- 	  	<div class="flash"></div>
 
 	  	<div class="clouds2"></div>
 	  	<div class="bgshad"></div>
@@ -15,7 +15,7 @@
  
 	  	</div>
 	  	<div class="warriors brightness"></div>
-	  	<div class="bgshad2"></div>
+	  	<div class="bgshad2"></div> -->
 		
 		</div>
 	</div>
@@ -40,13 +40,18 @@ gsap.registerPlugin(SlowMo);
     methods: {
 
     },
+    updated(){
+    	console.log("updated")
+    },
     created() { 
-    
+    	console.log("created")
   	},
     mounted() {
-     
+    	console.log("mounted")
+			this.$nextTick(function () {
+
 	    function voodoo() {
-	   //  	gsap.set(".voodoo", {
+	   	//  	gsap.set(".voodoo", {
 				// 	scale: 0.01,
  		
 				// });
@@ -210,7 +215,7 @@ gsap.registerPlugin(SlowMo);
       .add(cloud2()) 
  			.add(brightness() ) 
  			.add(flash() ) 
-
+})
 			
    //  	let tl =	gsap.timeline();
 			// let tlwaranim = tl.to('.warriors', {

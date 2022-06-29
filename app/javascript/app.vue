@@ -55,7 +55,7 @@ export default {
   position: absolute;
   top: 60px;
   right: 18px;
-  z-index: 1000;
+  z-index: 50;
  }
  .subt{
   color: #73708f;
