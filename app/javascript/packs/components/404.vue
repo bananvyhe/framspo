@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="mainerr">
   Страница не найдена <br>
   перейти на <router-link to="/">главную</router-link>
   </div>
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style >
-.main{
+.mainerr{
   text-align: center;
   height: 140px;
 }
