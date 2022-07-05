@@ -76,7 +76,7 @@ export default {
       // this.$router.replace('/todos')
       // router.push({ path: '/users/eduardo' })
       // this.$router.replace('/')
- this.$router.push('/Join')
+ this.$router.push('/join')
     },
     signinFailed (error) {
        this.logouted()

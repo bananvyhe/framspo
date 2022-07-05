@@ -5,7 +5,7 @@ import Hatlog from '../../hatlog.vue'
 // import Signin from '../components/Signin.vue'
 // import Signup from '../components/Signup.vue'
 // import List from '../components/todos/list.vue'
-// import NotFound from '../components/404.vue'
+import NotFound from '../components/404.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -17,7 +17,7 @@ export default new Router({
       component: Hat
     },
     {
-      path: '/Join',
+      path: '/join',
       name: 'Hatlog',
       component: Hatlog
     },
@@ -31,11 +31,11 @@ export default new Router({
     //   name: 'List',
     //   component: List
     // },
-    // {
-    //   path: '*',
-    //   name: 'NotFound',
-    //   component: NotFound
-    // },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound
+    },
   ],
   mode: 'history'
 })
