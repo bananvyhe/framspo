@@ -1,8 +1,7 @@
 <template>
   <div class="d-flex ">
     <!-- {{this.logstat}} -->
-      <div v-if="this.logstat == true" >
-
+<!--       <div v-if="this.logstat == true" >
         <v-btn
           x-small 
           text
@@ -11,7 +10,6 @@
         </v-btn>  
       </div>  
       <div v-if="this.logstat == false">
-
       <v-dialog
         transition="dialog-top-transition"
         max-width="600">
@@ -52,14 +50,11 @@
         </template>
       </v-dialog>
 
-
-<!--         <router-link class="mx-1" to="/Signup">Регистрация</router-link>
-        <router-link class="mx-2 pr-1" to="/Signin">Войти</router-link> -->
-      </div>
-      <div class="useraction d-flex"> 
-        <inv class="inve" v-if="this.logstat == true"></inv>
-        <div class="loa  px-2">{{ this.loastat}}</div> <div class="skull"></div>
-      </div>
+      </div> -->
+    <div class="useraction d-flex"> 
+      <inv class="inve" v-if="this.logstat == true"></inv>
+      <div class="loa  px-2">{{ this.loastat}}</div> <div class="skull"></div>
+    </div>
     
   </div>
 </template>
@@ -115,6 +110,8 @@ export default {
 
 <style scoped>
 .inve{
+  /*position: relative;*/
+  z-index: 100;
   margin-top: -11px;
 }
 .useraction{
