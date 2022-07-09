@@ -70,7 +70,6 @@ class HardWorker < ApplicationController
 				@datatwo = [*@datatwo, data]
 			end
 		end
-		end
 
 		@datathree = Array.new
 		def selection_scrapped_three(row)
