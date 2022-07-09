@@ -26,64 +26,76 @@ class HardWorker < ApplicationController
 		# @s = 3
 		def selection_scrapped(row)
 			puts "cooking.."
-			pic = row.css('img').attr('src').to_s
 			link = row.css('a').attr('href').to_s
-			link = 'https://www.pocketgamer.biz'+link
-			head = row.css('.qualifier').inner_text.to_s
-			# date = row.css('.date').inner_text.to_s
-			desc = row.css('h2').inner_text.to_s
+			if link.include? "/#comments"
+				puts "coments.."
+			else
+				pic = row.css('img').attr('src').to_s
+				link = 'https://www.pocketgamer.biz'+link
+				head = row.css('.qualifier').inner_text.to_s
+				# date = row.css('.date').inner_text.to_s
+				desc = row.css('h2').inner_text.to_s
 
-			# @s = @s + 2
-			# puts @s
-			data = {
-				:pic => pic,
-				:link => link,
-				:head => head,
-				:date => DateTime.now.strftime('%d/%m/%Y'),
-				:desc => desc				
-			}
-			@rowsd = [*@rowsd, data]
+				# @s = @s + 2
+				# puts @s
+				data = {
+					:pic => pic,
+					:link => link,
+					:head => head,
+					:date => DateTime.now.strftime('%d/%m/%Y'),
+					:desc => desc				
+				}
+				@rowsd = [*@rowsd, data]
+			end
 		end
 
 		@datatwo = Array.new
 		def selection_scrapped_two(row)
 			puts "cooking2.."
-			head = row.css('h2').inner_text.to_s
-			desc = row.css('.post-summary').inner_text.to_s
-			desc = desc[1..-10]
-			pic = row.css('.img-holder').attr('data-src').to_s
 			link = row.css('.title a').attr('href').to_s
-			data = {
-				:pic => pic,
-				:link => link,
-				:head => head,
-				:date => DateTime.now.strftime('%d/%m/%Y'),
-				:desc => desc				
-			}
-			@datatwo = [*@datatwo, data]
+			if link.include? "/#comments"
+				puts "coments.."
+			else
+				head = row.css('h2').inner_text.to_s
+				desc = row.css('.post-summary').inner_text.to_s
+				desc = desc[1..-10]
+				pic = row.css('.img-holder').attr('data-src').to_s
+				data = {
+					:pic => pic,
+					:link => link,
+					:head => head,
+					:date => DateTime.now.strftime('%d/%m/%Y'),
+					:desc => desc				
+				}
+				@datatwo = [*@datatwo, data]
+			end
+		end
 		end
 
 		@datathree = Array.new
 		def selection_scrapped_three(row)
 			puts "cooking3.."
-
-	  	head = row.css('h3').inner_text.to_s
-	  	# puts head 
-	  	link = row.css('h3 a').attr('href').to_s
-	  	# puts link 
-	  	pic = row.css('img').attr('src').to_s
-	  	# puts pic
-	  	desc = row.css('.td-excerpt').inner_text.to_s
-	  	# puts desc
-	  	data = {
-				:pic => pic,
-				:link => link,
-				:head => head,
-				:date => DateTime.now.strftime('%d/%m/%Y'),
-				:desc => desc				
-			}
-			@datathree = [*@datathree, data]
-
+			link = row.css('h3 a').attr('href').to_s
+			if link.include? "/#comments"
+				puts "coments.."
+			else
+		  	head = row.css('h3').inner_text.to_s
+		  	# puts head 
+		  	
+		  	# puts link 
+		  	pic = row.css('img').attr('src').to_s
+		  	# puts pic
+		  	desc = row.css('.td-excerpt').inner_text.to_s
+		  	# puts desc
+		  	data = {
+					:pic => pic,
+					:link => link,
+					:head => head,
+					:date => DateTime.now.strftime('%d/%m/%Y'),
+					:desc => desc				
+				}
+				@datathree = [*@datathree, data]
+			end
 		end
 
  		agent = Mechanize.new
