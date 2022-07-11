@@ -102,7 +102,8 @@ class HardWorker < ApplicationController
  			'https://www.blockchaingamer.biz/news/',
  			'https://massivelyop.com/category/new-games/',
  			'https://massivelyop.com/category/industry/',
- 			'https://massivelyop.com/category/interview/']
+ 			'https://massivelyop.com/category/interview/',
+ 			'https://massivelyop.com/category/mmorpg/']
 		@mass = Array.new
 		url.each_with_index do |url, index|
 			@mass << agent.get(url)
@@ -145,6 +146,11 @@ class HardWorker < ApplicationController
 		    selection_scrapped_three(row)
 		  end 
 		end
+		if @mass[5] != nil
+		  @mass[5].css('.td_module_16').each do |row|
+		    selection_scrapped_three(row)
+		  end 
+		end		
 		to_news_trank(@rowsd)
 		sleep(2)
 		to_news_trank(@datatwo)
