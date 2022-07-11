@@ -10,14 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_23_143901) do
+ActiveRecord::Schema.define(version: 2022_07_11_163846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "my_items", force: :cascade do |t|
+    t.string "title"
+    t.integer "qty"
+    t.integer "position"
+    t.string "desc"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_my_items_on_title", unique: true
+    t.index ["user_id"], name: "index_my_items_on_user_id"
+  end
+
   create_table "news", force: :cascade do |t|
     t.string "pic"
-    t.string "link"
     t.string "head"
     t.string "date"
     t.string "desc"
@@ -25,6 +36,8 @@ ActiveRecord::Schema.define(version: 2022_06_23_143901) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "biglink"
     t.string "fullarticle"
+    t.string "link"
+    t.index ["link"], name: "index_news_on_link", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
@@ -48,7 +61,9 @@ ActiveRecord::Schema.define(version: 2022_06_23_143901) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "role", default: 0, null: false
   end
 
+  add_foreign_key "my_items", "users"
   add_foreign_key "todos", "users"
 end
