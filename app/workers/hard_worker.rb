@@ -43,7 +43,7 @@ class HardWorker < ApplicationController
 					:link => link,
 					:head => head,
 					:date => DateTime.now.strftime('%d/%m/%Y'),
-					:desc => desc				
+					:desc => desc.slice(1..120)				
 				}
 				@rowsd = [*@rowsd, data]
 			end
@@ -65,7 +65,7 @@ class HardWorker < ApplicationController
 					:link => link,
 					:head => head,
 					:date => DateTime.now.strftime('%d/%m/%Y'),
-					:desc => desc				
+					:desc => desc.slice(1..120)
 				}
 				@datatwo = [*@datatwo, data]
 			end
@@ -91,7 +91,7 @@ class HardWorker < ApplicationController
 					:link => link,
 					:head => head,
 					:date => DateTime.now.strftime('%d/%m/%Y'),
-					:desc => desc				
+					:desc => desc.slice(1..120)
 				}
 				@datathree = [*@datathree, data]
 			end
