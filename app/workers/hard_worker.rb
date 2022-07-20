@@ -98,7 +98,8 @@ class HardWorker < ApplicationController
 		end
 
  		agent = Mechanize.new
- 		url=['https://www.pocketgamer.biz/asia/news/',
+ 		url=[
+ 			# 'https://www.pocketgamer.biz/asia/news/',
  			'https://www.blockchaingamer.biz/news/',
  			'https://massivelyop.com/category/new-games/',
  			'https://massivelyop.com/category/industry/',
@@ -109,32 +110,37 @@ class HardWorker < ApplicationController
 			@mass << agent.get(url)
 		end
 
-		@rowsd = Array.new
-		if @mass[0] != nil
-			@mass[0].css('.module.latest.news').each do |row|
-				@m = 0
-				rowcss = row.css('.item')
-				rowcss.each do |rowf|
-				@m = @m + 1
-				puts @m 
-					if @m != 5
-						selection_scrapped(rowf)
-					end
-				end
-			end		
-		end
+		# @rowsd = Array.new
+		# if @mass[0] != nil
+		# 	@mass[0].css('.module.latest.news').each do |row|
+		# 		@m = 0
+		# 		rowcss = row.css('.item')
+		# 		rowcss.each do |rowf|
+		# 		@m = @m + 1
+		# 		puts @m 
+		# 			if @m != 5
+		# 				selection_scrapped(rowf)
+		# 			end
+		# 		end
+		# 	end		
+		# end
 
-		if @mass[1] != nil
-		  @mass[1].css('.content-container article').each do |row|
+		if @mass[0] != nil
+		  @mass[0].css('.content-container article').each do |row|
 		    selection_scrapped_two(row)
 		  end
 		end
-		if @mass[2] != nil
+		if @mass[1] != nil
 			# mas = @mass[2].body.force_encoding("utf-8")
 			# File.open('881.html', 'w'){ |file| file.write mas }
-		  @mass[2].css('.td_module_16').each do |row|
+		  @mass[1].css('.td_module_16').each do |row|
 		    selection_scrapped_three(row)
 		  end
+		end
+		if @mass[2] != nil
+		  @mass[2].css('.td_module_16').each do |row|
+		    selection_scrapped_three(row)
+		  end 
 		end
 		if @mass[3] != nil
 		  @mass[3].css('.td_module_16').each do |row|
@@ -143,11 +149,6 @@ class HardWorker < ApplicationController
 		end
 		if @mass[4] != nil
 		  @mass[4].css('.td_module_16').each do |row|
-		    selection_scrapped_three(row)
-		  end 
-		end
-		if @mass[5] != nil
-		  @mass[5].css('.td_module_16').each do |row|
 		    selection_scrapped_three(row)
 		  end 
 		end		
