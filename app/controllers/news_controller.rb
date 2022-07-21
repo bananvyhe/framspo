@@ -16,9 +16,8 @@ class NewsController < ApplicationController
       date = d[:date].to_s
       link = d[:link].to_s
 
-    	unless News.find_by(link: link)  
-      	TobdWorker.perform_async(pic, head, desc, date, link, tokenrapid)
-			end
+			TobdWorker.perform_async(pic, head, desc, date, link, tokenrapid)
+			
 		end
 	end 
 
