@@ -38,7 +38,9 @@ export default {
     }
   },
   computed: {
-
+    ...mapState(useLogStore, {
+      signedIn: "thissignedIn",
+    }),  
   },    
   created () {
     this.checkSignedIn()
@@ -47,20 +49,22 @@ export default {
     this.checkSignedIn()
   },
   methods: {
-    ...mapActions(useLogStore, ["logined"]),    
+    // ...mapActions(useLogStore, ["logined"]),
+    ...mapActions(useLogStore, ["setCurrentUser"]), 
+    ...mapActions(useLogStore, ["unsetCurrentUser"]),    
     // ...mapActions(useLogStore, {
     //   logstat: "logined",
     // }),
-    ...mapActions(useLogStore, {
-      logstat: "logouted",
-    }),    
+    // ...mapActions(useLogStore, {
+    //   logstat: "logouted",
+    // }),    
     signin () {
       this.$http.plain.post('/signin', { email: this.email, password: this.password })
         .then(response => this.signinSuccessful(response))
         .catch(error => this.signinFailed(error))
     },
     signinSuccessful (response) {
-      this.logined()
+      // this.logined()
       console.log(response)
       console.log("signinSuccessful")
       // console.log(this.logstat)
@@ -68,25 +72,36 @@ export default {
         this.signinFailed(response)
         return
       }
+      this.$http.plain.get('/me')
+        .then(meResponse => {
+          // this.$store.commit('setCurrentUser', { currentUser: meResponse.data, csrf: response.data.csrf })
+          this.setCurrentUser(meResponse.data, response.data.csrf)
+          this.error = ''
+          // this.$router.replace('/todos')
+          this.$router.replace('/join')
+        })
+        .catch(error => this.signinFailed(error))
       // console.log(response.data.csrf)
-      localStorage.csrf = response.data.csrf
+      // localStorage.csrf = response.data.csrf
       // console.log(localStorage.csrf)
-      localStorage.signedIn = true
-      this.error = ''
+      // localStorage.signedIn = true
+       
       // this.$router.replace('/todos')
       // router.push({ path: '/users/eduardo' })
       // this.$router.replace('/')
- this.$router.push('/join')
+        
     },
     signinFailed (error) {
-       this.logouted()
+       // this.logouted()
       this.error = (error.response && error.response.data && error.response.data.error) || ''
-      delete localStorage.csrf
-      delete localStorage.signedIn
+      // delete localStorage.csrf
+      // delete localStorage.signedIn
+        this.unsetCurrentUser()
       
     },
     checkSignedIn () {
-      if (localStorage.signedIn) {
+      if (this.signedIn == true) {
+        this.$router.replace('/join')
         // this.$router.replace('/todos')
         // this.$router.replace('/') 
         // store.thislog = true

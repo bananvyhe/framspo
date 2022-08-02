@@ -1,5 +1,5 @@
 <template>
-  <div class="inv">
+  <div class="">
      <v-menu
       v-model="menu"
       :close-on-content-click="false"
@@ -7,7 +7,7 @@
       offset-y>
       <template v-slot:activator="{ on, attrs }">
         <div
-          class="inv d-flex"
+          class="inventory d-flex"
           color="indigo"
           dark
           v-bind="attrs"
@@ -18,15 +18,27 @@
         elevation="2"
         min-height="200">
         <div v-if="items == 0" ><h4>пустой инвентарь</h4></div>
-        <draggable class="inv" v-model="Array.from(items)"  @end="itemMoved">
+        <draggable 
+          class="inv" 
+          v-model="Array.from(items)"  
+          @end="itemMoved">
           <div v-for="(item, index) in items" class="one-item" v-on:click="oneClick(item.item_name, item.id)"> 
-            <el-tooltip  class="smalltext"  placement="bottom">
-              <div slot="content">
+
+            <v-tooltip  top>
+               <template v-slot:activator="{ on, attrs}">
+                <div v-on="on" v-bind="attrs" class="item-inv" v-bind:style="{backgroundImage: `url('${item.image}')`}">
+<!--                   <span  v-bind="attrs" v-on="on" v-bind:style="{backgroundImage: `url('${item.image}')`}">
+                  </span>    -->                
+                </div>
+              </template>
+                <span><span style="color:#ffe79f;">{{item.item_name}}</span> <br><span class="caption">{{item.desc}}</span></span>
+
+           <!--    <div slot="content">
                 <h5 style="padding-left: 0.5em;">{{item.item_name}}</h5><p>{{item.description}}</p>
               </div>
-              <div v-bind:style="{backgroundImage: `url('items${item.image.slice(9)}')`}" class="item-inv"><div v-if="item.qty != 0">{{item.qty}}</div>
-              </div>
-            </el-tooltip>
+              <div v-bind:style="{backgroundImage: `url('items${item.image}')`}" class="item-inv"><div v-if="item.qty != 0">{{item.qty}}</div>
+              </div> -->
+            </v-tooltip>
           </div>          
         </draggable>
 
@@ -34,70 +46,6 @@
       </v-card>
     </v-menu>
 
-
-
-
-<!--     <el-popover
-      placement="bottom"
-      width="200"
-      trigger="click"
-      content="this is content, this is content, this is content">
-      <div class="slots">
-        <div class="cash">
-          <el-tooltip  class="smalltext"  placement="bottom">
-            <div slot="content">
-              <div class="tooldrop">
-                <h5> </h5>
-                <p>камнями вы можете оплатить некоторые действия</p>
-              </div>
-            </div>
-            <div v-if="this.rock" class="rock">
-              <div class="cry"></div>{{this.rock}}
-            </div>    
-          </el-tooltip>          
-        </div>
-        <div v-if="items == 0" ><h4>пустой инвентарь</h4></div>
-        <draggable class="inv" v-model="Array.from(items)"  @end="itemMoved">
-          <div v-for="(item, index) in items" class="one-item" v-on:click="oneClick(item.item_name, item.id)"> 
-            <el-tooltip  class="smalltext"  placement="bottom">
-              <div slot="content">
-                <h5 style="padding-left: 0.5em;">{{item.item_name}}</h5><p>{{item.description}}</p>
-              </div>
-              <div v-bind:style="{backgroundImage: `url('items${item.image.slice(9)}')`}" class="item-inv"><div v-if="item.qty != 0">{{item.qty}}</div>
-              </div>
-            </el-tooltip>
-          </div>          
-        </draggable>
-
-      </div>
-    </el-popover>   -->
-
-
-
-
-
-<!--     <el-dialog
-      :lock-scroll="false"
-      title="Создать клан"
-      :visible.sync="dialogBuildClan"
-      width="25em"
-      >
-      <el-form :model="form" :rules="rules" ref="form">             
-        <el-form-item  prop="clan" size="medium">
-          <el-input v-model="form.clan" auto-complete="off"></el-input>
-        </el-form-item>
-      </el-form>
-
-      <div slot="footer"  class="uiframe">
-        <el-button @click="dialogBuildClan = false">Отмена</el-button>
-        <el-button v-if="dis == false" type="primary" @click="proceed" >Подтвердить</el-button>
-        <el-button v-else type="primary" disabled >Подтвердить</el-button>
-      </div>
-      <div slot="footer" class="footpostshow basetext font3">
-        &nbsp;
-      </div> 
-
-    </el-dialog>    -->
   </div>
 </template>
 <script>
@@ -111,24 +59,6 @@ export default {
   // props:['isOpen'],
   
   data() {
-    var validateClanname = (rule, value, callback) => {
-      var self = this;
-      setTimeout(function(){
-        if (value.trim() == self.responseClan) {
-          callback(new Error('Имя занято')); 
-          self.dis = true
-        } else if (value.trim() == 'elder' || value.trim() == 'lead') {
-          self.dis = true
-          callback(new Error('недопустимое имя'));       
-        } else if (value == '') {
-          self.dis = false
-          callback(new Error('Введите название клана'));
-        } else {
-          self.dis = false
-          callback();
-        }
-      },400 );  
-    };    
     return {
       fav: true,
       menu: false,
@@ -137,14 +67,7 @@ export default {
 
       dis: false,
       responseClan: false,
-      rules: {
-        clan: [
-          { required: true, validator: validateClanname, trigger: ['blur', 'change']   }
-        ]
-      },      
-      form: {
-        clan: ''
-      },
+      
       dialogBuildClan: false,
       //doubleClick realise     
       result: [],
@@ -152,38 +75,11 @@ export default {
       clicks: 0,
       timer: null,  
           
-      items: '',
+      items: [{id: 1, position: 1, item_name: 'Золотой самородок', qty: 25, image: '../../images/goldenore.png', desc: 'ценный ресурс для оплаты ключевых действий'},{id: 2, position: 2, item_name: 'Золотой самородок', qty: 12, image: '../../images/goldenore.png', desc: 'ценный ресурс для оплаты ключевых действий'}],
       isOpen: false,
     }
   },
   watch: {
-    'form.clan': function(val){
-      console.log(val)
-      axios({
-        method: 'get',
-        url:'/my_items/check_clan',
-        params: {
-          name: val.trim()
-        },
-        headers: {
-          'Authorization': 'bearer '+this.token.access
-        } 
-      })
-      .then((response) => {  
-        console.log(response.data );
-        if (response.data == null) {
-          this.responseClan = false;
-        }else{
-          this.responseClan =  response.data.name         
-        }
-
-
-      })
-      .catch(function (error) {
-        console.log(error);
-      }); 
-      // console.log("clanname check")
-    },    
     isOpen(){
       if (this.isOpen == true) {
         this.ItemsGet()
@@ -191,45 +87,9 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters([
-    //   'token' 
-    // ]),  
-    ...mapState(useLogStore, {
-      rock: "thisrock",
-    })  
+
   },
   methods: {
- 
-  
- 
-      res(){
-        axios({
-          method: 'post',
-          url: '/api/v1/ressurect',
-          headers: {
-            'Authorization': 'bearer '+this.$store.getters.token.access
-          }           
-        }).then((response) => { 
-          this.$store.commit('deadsend', false )
- 
-          $emit('my-event')
-        });
-      },    
-   proceed() {
- 
-      axios({
-        method: 'post',
-        url: '/my_items/paste_clan',
-        data: {
-          name: this.form.clan
-        },
-        headers: {
-          'Authorization': 'bearer '+this.$store.getters.token.access
-        } 
-      }).then((response) => { 
-        this.dialogBuildClan = false
-      })
-    },    
     oneClick: function(event, id) {
       this.clicks++
         if (this.clicks === 1) {
@@ -267,7 +127,7 @@ export default {
       })
     },
     ItemsGet(){
-      // console.log('true')
+      console.log('ItemsGet')
       axios({
         method: 'get',
         url: '/my_items',
@@ -283,8 +143,9 @@ export default {
         });      
     },
     itemMoved: function(event) {
+      // this.$http.secured.path(`/my_items/${this.items[event.newIndex].id}/move`)
       var data = new FormData
-      console.log(this.token.access)
+ 
       data.append("my_item[position]", event.newIndex + 1)
       axios({
         method: 'PATCH',
@@ -302,7 +163,21 @@ export default {
 }
 </script>
 <style scoped>
- .inv{
+.item-inv {
+  border: 1px solid color( $screenbg shade(56%));; 
+  text-shadow: 0px 1px #222, 1px 0px #222;
+  height: 44px; 
+  width: 44px; 
+  /*background: url(../../images/goldenore.png);*/
+  /*background-color: #dad;*/
+  /*display: flex;*/
+   
+  background-size: contain;
+  padding: 0.3em 0 0 0.5em;
+
+}
+ .inventory{
+  /*background-color: #ada;*/
   width: 40px;
   height: 40px;
   /*background-color: #dad;*/
@@ -321,6 +196,7 @@ export default {
   padding: 0.1em;
 }
 .inv {
+  /*background-color: #dad;*/
   padding: 0.3em 0 0;
   display: flex;
   flex-direction: row;

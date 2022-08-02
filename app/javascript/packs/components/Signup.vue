@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import { mapState } from 'pinia'
   import { mapActions } from 'pinia' 
   import { useLogStore } from 'store.js'
 export default {
@@ -49,8 +50,15 @@ export default {
   updated () {
     this.checkSignedIn()
   },
+  computed: {  
+    ...mapState(useLogStore, {
+      loastat: "thisloa",
+    }),
+ 
+  },    
   methods: {
-    ...mapActions(useLogStore, ["logined"]),     
+    ...mapActions(useLogStore, ["setCurrentUser"]),     
+    // ...mapActions(useLogStore, ["logined"]),     
     signup () {
       // console.log()
       this.$http.plain.post('/signup', { email: this.email, password: this.password, password_confirmation: this.password_confirmation })
@@ -62,10 +70,19 @@ export default {
         this.signupFailed(response)
         return
       }
-      this.logined()
-      localStorage.csrf = response.data.csrf
-      localStorage.signedIn = true
-      this.error = ''
+      this.$http.plain.get('/me')
+        .then(meResponse => {
+          // this.$store.commit('setCurrentUser', { currentUser: meResponse.data, csrf: response.data.csrf })
+          this.setCurrentUser(meResponse.data, response.data.csrf)
+          this.error = ''
+          // this.$router.replace('/todos')
+          this.$router.replace('/join')
+        })
+        .catch(error => this.signinFailed(error))
+
+      // this.logined()
+      // localStorage.csrf = response.data.csrf
+      // localStorage.signedIn = trues
       // this.$router.replace('/todos')
       this.$router.replace('/')
     },

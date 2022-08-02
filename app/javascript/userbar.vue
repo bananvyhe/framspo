@@ -1,7 +1,13 @@
 <template>
   <div class="d-flex ">
-    <!-- {{this.logstat}} -->
-<!--       <div v-if="this.logstat == true" >
+    <!-- {{this.signedIn}}1 -->
+    <!-- -{{this.csrfstat}}- -->
+    
+    <!-- ++{{this.currentUser}}++ -->
+    <!-- {{this.currentUser.role}} -->
+    <!-- <a v-if="this.currentUser.role == 'admin'">Admin</a> -->
+    <router-link  to="/admin/all" v-if="this.currentUser.role == 'admin'">Admin</router-link>
+      <div v-if="this.signedIn == true">
         <v-btn
           x-small 
           text
@@ -9,7 +15,7 @@
           @click="signOut">выйти
         </v-btn>  
       </div>  
-      <div v-if="this.logstat == false">
+      <div v-if="this.signedIn == false">
       <v-dialog
         transition="dialog-top-transition"
         max-width="600">
@@ -50,9 +56,9 @@
         </template>
       </v-dialog>
 
-      </div> -->
+      </div>
     <div class="useraction d-flex"> 
-      <inv class="inve" v-if="this.logstat == true"></inv>
+      <inv class="inve" v-if="this.signedIn == true"></inv>
       <div class="loa  px-2">{{ this.loastat}}</div> <div class="skull"></div>
     </div>
     
@@ -74,36 +80,42 @@ export default {
     }
   },
   methods: {
-    ...mapActions(useLogStore, ["logouted"]), 
+    ...mapActions(useLogStore, ["unsetCurrentUser"]), 
+    // ...mapActions(useLogStore, ["logouted"]), 
     signOut () {
-      this.logouted()
+      // this.logouted()
       this.$http.secured.delete('/signin')
-        .then(response => {
-          delete localStorage.csrf
-          delete localStorage.signedIn
-          this.$router.replace('/')
-         })
-         .catch(error => this.setError(error, 'Cannot sign out'))
+      .then(response => {
+        // delete localStorage.csrf
+        // delete localStorage.signedIn
+
+        this.unsetCurrentUser()
+        this.$router.replace('/')
+      })
+      .catch(error => this.setError(error, 'Cannot sign out'))
     },  
   },
-  mutations: {
-    // increment (state) {
-    //   state.loa++
-    // }
-  },
+ 
   mounted(){
-    console.log(this.loastat)
+    // console.log(this.loastat)
+    // console.log(this.csrfstat)
     // this.$store.commit('increment')
  
   },
   computed: {
+    ...mapState(useLogStore, {
+      currentUser: "thiscurrentUser",
+    }),     
+    ...mapState(useLogStore, {
+      csrfstat: "thiscsrf",
+    }),    
     // ...mapState(useLogStore, ['thislog'])
     ...mapState(useLogStore, {
       loastat: "thisloa",
     }),
     ...mapState(useLogStore, {
-      logstat: "thislog",
-    })
+      signedIn: "thissignedIn",
+    }),  
   },  
 }
 </script>

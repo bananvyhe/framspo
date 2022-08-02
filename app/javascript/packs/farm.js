@@ -30,6 +30,8 @@ import { createPinia, PiniaVuePlugin} from 'pinia'
 const pinia = createPinia()
 Vue.use(pinia)
 Vue.use(PiniaVuePlugin)
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+pinia.use(piniaPluginPersistedstate)
 
 import ls from 'localstorage-slim';
 import encUTF8 from 'crypto-js/enc-utf8';
@@ -55,6 +57,7 @@ ls.config.decrypter = (data, secret) => {
 
 Vue.use(Vuetify, {
 	components: {
+		VMenu,
 		VTextField,
     VForm,		
 		// VRadio,
@@ -96,6 +99,7 @@ Vue.use(Vuetify, {
 	}
 }) 
 import Vuetify, {
+	VMenu,
 	VTextField,
   VForm,	
 	// VRadio,
@@ -163,7 +167,25 @@ import colors from 'vuetify/lib/util/colors'
 //   }
 // })
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
+  // const app = new Vue({
+  // 	vuetify: new Vuetify({
+		//   theme: { 
+		//   	dark: {
+		//   		primary: '#3b8839',
+		//   	},
+		//   },
+  // 	}),
+  // 	// store: store,
+  // 	router,
+  // 	securedAxiosInstance,
+  // 	plainAxiosInstance,
+  // 	// axios,
+  // 	pinia,
+  //   render: h => h(App)
+  // }).$mount()
+  // document.body.appendChild(app.$el)
+    const app = new Vue({
+    	el: '#app',
   	vuetify: new Vuetify({
 		  theme: { 
 		  	dark: {
@@ -178,8 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
   	// axios,
   	pinia,
     render: h => h(App)
-  }).$mount()
-  document.body.appendChild(app.$el)
+  })
 
    
   var hat = document.getElementById("hat") 

@@ -17,11 +17,9 @@
         <v-container class="pt-0 cont">
            <router-view></router-view>
 
-          <!-- <div id="hat"></div> -->
-
-
           <pumpk class="pumpkin"></pumpk>
-          <news></news>
+          <!-- ss{{this.currentUser}}ss -->
+          <!--cv-if="this.currentUser.role != 'admin' && this.currentUser.role != 'manager'"></news> -->
         </v-container>
       </v-main>
     </v-app>
@@ -31,7 +29,9 @@
 <script>
 import News from './news.vue'
 import Userbar from './userbar.vue'
-  import Pumpk from './pumpk.vue'
+import Pumpk from './pumpk.vue'
+import { useLogStore } from 'store.js'
+import { mapState } from 'pinia'
 export default {
   components: {
     'news': News,
@@ -43,6 +43,11 @@ export default {
       message: "Throne and Liberty ",
       tl: "mmorpg"
     }
+  },
+  computed:{
+   ...mapState(useLogStore, {
+      currentUser: "thiscurrentUser",
+    }),   
   }
 }
 </script>

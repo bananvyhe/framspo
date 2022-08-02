@@ -18,9 +18,11 @@
 	  	<div class="bgshad2"></div>
 		
 		</div>
+		<news></news>
 	</div>
 </template>
 <script>
+	import News from './news.vue'
 	// import ScrambleText from 'scramble-text'; 
 	// import { VueTyper } from 'vue-typer'
 import { gsap } from "gsap";
@@ -29,7 +31,7 @@ import { SlowMo } from "gsap/EasePack";
 gsap.registerPlugin(SlowMo);
   export default {
   	components: {
-     
+      'news': News,
     }, 
     data: function (){
       return {

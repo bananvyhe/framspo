@@ -15,6 +15,7 @@
     "gsap": "^3.8.0",
     "localstorage-slim": "^2.2.0",
     "pinia": "^2.0.14",
+    "pinia-plugin-persistedstate": "^1.6.1",
     "sass-loader": "^10",
     "style-loader": "^2",
     "turbolinks": "^5.2.0",

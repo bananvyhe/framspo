@@ -1,14 +1,34 @@
 Rails.application.routes.draw do
   match '*path', via: [:options], to: lambda {|_| [204, { 'Content-Type' => 'text/plain' }]}
-  get 'news/index'
-	require "sidekiq/web"
+  resources :cors
+  # get 'news/index'
+
   root to: 'welcome#index'
-  get '/join', to: 'welcome#index' 
+
+
   post 'refresh', controller: :refresh, action: :create
   post 'signin', controller: :signin, action: :create
   post 'signup', controller: :signup, action: :create
   delete 'signin', controller: :signin, action: :destroy
+  get :news, to: "news#index" 
+  get 'me', controller: :users, action: :me 
 
+  # get '/*path', to: 'welcome#index' 
+  get 'admin/users', controller: 'admin/users', action: :all
+
+
+  # namespace :admin do
+  #   resources :users, controller: 'admin/users'
+  # end
+
+  require "sidekiq/web"
+
+
+ resources :join
+
+  #
+
+   # get '/*path', to: 'welcome#index' 
   resources :todos
   # resources :join
  	# resources :news do
@@ -17,15 +37,26 @@ Rails.application.routes.draw do
   # end
 
 	# post :news, to: "news#create"
-   get '/404', to: 'welcome#index'
+  get '/404', to: 'welcome#index'
+
+  # get '/admin/users', to: 'welcome#index' 
 
 
 
-  get :news, to: "news#index"
+  resources :my_items  do 
+    member do
+      post :use_item
+      patch :move
+    end
+  end 
+
+# get 'page_controller/*path', to: 'welcome#index', format: false
+
   # get 'errors/not_found'
   # get 'errors/internal_server_error'   
   # get 'welcome/index'
   resources :users
+
 	# get 'app', to: 'welcome#index'
  #  match "/404", :to => "errors#not_found", :via => :all
 	# match "/500", :to => "errors#internal_server_error", :via => :all
@@ -40,8 +71,8 @@ Rails.application.routes.draw do
     login_hash = ::Digest::SHA256.hexdigest(username)
     password_hash = ::Digest::SHA256.hexdigest(password)
 
-  ActiveSupport::SecurityUtils.secure_compare(login_hash, ::Digest::SHA256.hexdigest(Rails.application.credentials.username)) &
-  ActiveSupport::SecurityUtils.secure_compare(password_hash, ::Digest::SHA256.hexdigest(Rails.application.credentials.password))
+    ActiveSupport::SecurityUtils.secure_compare(login_hash, ::Digest::SHA256.hexdigest(Rails.application.credentials.username)) &
+    ActiveSupport::SecurityUtils.secure_compare(password_hash, ::Digest::SHA256.hexdigest(Rails.application.credentials.password))
   end # if Rails.env.production?
   mount Sidekiq::Web, at: "/sidekiq"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
