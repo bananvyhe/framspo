@@ -6,7 +6,7 @@
     <!-- ++{{this.currentUser}}++ -->
     <!-- {{this.currentUser.role}} -->
     <!-- <a v-if="this.currentUser.role == 'admin'">Admin</a> -->
-    <router-link  to="/admin/all" v-if="this.currentUser.role == 'admin'">Admin</router-link>
+<!--     <router-link  to="/admin/all" v-if="this.currentUser.role == 'admin'">Admin</router-link>
       <div v-if="this.signedIn == true">
         <v-btn
           x-small 
@@ -56,7 +56,7 @@
         </template>
       </v-dialog>
 
-      </div>
+      </div> -->
     <div class="useraction d-flex"> 
       <inv class="inve" v-if="this.signedIn == true"></inv>
       <div class="loa  px-2">{{ this.loastat}}</div> <div class="skull"></div>
