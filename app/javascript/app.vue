@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
+  <div >
     <v-app>
+
       <v-app-bar  app dense hide-on-scroll  class="py-0">
         <v-container  class="py-0 fill-height">
           <div class="my-0" >
@@ -21,7 +22,9 @@
           <!-- ss{{this.currentUser}}ss -->
           <!--cv-if="this.currentUser.role != 'admin' && this.currentUser.role != 'manager'"></news> -->
         </v-container>
+
       </v-main>
+
     </v-app>
   </div>
 </template>

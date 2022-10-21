@@ -1,23 +1,26 @@
 <template>
-  <div class="hat">
-  	<div class="container">
-	  	<!-- <div class="fog"></div> -->
-	  	<div class="flash"></div>
+  <div >
+  	<div class="hat">	
+	  	<div class="container">
+		  	<!-- <div class="fog"></div> -->
+		  	<div class="flash"></div>
 
-	  	<div class="clouds2"></div>
-	  	<div class="bgshad"></div>
+		  	<div class="clouds2"></div>
+		  	<div class="bgshad"></div>
 
-	  	<div class="clouds"></div>
-	  	<div class="voodoo fonta">
-	  		FREE PVP ZONE
-	  	</div>
-	  	<div class="warriors">
- 
-	  	</div>
-	  	<div class="warriors brightness"></div>
-	  	<div class="bgshad2"></div>
-		
-		</div>
+		  	<div class="clouds"></div>
+		  	<div class="voodoo fonta">
+		  		FREE PVP ZONE
+		  	</div>
+		  	<div class="warriors">
+	 
+		  	</div>
+		  	<div class="warriors brightness"></div>
+		  	<div class="bgshad2"></div>
+			
+			</div>  		
+  	</div>
+
 		<news></news>
 	</div>
 </template>
