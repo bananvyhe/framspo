@@ -1,8 +1,9 @@
 <template>
   <div class=" py-0 px-0"> 
     <div style="display:none;">
-    {{loa = this.logstat}}
-  </div> 
+      {{loa = this.logstat}}
+    </div> 
+ 
 <!-- 
     v-bind:spritesheet="require('./images/sprites/monsters/pumpkin.png')"
     v-bind:json="require('./images/sprites/monsters/pumpkin.json')" -->
@@ -125,6 +126,7 @@
             </div>
           </v-expand-transition> -->
     <div class="d-flex justify-center" > 
+      <!-- {{this.bottom}}  -->
       <v-progress-circular 
     indeterminate 
     color="green" 
@@ -163,7 +165,7 @@
         timer = setTimeout(function() {
           self.bottom = self.bottomVisible()
           console.log("vis")
-        }, 10);
+        }, 5);
       })
     },
     watch: {
@@ -208,7 +210,7 @@
 
       const scrollY = window.scrollY
       const visible = document.documentElement.clientHeight 
-      // const pageHeight = document.documentElement.scrollHeight
+
       const bottomOfPage = visible + scrollY+1000 > scrollHeight
       return bottomOfPage || scrollHeight < visible 
     },
