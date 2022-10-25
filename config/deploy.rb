@@ -12,6 +12,19 @@ namespace :sidekiq do
       execute :sudo,  :restart, :workers
     end
   end
+ 
+  task :stop do
+    on roles(:app) do
+      # See: https://github.com/mperham/sidekiq/wiki/Signals#tstp
+      execute :sudo, :stop, :workers
+    end
+  end  
+  task :start do
+    on roles(:app) do
+      execute :sudo, :start, :workers
+    end
+  end
+
 end
 set :application, "farmspot"
 set :repo_url, "git@github.com:bananvyhe/framspo.git"
