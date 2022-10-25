@@ -16,12 +16,12 @@ namespace :sidekiq do
   task :stop do
     on roles(:app) do
       # See: https://github.com/mperham/sidekiq/wiki/Signals#tstp
-      execute :sudo, :stop, :workers
+      execute :systemctl, '--user', 'kill', '-s', 'SIGTERM', fetch(:sidekiq_systemd_unit_name), raise_on_non_zero_exit: false
     end
   end  
   task :start do
     on roles(:app) do
-      execute :sudo, :start, :workers
+      execute :systemctl, '--user', 'start', fetch(:sidekiq_systemd_unit_name)
     end
   end
 
