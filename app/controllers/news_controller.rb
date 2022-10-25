@@ -2,8 +2,9 @@ class NewsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
   def index
-  	@news = News.all 
-		render json: @news.order(created_at: :desc).limit(16).offset(params[:pos])
+  	@news = News.order(created_at: :desc).limit(16).offset(params[:pos])
+		# render json: @news.order(created_at: :desc).limit(16).offset(params[:pos])
+		render json: @news
   end
 
 	def create 
