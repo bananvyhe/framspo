@@ -13,17 +13,22 @@ namespace :sidekiq do
     end
   end
  
-  task :stop do
-    on roles(:app) do
-      # See: https://github.com/mperham/sidekiq/wiki/Signals#tstp
-      execute :systemctl, '--user', 'kill', '-s', 'SIGTERM', fetch(:sidekiq_systemd_unit_name), raise_on_non_zero_exit: false
-    end
-  end  
-  task :start do
-    on roles(:app) do
-      execute :systemctl, '--user', 'start', fetch(:sidekiq_systemd_unit_name)
-    end
-  end
+  # task :stop do
+  #   on roles(:app) do
+  #     within current_path do
+  #       pid = p capture "ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p"
+  #       execute("kill -9 #{pid}")
+  #     end
+  #   end
+  # end  
+  # task :start do
+  #   on roles(:app) do
+  #     within current_path do
+  #       execute :bundle, "exec sidekiq -e #{fetch(:stage)} -C config/sidekiq.yml -d"
+  #     end      
+
+  #   end
+  # end
 
 end
 set :application, "farmspot"
