@@ -2,22 +2,41 @@ class NewsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
   def index
-  	@news = News.order(created_at: :desc).limit(16).offset(params[:pos])
+mem = GetProcessMem.new
+  	puts mem.inspect
+  	puts "==========="
+  	@news = News.limit(16).order(created_at: :desc).offset(params[:pos])
+
+puts @news.inspect
 		# render json: @news.order(created_at: :desc).limit(16).offset(params[:pos])
 		render json: @news
+		  	puts "||||||||||"
+  	puts mem.inspect
   end
 
 	def create 
-
+		getrecords = News.limit(200).order(created_at: :desc)
+		puts "rec"
 		tokenrapid = News.tokenmake
 		params.require(:_json).each do |d|
-    	pic = d[:pic].to_s
-      head = d[:head].to_s
-      desc = d[:desc].to_s
-      date = d[:date].to_s
-      link = d[:link].to_s
+			findrec = false
+      link = d[:link].to_s			
+	    getrecords.each do |item|
+	      if item.link == link
+	        findrec = true
+	        puts findrec
+	        break
+	      end
+	    end 
 
-			TobdWorker.perform_async(pic, head, desc, date, link, tokenrapid)
+	    if findrec == false
+	    	pic = d[:pic].to_s
+	      head = d[:head].to_s
+	      desc = d[:desc].to_s
+	      date = d[:date].to_s
+
+				TobdWorker.perform_async(pic, head, desc, date, link, tokenrapid)
+			end
 			
 		end
 	end 
