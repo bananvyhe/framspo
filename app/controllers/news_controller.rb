@@ -2,8 +2,8 @@ class NewsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
   def index
-mem = GetProcessMem.new
-  	puts mem.inspect
+# mem = GetProcessMem.new
+  	# puts mem.inspect
   	puts "==========="
   	@news = News.limit(16).order(created_at: :desc).offset(params[:pos])
 
@@ -11,7 +11,7 @@ puts @news.inspect
 		# render json: @news.order(created_at: :desc).limit(16).offset(params[:pos])
 		render json: @news
 		  	puts "||||||||||"
-  	puts mem.inspect
+  	# puts mem.inspect
   end
 
 	def create 
