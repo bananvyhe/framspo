@@ -44,6 +44,11 @@ export const useLogStore = defineStore("logStore", {
       this.signedIn = false
       this.ctsrf = null
     },
+    unsetLoa () {
+      this.loa = null
+      ls.set('load', "") 
+ 
+    },    
     refresh (csrf) {
       this.signedIn = true
       this.ctsrf = csrf

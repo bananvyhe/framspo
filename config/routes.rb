@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       patch :move
     end
   end 
-
+  post '/my_items', to: 'my_items#index' 
 # get 'page_controller/*path', to: 'welcome#index', format: false
 
   # get 'errors/not_found'

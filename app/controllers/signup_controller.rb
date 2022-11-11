@@ -4,8 +4,14 @@ class SignupController < ApplicationController
 		if user_find
 			 render json: { errors: "Емайл уже зарегистрирован." }
 		else
-	    user = User.new(user_params)
+	    user = User.new({:email => params[:email], :password => params[:password], :password_confirmation => params[:password_confirmation]})
  			items = MyItem.new
+ 			if  params[:loa] > 1000
+ 				loastat = 1000
+ 			else
+ 				loastat = params[:loa]
+ 			end
+ 			items.loa = loastat
  			puts items
  			user.myItem = items
 
@@ -31,6 +37,6 @@ class SignupController < ApplicationController
   	User.find_by(email: params[:email])
   end
   def user_params
-    params.permit(:email, :password, :password_confirmation)
+    params.permit(:email, :password, :password_confirmation, :loa)
   end	
 end

@@ -57,15 +57,18 @@ export default {
  
   },    
   methods: {
+    ...mapActions(useLogStore, ["unsetLoa"]), 
+    // ...mapActions(useLogStore, ["logouted"]),    
     ...mapActions(useLogStore, ["setCurrentUser"]),     
     // ...mapActions(useLogStore, ["logined"]),     
     signup () {
       // console.log()
-      this.$http.plain.post('/signup', { email: this.email, password: this.password, password_confirmation: this.password_confirmation })
+      this.$http.plain.post('/signup', { email: this.email, password: this.password, password_confirmation: this.password_confirmation, loa: this.loastat })
         .then(response => this.signupSuccessful(response))
         .catch(error => this.signupFailed(error))
     },
     signupSuccessful (response) {
+      this.unsetLoa()
       if (!response.data.csrf) {
         this.signupFailed(response)
         return

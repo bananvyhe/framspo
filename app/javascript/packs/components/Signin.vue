@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     // ...mapActions(useLogStore, ["logined"]),
+    ...mapActions(useLogStore, ["unsetLoa"]), 
     ...mapActions(useLogStore, ["setCurrentUser"]), 
     ...mapActions(useLogStore, ["unsetCurrentUser"]),    
     // ...mapActions(useLogStore, {
@@ -64,6 +65,7 @@ export default {
         .catch(error => this.signinFailed(error))
     },
     signinSuccessful (response) {
+      this.unsetLoa()
       // this.logined()
       console.log(response)
       console.log("signinSuccessful")

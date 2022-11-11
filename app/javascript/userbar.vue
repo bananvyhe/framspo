@@ -6,23 +6,25 @@
     <!-- ++{{this.currentUser}}++ -->
     <!-- {{this.currentUser.role}} -->
     <!-- <a v-if="this.currentUser.role == 'admin'">Admin</a> -->
-<!--     <router-link  to="/admin/all" v-if="this.currentUser.role == 'admin'">Admin</router-link>
-      <div v-if="this.signedIn == true">
-        <v-btn
-          x-small 
-          text
-          color="primary"  
-          @click="signOut">выйти
-        </v-btn>  
-      </div>  
-      <div v-if="this.signedIn == false">
+    <router-link  to="/admin/all" v-if="this.currentUser.role == 'admin'">
+      Admin
+    </router-link>
+    <div v-if="this.signedIn == true">
+      <v-btn
+        x-small 
+        text
+        color="primary"  
+        @click="signOut">выйти
+      </v-btn>  
+    </div>  
+    <div v-if="this.signedIn == false">
       <v-dialog
         transition="dialog-top-transition"
         max-width="600">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
           small
-            color="primary"
+            color="secondary"
             v-bind="attrs"
             v-on="on"
           >Регистрация</v-btn>
@@ -45,7 +47,8 @@
             color="primary"
             v-bind="attrs"
             v-on="on"
-          >Войти</v-btn>
+          >Войти
+          </v-btn>
         </template>
         <template v-slot:default="dialog">
           
@@ -56,12 +59,15 @@
         </template>
       </v-dialog>
 
-      </div> -->
-    <div class="useraction d-flex"> 
-      <inv class="inve" v-if="this.signedIn == true"></inv>
-      <div class="loa  px-2">{{ this.loastat}}</div> <div class="skull"></div>
     </div>
-    
+    <div  v-else class="loa  px-2">{{loa}}</div>
+    <div class="useraction d-flex">  
+      <inv  v-if="this.signedIn == true">666</inv>
+      <div class="loa  px-2" v-else>{{ this.loastat}}</div>
+      
+      <div class="skull"></div>
+    </div>
+  
   </div>
 </template>
 
@@ -79,7 +85,17 @@ export default {
       loa: "",
     }
   },
+  created() {
+    this.getloa()
+  },  
   methods: {
+    getloa(){
+       this.$http.secured.get('/my_items')
+      .then(response => { 
+        this.loa = response.data
+      })
+      .catch(error => { this.setError(error, 'Something went wrong') })
+    },       
     ...mapActions(useLogStore, ["unsetCurrentUser"]), 
     // ...mapActions(useLogStore, ["logouted"]), 
     signOut () {
@@ -122,11 +138,13 @@ export default {
 
 <style scoped>
 .inve{
+  background-color: #dad;
   /*position: relative;*/
   z-index: 100;
   margin-top: -11px;
 }
 .useraction{
+  z-index: 100;
   /*background-color: #ada;*/
   position: relative;
 }
