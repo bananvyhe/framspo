@@ -18,7 +18,7 @@
       </v-btn>  
     </div>  
     <div v-if="this.signedIn == false">
-      <v-dialog
+<!--       <v-dialog
         transition="dialog-top-transition"
         max-width="600">
         <template v-slot:activator="{ on, attrs }">
@@ -57,10 +57,12 @@
             </v-card-actions>
           </v-card>
         </template>
-      </v-dialog>
+      </v-dialog> -->
 
     </div>
-    <div  v-else class="loa  px-2">{{loa}}</div>
+    <div  v-else class="loa  ">
+      <!-- {{loa}} -->
+    </div>
     <div class="useraction d-flex">  
       <inv  v-if="this.signedIn == true">666</inv>
       <div class="loa  px-2" v-else>{{ this.loastat}}</div>
@@ -86,7 +88,10 @@ export default {
     }
   },
   created() {
-    this.getloa()
+    if (this.signedIn){
+      this.getloa()
+    }
+    
   },  
   methods: {
     getloa(){
@@ -95,7 +100,8 @@ export default {
         this.loa = response.data
       })
       .catch(error => { this.setError(error, 'Something went wrong') })
-    },       
+    },   
+    ...mapActions(useLogStore, ["unsetLoa"]),     
     ...mapActions(useLogStore, ["unsetCurrentUser"]), 
     // ...mapActions(useLogStore, ["logouted"]), 
     signOut () {
@@ -105,6 +111,7 @@ export default {
         // delete localStorage.csrf
         // delete localStorage.signedIn
 
+        this.unsetLoa()
         this.unsetCurrentUser()
         this.$router.replace('/')
       })
