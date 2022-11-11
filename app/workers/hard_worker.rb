@@ -103,7 +103,7 @@ class HardWorker < ApplicationController
  			'https://www.blockchaingamer.biz/news/',
  			'https://massivelyop.com/category/new-games/',
  			'https://massivelyop.com/category/industry/',
- 			'https://massivelyop.com/category/interview/',
+ 			# 'https://massivelyop.com/category/interview/',
  			'https://massivelyop.com/category/mmorpg/']
 		@mass = Array.new
 		url.each_with_index do |url, index|
