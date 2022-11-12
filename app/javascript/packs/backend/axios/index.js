@@ -2,9 +2,9 @@ import axios from 'axios'
 
 import { useLogStore } from 'store.js'
 // const logStore = useLogStore();
-
-const API_URL = 'http://localhost:3000'
-// const API_URL = 'https://farmspot.ru'
+// const API_URL = window.location.href 
+// const API_URL = 'http://localhost:3000'
+const API_URL = 'https://farmspot.ru'
 const securedAxiosInstance = axios.create({ 
   baseURL: API_URL,
   withCredentials: true,
@@ -61,11 +61,11 @@ securedAxiosInstance.interceptors.response.use(null, error => {
         return plainAxiosInstance.request(retryConfig)
       }).catch(error => {
         const logStore = useLogStore();
-        logStore.unsetCurrentUser
+        logStore.unsetCurrentUser()
         // delete localStorage.csrf
         // delete localStorage.signedIn
         // redirect to signin in case refresh request fails
-        // location.replace('/')
+        location.replace('/')
         return Promise.reject(error)
       })
   } else {
