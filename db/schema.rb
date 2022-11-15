@@ -10,21 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_28_192755) do
+ActiveRecord::Schema.define(version: 2022_11_15_203624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "my_items", force: :cascade do |t|
+  create_table "listitems", force: :cascade do |t|
     t.string "title"
-    t.integer "qty"
-    t.integer "position"
-    t.string "desc"
+    t.integer "desc"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_listitems_on_title", unique: true
+  end
+
+  create_table "my_items", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "loa"
-    t.index ["title"], name: "index_my_items_on_title", unique: true
+    t.bigint "listitems_id"
+    t.index ["listitems_id"], name: "index_my_items_on_listitems_id"
     t.index ["user_id"], name: "index_my_items_on_user_id"
   end
 
@@ -65,6 +70,7 @@ ActiveRecord::Schema.define(version: 2022_07_28_192755) do
     t.integer "role", default: 0, null: false
   end
 
+  add_foreign_key "my_items", "listitems", column: "listitems_id"
   add_foreign_key "my_items", "users"
   add_foreign_key "todos", "users"
 end
