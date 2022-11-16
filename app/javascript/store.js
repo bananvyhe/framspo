@@ -9,6 +9,7 @@ export const useLogStore = defineStore("logStore", {
     currentUser: {},
   	rock: 3,
     loa: ls.get('load'),
+    loareg: ''
     // log: localStorage.signedIn ? true : false 
   }),
 
@@ -28,6 +29,9 @@ export const useLogStore = defineStore("logStore", {
   	thisloa(){
   		return this.loa
   	},
+    thisloareg(){
+      return this.loareg
+    },
   	// thislog(){
   	// 	return this.log
   	// }
@@ -47,8 +51,10 @@ export const useLogStore = defineStore("logStore", {
     unsetLoa () {
       this.loa = null
       ls.set('load', "") 
- 
     },    
+    setLoareg (val) {
+      this.loareg = val
+    },      
     refresh (csrf) {
       this.signedIn = true
       this.ctsrf = csrf
@@ -57,12 +63,20 @@ export const useLogStore = defineStore("logStore", {
     	console.log( "-----------")
 			console.log(loa)
 			console.log( "-----------")
- 			this.loa += loa
- 			ls.set('load', this.loa) 
+      if (this.signedIn == true){
+        this.loareg += loa
+      }else{
+        this.loa += loa
+        ls.set('load', this.loa)         
+      }
     },
-    decrement() {
-    	this.loa -= 3
-    	 ls.set('load', this.loa)
+    decrement(val) {
+      if (this.signedIn == true){
+        this.loareg -= val
+      }else{
+        this.loa -= val
+        ls.set('load', this.loa)     
+      }
     },
    //  logined() {
    //    this.log = true

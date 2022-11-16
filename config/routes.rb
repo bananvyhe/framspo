@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   # get '/*path', to: 'welcome#index' 
   get 'admin/users', controller: 'admin/users', action: :all
-
+get 'admin/all', controller: 'welcome#index' 
 
   # namespace :admin do
   #   resources :users, controller: 'admin/users'
@@ -49,14 +49,16 @@ Rails.application.routes.draw do
       patch :move
     end
   end 
-  post '/my_items', to: 'my_items#index' 
+  get '/my_items', to: 'my_items#index' 
+  post '/incloareg', to: 'my_items#incloareg'
+  post '/decloareg', to: 'my_items#decloareg' 
 # get 'page_controller/*path', to: 'welcome#index', format: false
 
   # get 'errors/not_found'
   # get 'errors/internal_server_error'   
   # get 'welcome/index'
   resources :users
-
+  delete 'deluser/:id', to: "users#deluser"
 	# get 'app', to: 'welcome#index'
  #  match "/404", :to => "errors#not_found", :via => :all
 	# match "/500", :to => "errors#internal_server_error", :via => :all

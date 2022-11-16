@@ -20,6 +20,7 @@
           <th>{{ user.id }}</th>
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
+          <td ><v-btn  @click="delitem(user.id)">удалить</v-btn></td>
 <!--           <td v-if="this.currentUser.role == 'admin'">
             <i class="fa fa-list-ul"></i>
           </td> -->
@@ -47,13 +48,7 @@ export default {
   created () {
     console.log("list created")
     if (this.signedIn && (this.currentUser.role == 'manager' || this.currentUser.role == 'admin')) {
-      this.$http.secured.get('/admin/users')
-
-        .then(response => { 
-          console.log(response.data)
-          this.users = response.data 
-        })
-        .catch(error => { this.setError(error, 'Something went wrong') })
+      this.getusers()
     } else {
       this.$router.replace('/')
     }
@@ -68,6 +63,23 @@ export default {
     }),     
   },  
   methods: {
+    getusers(){
+      this.$http.secured.get('/admin/users')
+
+        .then(response => { 
+ 
+          this.users = response.data 
+        })
+        .catch(error => { this.setError(error, 'Something went wrong') })
+    },
+    delitem(dat){
+      this.$http.secured.delete('/deluser/'+ dat)
+      .then(response => { 
+        this.getusers()
+      })
+      .catch(error => { this.setError(error, 'Something went wrong') })
+
+    },         
     setError (error, text) {
       this.error = (error.response && error.response.data && error.response.data.error) || text
     },
