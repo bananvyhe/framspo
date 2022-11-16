@@ -1,20 +1,32 @@
 class SignupController < ApplicationController
 	skip_before_action :verify_authenticity_token	
  	def create
-		if user_find
+		if user_find 
 			 render json: { errors: "Емайл уже зарегистрирован." }
 		else
-	    user = User.new({:email => params[:email], :password => params[:password], :password_confirmation => params[:password_confirmation]})
- 			items = MyItem.new
- 			if  params[:loa] > 1000
- 				loastat = 1000
- 			else
- 				loastat = params[:loa]
- 			end
- 			items.loa = loastat
- 			puts items
- 			user.myItem = items
+			loa = params[:loa]
+			 if  params[:loa] == nil
+			 	loa = 0
+			 elsif  params[:loa] > 1000
+			 	loa = 1000
+			 end
 
+	    user = User.new({:email => params[:email], :password => params[:password], :password_confirmation => params[:password_confirmation], :loa => loa})
+ 		# 	items = MyItem.new
+ 		# 	if  !params[:loa] 
+ 		# 		loastat = 0
+ 		# 	else
+ 		# 		if params[:loa] < 1000
+ 		# 			loastat = params[:loa]
+ 		# 		else
+ 		# 			loastat = 1000
+ 		# 		end
+ 		# 	end
+ 		# 	items.loa = loastat
+ 		# 	puts items
+ 		# 	user.myItem = items
+
+			# puts user.myItem.inspect
 	    if user.save
 	      payload  = { user_id: user.id, aud: [user.role] }
 	      session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true,
