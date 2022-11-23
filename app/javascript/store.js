@@ -4,16 +4,26 @@ import ls from 'localstorage-slim';
 export const useLogStore = defineStore("logStore", {
 
   state: () => ({
+
+    valueReuse: 0,   
+    reuse: false,
     signedIn: false,
     ctsrf: null,  
     currentUser: {},
   	rock: 3,
     loa: ls.get('load'),
-    loareg: ''
+    loareg: '',
+    pumpkdead: false,
     // log: localStorage.signedIn ? true : false 
   }),
 
   getters: {
+    thisvalue(){
+      return this.valueReuse
+    },      
+    thisreuse(){
+      return this.reuse
+    },    
     thiscurrentUser(){
       return this.currentUser
     },
@@ -32,12 +42,36 @@ export const useLogStore = defineStore("logStore", {
     thisloareg(){
       return this.loareg
     },
+    thispumpkdead(){
+      return this.pumpkdead
+    },    
   	// thislog(){
   	// 	return this.log
   	// }
   },
 
   actions: {
+    reuseCalc(){
+      this.reuse = true
+      this.interval = setInterval(() => {
+        console.log(this.reuse)
+        if (this.valueReuse === 100) {
+          this.reuse = false
+          console.log(this.reuse)
+          clearInterval(this.interval);
+          return (this.valueReuse = 0)
+
+        }
+        this.valueReuse += 10
+      }, 50)  
+
+    },
+    setPumpkDead () {
+      this.pumpkdead = true
+    },
+    setPumpkAlive () {
+      this.pumpkdead = false
+    },            
     setCurrentUser (currentUser, csrf) {
       this.currentUser = currentUser
       this.signedIn = true

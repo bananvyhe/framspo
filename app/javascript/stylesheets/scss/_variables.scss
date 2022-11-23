@@ -32,7 +32,7 @@ html {
 ::-webkit-scrollbar-corner { background-color: #646464;}
 ::-webkit-resizer { background-color: #666;}
 
-
+$progress-circular-overlay-transition: all .05s ease-in-out !default;
 $color-pack: false;
 $headings: (
  	'h5': (

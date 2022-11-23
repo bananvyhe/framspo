@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_16_095549) do
+ActiveRecord::Schema.define(version: 2022_11_16_202839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "listitems", force: :cascade do |t|
     t.string "title"
-    t.integer "desc"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "desc"
+    t.string "item"
+    t.index ["item"], name: "index_listitems_on_item", unique: true
     t.index ["title"], name: "index_listitems_on_title", unique: true
   end
 

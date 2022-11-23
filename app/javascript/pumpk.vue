@@ -1,24 +1,26 @@
 <template>
   <div class="main mx-0 my-0">
   
-    <div class="d-flex justify-center">
+<!--     <div class="d-flex justify-center">
       <v-tooltip top class="drop">
         <template v-slot:activator="{ on, attrs}">
-          <span  v-bind="attrs" v-on="on" class="goldenore">
+          <span  v-bind="attrs" v-on="on" class="ore">
           </span>
           <span  class="energy"></span>
         </template>
-        <span><span style="color:#ffe79f;">Большой золотой самородок</span> <br><span class="caption">можно забрать после регистрации</span></span>
+        <span><span style="color:#ffe79f;">Камень</span> <br><span class="caption">можно забрать после регистрации</span></span>
       </v-tooltip> 
-    </div>
+    </div> -->
 
-    <div v-if="loc == 'alive'" class="unit  " v-on:click="handler('foo','bar')"> 
+    <drop></drop>
+    
+    <div v-if="loc == 'alive'" class="unit  " v-on:click="handler('foo','bar')" > 
     	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
     	<damagecomp ref="hitt"></damagecomp>
       <div class="hpbar">
       	<v-progress-linear :value="hp" color="success"></v-progress-linear>
       </div>
-      <div class="character "></div>
+      <div class="character " :style="[ this.reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
     </div>
 
     <div v-if="loc == 'death'"   class="off" v-on:click="handler('foo','bar')"> 
@@ -33,6 +35,7 @@
 	</div>
 </template>
 <script>
+  import Drop from './packs/components/drop.vue'
   import { mapState, mapActions } from 'pinia' 
   import { useLogStore } from 'store.js'
   
@@ -44,25 +47,50 @@
     export default {   
 	  components: {
 	    'damagecomp': Damagecomp,
-
+      'drop': Drop
 	  },
     data: function (){
       return {
+        classObject: {
+          active: true,
+          'text-danger': false
+        },        
       	hpoints: 124,
         hp: 100,
         dmg: '',
         loc: ''
       }
     },
+    computed:{
+      ...mapState(useLogStore, {
+        reuse: "thisreuse",
+      }),         
+      ...mapState(useLogStore, {
+        signedIn: "thissignedIn",
+      }), 
+    },
     methods: {
-      ...mapActions(useLogStore, ["increments"]),         
+      ...mapActions(useLogStore, ["reuseCalc"]),        
+      ...mapActions(useLogStore, ["increments"]),
+      ...mapActions(useLogStore, ["setPumpkDead"]),
+      ...mapActions(useLogStore, ["setPumpkAlive"]),   
+      incloareg(){
+
+      },
     	handler(arg1,arg2){
-        this.hitn()
-    		if (ls.get('hey') == "death"){
-    			console.log("pumpk is dead!")
-    		}else{
-    			this.hitpumpk()
-    		}
+        
+        if (this.reuse == false){
+          this.hitn()
+          if (ls.get('hey') == "death"){
+            console.log("pumpk is dead!")
+          }else{
+            this.hitpumpk()
+            this.reuseCalc()
+          }
+        }else{
+
+        }
+
     	},
       hitn(){
         var hitn = gsap.timeline();
@@ -77,8 +105,9 @@
         })    
       },
     	hitpumpk(){
-    		var interval = 15000000;
-        // var interval = 16500;
+        
+    		// var interval = 15000000;
+        var interval = 26500;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -88,6 +117,7 @@
         console.log(this.hp)
         if (this.hpoints <= 0){
       		ls.set('hey', "death") 
+          this.setPumpkDead()
       		reset();
       		var min = 2
 			    var max = 5
@@ -95,9 +125,20 @@
 			    loa =  Math.round(loa)
 			    loa = Number(loa)
       		// this.$store.commit('increment', loa)
-          this.increments(loa)
-      		console.log(ls.get('load'))
-      		console.log(loa)
+          if (this.signedIn == true){
+            this.$http.secured.post('/incloareg', {loa: loa})
+            .then(response => { 
+               console.log(response)
+               this.increments(loa)   
+            })
+            .catch(error => { this.setError(error, 'Something went wrong') })
+          }else{
+            this.increments(loa)            
+          }
+
+
+      		// console.log(ls.get('load'))
+      		// console.log(loa)
         }else{
         	// localStorage.hp = "alive"
         	console.log("else hitpumpk ")
@@ -136,6 +177,7 @@
 				// if( localStorage.hp == "death"){
 				// 	reset();
 				// }
+        var self = this
 				setInterval(function(){
 					if( ls.get('hey') == "death" ){
 						// занесение в переменную оставшиеся милисекунды до окончания(обратный отсчет)
@@ -145,12 +187,14 @@
 			  	}
 			  	// если отсчет не завершился то присваиваем статус "мертвый" в локалсорадж
 			    if( remaining >= 0 ){
+            self.setPumpkDead()
 			      ls.set('hey', "death") 
 			      console.log("dead")
 			      console.log(remaining)
 			    }else if ( remaining < 0 ){
+            self.setPumpkAlive()
             var m3 = gsap.timeline();
-            m3.to(".goldenore",{
+            m3.to(".ore",{
               opacity: 0,
               display: "none",
               duration: 1
@@ -234,11 +278,11 @@
                         display: "none"
  
                       })                      
-                    gsap.set(".goldenore", {
+                    gsap.set(".ore", {
                       y: +15,
                     });
                     var m3 = gsap.timeline();
-                    m3.to(".goldenore",{
+                    m3.to(".ore",{
                       y: 0,
                       opacity: 1,
                       display: "inline",
@@ -279,7 +323,7 @@
 .main{
   position: relative;
 }
-.goldenore{
+/*.ore{
   display: none;
   z-index: 1;
   position: absolute;
@@ -288,9 +332,9 @@
   bottom: 0px;
   width: 38px;
   height: 38px;
-  background: url(./images/goldenoremini.png);
+  background: url(./images/ore.png);
   cursor: pointer;
-}
+}*/
 .hpoints{
 
 }
