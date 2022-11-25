@@ -57,7 +57,7 @@ export const useLogStore = defineStore("logStore", {
         console.log(this.reuse)
         if (this.valueReuse === 100) {
           this.reuse = false
-          console.log(this.reuse)
+          console.log("reuse false")
           clearInterval(this.interval);
           return (this.valueReuse = 0)
 

@@ -13,24 +13,30 @@
     </div> -->
 
     <drop></drop>
-    
+ <!-- <div class="mob" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"> -->
+  <!-- <div class="mob" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"> -->
     <div v-if="loc == 'alive'" class="unit  " v-on:click="handler('foo','bar')" > 
-    	<div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div>	
-    	<damagecomp ref="hitt"></damagecomp>
-      <div class="hpbar">
-      	<v-progress-linear :value="hp" color="success"></v-progress-linear>
-      </div>
-      <div class="character " :style="[ this.reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
-    </div>
-
-    <div v-if="loc == 'death'"   class="off" v-on:click="handler('foo','bar')"> 
       <div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div> 
-    	<damagecomp ref="hitt"></damagecomp>
+      <damagecomp ref="hitt"></damagecomp>
       <div class="hpbar">
         <v-progress-linear :value="hp" color="success"></v-progress-linear>
       </div>
-      <div class="death" style="transform: scale(1.5, 1.5);" ></div>
-    </div>  
+      <div class="character" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
+    </div>
+
+    <div v-if="loc == 'death'"   class="off " v-on:click="handler('foo','bar')"> 
+      <div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div> 
+      <damagecomp ref="hitt"></damagecomp>
+      <div class="hpbar">
+        <v-progress-linear :value="hp" color="success"></v-progress-linear>
+      </div>
+      <div class="death":style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
+    </div>       
+  <!-- </div> -->
+  
+
+ <!-- </div> -->
+
 
 	</div>
 </template>
@@ -142,6 +148,7 @@
         }else{
         	// localStorage.hp = "alive"
         	console.log("else hitpumpk ")
+
         }
         function reset(){
       		// занесение в локалсторадж даты окончания таймера
@@ -163,20 +170,13 @@
     	if(ls.get('endTimer') == "death"){
     		ls.set('hey', "alive") 
     	} 
-      // ls.set('hey', 'alive'); 
-	   // var crypto = ls.get('hey')
-			// var crypto = ls.get('hey')
-			// console.log(crypto)
+ 
     	if (ls.get('hey')){
     		this.loc = ls.get('hey')
     	}
     	
       window.addEventListener('load', () => {
-      	// console.log(+new Date + interval)
-      	// timer res pumpk
-				// if( localStorage.hp == "death"){
-				// 	reset();
-				// }
+ 
         var self = this
 				setInterval(function(){
 					if( ls.get('hey') == "death" ){
@@ -193,12 +193,12 @@
 			      console.log(remaining)
 			    }else if ( remaining < 0 ){
             self.setPumpkAlive()
-            var m3 = gsap.timeline();
-            m3.to(".ore",{
-              opacity: 0,
-              display: "none",
-              duration: 1
-            })
+            // var m3 = gsap.timeline();
+            // m3.to(".ore",{
+            //   opacity: 0,
+            //   display: "none",
+            //   duration: 1
+            // })
 			      var alive = gsap.timeline();
 			      alive.to(".off",{
               delay: 2,
@@ -251,47 +251,14 @@
 			          	ease: "steps(20)",
 			          	onComplete: end
 			          })
-					  	// 	.call(removeElement(".unit"))
-			     //      function removeElement(element) {
-								//   if (typeof(element) === "string") {
-								//     element = document.querySelector(element);
-								//   }
-								//   return function() {
-								//     element.parentNode.removeChild(element);
-								//   };
-								// }
-	 							function end(){
-	 								m2.to(".unit",{
-	 									className: "+=off",
-                    onComplete: oregen
-	 								})
-                  function oregen(){
-                    var m4 = gsap.timeline();
-                      m4.to(".energy",{
-                         
-                        opacity: 1,
-                        display: "inline"
- 
-                      }).to(".energy",{
-                        delay:0.7,
+      	      function end(){
+              var m2 = gsap.timeline();
+              m2.to(".unit",{
+                className: "+=off",
+                // onComplete: oregen
+              })
+      }
 
-                        display: "none"
- 
-                      })                      
-                    gsap.set(".ore", {
-                      y: +15,
-                    });
-                    var m3 = gsap.timeline();
-                    m3.to(".ore",{
-                      y: 0,
-                      opacity: 1,
-                      display: "inline",
-                      duration: 1.5,
-                      ease: "power4.out",
- 
-                    })
-                  }
-	 							}
 					  	}
 						}
           }
@@ -305,6 +272,9 @@
   }
 </script>
 <style scoped>
+.mob:hover{
+  cursor: url("./images/sword.png"), pointer;
+}
 .energy{
     display: none;
     opacity: 0;
@@ -355,7 +325,7 @@
   width: 48px;
 }
 .unit:hover{
-  cursor: url("./images/sword.png"), pointer;
+  /*cursor: url("./images/sword.png"), pointer;*/
 }
 
 .character {
@@ -364,5 +334,9 @@
   background: url(./images/sprites/monsters/pumpkina.png);
   image-rendering: pixelated;
   width: 48px;  height:48px; 
+  cursor: url("./images/sword.png"), pointer;
+}
+.character:hover{
+  cursor: url("./images/sword.png"), pointer;
 }
 </style>
