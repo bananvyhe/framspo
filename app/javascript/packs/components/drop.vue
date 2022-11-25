@@ -8,7 +8,7 @@
           </span>
           <span  class="energy"></span>
         </template>
-        <span><span style="color:#ffe79f;">Камень</span> <br><span >можно забрать после регистрации</span></span>
+        <span><span style="color:#ffe79f;">Золотая руда</span> <br><span >можно забрать после регистрации</span></span>
       </v-tooltip> 
     </div>
  </div>

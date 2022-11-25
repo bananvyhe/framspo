@@ -1,11 +1,6 @@
 <template>
-  <div class="d-flex ">
-    <!-- {{this.signedIn}}1 -->
-    <!-- -{{this.csrfstat}}- -->
-    
-    <!-- ++{{this.currentUser}}++ -->
-    <!-- {{this.currentUser.role}} -->
-    <!-- <a v-if="this.currentUser.role == 'admin'">Admin</a> -->
+  <div class="d-flex "> 
+
     <router-link  to="/admin/all" v-if="this.currentUser.role == 'admin'">
       Admin
     </router-link>
@@ -57,8 +52,8 @@
             </v-card-actions>
           </v-card>
         </template>
-      </v-dialog> -->
-
+      </v-dialog>
+ -->
     </div>
     <div  v-else class="loa  ">
       <!-- {{loa}} -->
@@ -88,19 +83,9 @@ export default {
     }
   },
   created() {
-    if (this.signedIn){
-      this.getloa()
-    }
     
   },  
   methods: {
-    getloa(){
-       this.$http.secured.get('/my_items')
-      .then(response => { 
-        this.loa = response.data
-      })
-      .catch(error => { this.setError(error, 'Something went wrong') })
-    },   
     ...mapActions(useLogStore, ["unsetLoa"]),     
     ...mapActions(useLogStore, ["unsetCurrentUser"]), 
     // ...mapActions(useLogStore, ["logouted"]), 
