@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_23_183825) do
+ActiveRecord::Schema.define(version: 2022_11_26_091911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dropitems", force: :cascade do |t|
+    t.bigint "mob_id"
+    t.bigint "listitem_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["listitem_id"], name: "index_dropitems_on_listitem_id"
+    t.index ["mob_id"], name: "index_dropitems_on_mob_id"
+  end
 
   create_table "listitems", force: :cascade do |t|
     t.string "title"
@@ -24,6 +33,14 @@ ActiveRecord::Schema.define(version: 2022_11_23_183825) do
     t.integer "rate"
     t.index ["item"], name: "index_listitems_on_item", unique: true
     t.index ["title"], name: "index_listitems_on_title", unique: true
+  end
+
+  create_table "mobs", force: :cascade do |t|
+    t.string "name"
+    t.string "hp"
+    t.string "loa"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "my_items", force: :cascade do |t|

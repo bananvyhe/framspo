@@ -36,7 +36,7 @@ export default {
   },
   watch:{
     pumpkdead: function (val){
-      // console.log("val")
+      console.log("DROPval")
     // console.log(val)
     if (val == true){
 
