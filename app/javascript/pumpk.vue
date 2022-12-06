@@ -1,21 +1,9 @@
 <template>
   <div class="main mx-0 my-0">
-  
-<!--     <div class="d-flex justify-center">
-      <v-tooltip top class="drop">
-        <template v-slot:activator="{ on, attrs}">
-          <span  v-bind="attrs" v-on="on" class="ore">
-          </span>
-          <span  class="energy"></span>
-        </template>
-        <span><span style="color:#ffe79f;">Камень</span> <br><span class="caption">можно забрать после регистрации</span></span>
-      </v-tooltip> 
-    </div> -->
 
     <drop></drop>
- <!-- <div class="mob" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"> -->
-  <!-- <div class="mob" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"> -->
-    <div v-if="loc == 'alive'" class="unit  " v-on:click="handler('foo','bar')" > 
+
+    <div v-if="loc == 'alive'" :class="loc == 'alive' ? 'unit' : 'off'  " v-on:click="handler('foo','bar')" > 
       <div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div> 
       <damagecomp ref="hitt"></damagecomp>
       <div class="hpbar">
@@ -23,15 +11,23 @@
       </div>
       <div class="character" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
     </div>
-
-    <div v-if="loc == 'death'"   class="off " v-on:click="handler('foo','bar')"> 
+<!--     <div v-if="loc == 'alive'" class="unit  " v-on:click="handler('foo','bar')" > 
       <div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div> 
       <damagecomp ref="hitt"></damagecomp>
       <div class="hpbar">
         <v-progress-linear :value="hp" color="success"></v-progress-linear>
       </div>
-      <div class="death":style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
-    </div>       
+      <div class="character" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
+    </div> -->
+
+<!--     <div v-if="loc == 'death'"   class="off " v-on:click="handler('foo','bar')"> 
+      <div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div> 
+      <damagecomp ref="hitt"></damagecomp>
+      <div class="hpbar">
+        <v-progress-linear :value="hp" color="success"></v-progress-linear>
+      </div>
+      <div class="death" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
+    </div>   -->     
   <!-- </div> -->
   
 
@@ -112,8 +108,9 @@
       },
     	hitpumpk(){
         
-    		var interval = 15000000;
-        // var interval = 26500;
+    		// var interval = 15000000;
+        var interval = 26500;
+        // var interval = 7000;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
 				var hpleft = this.hpoints - this.dmg
@@ -275,7 +272,7 @@
 .mob:hover{
   cursor: url("./images/sword.png"), pointer;
 }
-.energy{
+/*.energy{
     display: none;
     opacity: 0;
   top:22px;
@@ -283,13 +280,13 @@
   width: 150px;
   height: 70px;
   background: url(./images/energy27.gif);
-}
-.disdiv{
-  /*background-color: #dad;  */
+}*/
+/*.disdiv{
+ 
   position: absolute;
   bottom: 1.5em;
   right: 1.5em;
-}
+}*/
 .main{
   position: relative;
 }

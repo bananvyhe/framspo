@@ -1,15 +1,31 @@
 <template>
- <div> 
+ <div > 
+  <!-- {{drop}} -->
   <!-- {{pumpkdead}} -->
-      <div class="d-flex justify-center">
-      <v-tooltip top >
-        <template v-slot:activator="{ on, attrs}">
-          <span  v-bind="attrs" v-on="on" class="ore">
-          </span>
-          <span  class="energy"></span>
-        </template>
-        <span><span style="color:#ffe79f;">Золотая руда</span> <br><span >можно забрать после регистрации</span></span>
-      </v-tooltip> 
+      <div class="d-flex justify-center drop">
+
+        <div v-for="(item, index) in drop" :key= "item.id" >
+{{item.id}}
+          <v-tooltip top >
+            <template v-slot:activator="{ on, attrs}">
+              <span  v-bind="attrs" v-on="on" class="ore"  v-bind:style=" "></span>
+              <span  class="energy"></span>
+            </template>
+            <span>
+              <span style="color:#ffe79f;" >
+                <!-- {{item.title}} -->
+                123
+              </span> 
+              <br>
+              <span >
+                <!-- {{item.desc}} -->
+                321
+              </span>
+            </span>
+          </v-tooltip> 
+
+      </div>
+
     </div>
  </div>
 </template>
@@ -31,7 +47,7 @@ export default {
   name: 'Signin',
   data () {
     return {
-   
+      drop: ''
     }
   },
   watch:{
@@ -47,49 +63,42 @@ export default {
       //     className: "+=off",
       //     onComplete: oregen
       //   })
-        function oregen(){
-          var m4 = gsap.timeline();
-            m4.to(".energy",{
-               delay: 1.9,
-              opacity: 1,
-              display: "inline"
-
-            }).to(".energy",{
-              delay:0.7,
-
-              display: "none"
-
-            })                      
-          gsap.set(".ore", {
-
-            y: +15,
-          });
-          var m3 = gsap.timeline();
-          m3.to(".ore",{
+      
+      function oregen(){
+        var m4 = gsap.timeline();
+          m4.to(".energy",{
             delay: 1.9,
-            y: 0,
             opacity: 1,
-            display: "inline",
-            duration: 1.5,
-            ease: "power4.out",
+            display: "inline"
 
-          })
-        }
-      // }   
+          }).to(".energy",{
+            delay:0.7,
+            display: "none"
+          })                      
+        gsap.set(".ore", {
+          y: +15,
+        });
+        var m3 = gsap.timeline();
+        m3.to(".ore",{
+          delay: 1.9,
+          y: 0,
+          opacity: 1,
+          display: "inline",
+          duration: 1.5,
+          ease: "power4.out",
+        })
+      } 
       var drop = gsap.timeline();
       drop.add(oregen())     
-    }else{
-      var m3 = gsap.timeline();
-      m3.to(".ore",{
-        opacity: 0,
-        display: "none",
-        duration: 1
-      })
-         
+      }else{
+        var m3 = gsap.timeline();
+        m3.to(".ore",{
+          opacity: 0,
+          display: "none",
+          duration: 1
+        })   
+      }
     }
-   
-    }
-
   },
   mounted () {
     
@@ -113,6 +122,7 @@ export default {
        this.$http.plain.get('/my_items/getdrop')
       .then(response => { 
         console.log(response.data)
+        this.drop = response.data
         // this.loareg = response.data
         
       })
@@ -126,6 +136,9 @@ export default {
 /*.v-progress-circular {
   margin: 1rem;
 }*/
+.drop{
+  background-color: #ada;
+}
 .energy{
     display: none;
     opacity: 0;
@@ -135,18 +148,18 @@ export default {
   height: 70px;
   background: url(../../../javascript/images/energy27.gif);
 }
-.ore{
+/*.ore{
   display: none;
   z-index: 1;
   position: absolute;
-  
+  background-color: #dad;
   opacity: 0;
   bottom: 0px;
   width: 38px;
   height: 38px;
   background: url(../../../javascript/images/ore.png);
   cursor: pointer;
-}
+}*/
 .ore{
   display: none;
   z-index: 1;
