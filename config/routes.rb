@@ -48,12 +48,20 @@ get 'admin/all', controller: 'welcome#index'
       post :use_item
       patch :move
     end
+    collection do
+      get :getdrop
+    end
   end 
+  
   get '/my_items', to: 'my_items#index' 
   post '/incloareg', to: 'my_items#incloareg'
   post '/decloareg', to: 'my_items#decloareg' 
-# get 'page_controller/*path', to: 'welcome#index', format: false
+  # get 'my_items/getdrop' =>  'my_items#getdrop', :as => :getdrop
+ 
+ 
 
+# get 'page_controller/*path', to: 'welcome#index', format: false
+  
   # get 'errors/not_found'
   # get 'errors/internal_server_error'   
   # get 'welcome/index'

@@ -1,4 +1,4 @@
 class Mob < ApplicationRecord
-	has_many :dropitem
-	has_many :listitems, :through => :dropitem
+	has_many :dropitems
+	has_many :listitems, :through => :dropitems
 end

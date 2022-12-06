@@ -37,9 +37,10 @@ export default {
   watch:{
     pumpkdead: function (val){
       console.log("DROPval")
+     
     // console.log(val)
     if (val == true){
-
+      this.getdrop()
       // function end(){
       //   var m2 = gsap.timeline();
       //   m2.to(".unit",{
@@ -108,7 +109,15 @@ export default {
     
   },
   methods: {
- 
+    getdrop(){
+       this.$http.plain.get('/my_items/getdrop')
+      .then(response => { 
+        console.log(response.data)
+        // this.loareg = response.data
+        
+      })
+      .catch(error => { this.setError(error, 'Something went wrong') })
+    },   
   }
 }
 </script>
