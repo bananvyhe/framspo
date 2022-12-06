@@ -22,13 +22,13 @@ class MyItemsController < ApplicationController
 		  calc = rand(1..allchance.to_i)
 		  # puts item.listitem
 		  puts calc
-		  if calc = 1
-		  	drop << item 
+		  if calc == 1
+		  	drop << item.listitem.as_json(only: [:id, :title, :desc, :item, :rate])
 		  end
 		end
  		puts drop.inspect
   	# @items = Listitem.find(4)
-  	render json: @items
+  	render json: drop
   end
 
   def incloareg
