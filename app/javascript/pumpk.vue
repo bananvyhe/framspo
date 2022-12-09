@@ -1,15 +1,15 @@
 <template>
   <div class="main mx-0 my-0">
 
-    <drop></drop>
+    <drop class="drops"></drop>
 
-    <div v-if="loc == 'alive'" :class="loc == 'alive' ? 'unit' : 'off'  " v-on:click="handler('foo','bar')" > 
+    <div   :class="loc == 'alive' ? 'unit' : 'off'  " v-on:click="handler('foo','bar')" > 
       <div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div> 
       <damagecomp ref="hitt"></damagecomp>
       <div class="hpbar">
         <v-progress-linear :value="hp" color="success"></v-progress-linear>
       </div>
-      <div class="character" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
+      <div :class="loc == 'alive' ? 'character' : 'death'" :style="[  reuse ?  {cursor: 'not-allowed'}:{} ]"></div>
     </div>
 <!--     <div v-if="loc == 'alive'" class="unit  " v-on:click="handler('foo','bar')" > 
       <div class="hpoints d-flex justify-center subtitle-2">{{hpoints}}</div> 
@@ -63,6 +63,27 @@
         loc: ''
       }
     },
+    watch:{
+      pumpkdead: function (val){
+        if (val == true){
+
+        }else{
+
+            // var alive = gsap.timeline();
+            // alive.to(".off",{
+            //   delay: 2,
+            //   className: "+=unit",
+            // })
+            // var m1 = gsap.timeline();
+            // m1.to(".death",{
+            //   delay: 2,
+            //   className: "+=character",
+            //   onComplete: ressurect
+            // })
+
+        }
+      }
+    },
     computed:{
       ...mapState(useLogStore, {
         reuse: "thisreuse",
@@ -70,6 +91,9 @@
       ...mapState(useLogStore, {
         signedIn: "thissignedIn",
       }), 
+      ...mapState(useLogStore, {
+        pumpkdead: "thispumpkdead",
+      }),          
     },
     methods: {
       ...mapActions(useLogStore, ["reuseCalc"]),        
@@ -108,8 +132,8 @@
       },
     	hitpumpk(){
         
-    		// var interval = 15000000;
-        var interval = 26500;
+    		var interval = 15000000;
+        // var interval = 26500;
         // var interval = 7000;
     		this.$refs.hitt.hitcalc();
     		this.dmg = this.$refs.hitt.hit
@@ -164,6 +188,14 @@
     	}
  		},
     mounted() {
+    //               gsap.set(".energy", {
+    //   opacity: 0,
+    //   display: "none",
+    // }); 
+    // gsap.set(".ore", {
+    //   opacity: 0,
+    //   display: "none",
+    // }); 
     	if(ls.get('endTimer') == "death"){
     		ls.set('hey', "alive") 
     	} 
@@ -188,14 +220,9 @@
 			      ls.set('hey', "death") 
 			      console.log("dead")
 			      console.log(remaining)
-			    }else if ( remaining < 0 ){
-            self.setPumpkAlive()
-            // var m3 = gsap.timeline();
-            // m3.to(".ore",{
-            //   opacity: 0,
-            //   display: "none",
-            //   duration: 1
-            // })
+            }else if ( remaining < 0 ){
+              self.setPumpkAlive()
+
 			      var alive = gsap.timeline();
 			      alive.to(".off",{
               delay: 2,
@@ -207,10 +234,10 @@
 	 						className: "+=character",
 	 							onComplete: ressurect
 	 					})
-	 					console.log("alive")
-	 					ls.set('hey', "alive") 
-			    }
-			  }, 1000);		
+	 				    console.log("alive")
+	 				    ls.set('hey', "alive") 
+            }
+        }, 1000);		
 			  var self = this
 			  function ressurect() {	
 			  	self.hp = 100
@@ -235,10 +262,10 @@
           function myFunction(){
      				if (ls.get('hey') == "death"){
             	console.log("death")
-					    	m1.to(".character",{
-						     	className: "+=death",
-						     	onComplete: endFunc
-					    	})
+				    	m1.to(".character",{
+					     	className: "+=death",
+					     	onComplete: endFunc
+				    	})
 					  	function endFunc(){
 					    	m1.kill()
 					    	var m2 = gsap.timeline();
@@ -248,27 +275,30 @@
 			          	ease: "steps(20)",
 			          	onComplete: end
 			          })
-      	      function end(){
-              var m2 = gsap.timeline();
-              m2.to(".unit",{
-                className: "+=off",
-                // onComplete: oregen
-              })
-      }
-
-					  	}
-						}
+        	      function end(){
+                  var m2 = gsap.timeline();
+                  m2.to(".unit",{
+                    className: "+=off",
+                    // onComplete: oregen
+                  })
+                }
+				      }
+				    }
           }
         }
         var master = gsap.timeline();
         if (ls.get('hey') == "alive" || !ls.get('hey')){
-        	master.add(pumpk())
+          master.add(pumpk())
         }
       })
     }
   }
 </script>
 <style scoped>
+.drops{
+  bottom: 0px;
+  right: 0px;
+}
 .mob:hover{
   cursor: url("./images/sword.png"), pointer;
 }

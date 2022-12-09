@@ -8,9 +8,9 @@
             <!-- {{item.id}} -->
 
           <v-tooltip top >
-            <template   v-slot:activator="{ on, attrs}" :name="''+item.id">
+            <template   v-slot:activator="{ on, attrs}" :name="''+item.id" class="d-flex justify-center">
 
-              <div  v-bind="attrs" v-on="on" class="ore"  v-bind:style=" "></div>
+              <div  v-bind="attrs" v-on="on" class="ore"  v-bind:style="{backgroundImage: 'url(/images/'+item.item+'.png'}"></div>
               <div  class="energy"></div>
             </template>
             <span>
@@ -72,12 +72,14 @@ export default {
       setTimeout(function(){
         var m4 = gsap.timeline();
           m4.to(".energy",{
+            stagger: 1,
             delay: 1.9,
             opacity: 1,
             // display: "inline"
             visibility: "visible"
 
-          }).to(".energy",{
+          })
+          .to(".energy",{
             delay:0.7,
             opacity: 0,
             // display: "none",
@@ -91,6 +93,7 @@ export default {
           });
           var m3 = gsap.timeline();
           m3.to(".ore",{
+            stagger: 1,  
             delay: 1.9,
             y: 0,
             opacity: 1,
@@ -98,7 +101,25 @@ export default {
             visibility: "visible",
             duration: 1.5,
             ease: "power4.out",
-          })   
+            onComplete: oreswing
+          })
+            function oreswing(){
+              var m8 = gsap.timeline({repeat: -1});
+              m8.to(".ore",{
+                stagger: 1,
+                ease: "expo.in",
+                y: -2,
+                duration: 3,
+                ease: "elastic.in",
+              })
+              .to(".ore",{
+                // stagger: 1,
+                ease: "elastic.out", 
+                y: 0,
+                duration: 3,
+              })                   
+            }
+  
         },1000 );
       }else{
         var m3 = gsap.timeline();
@@ -167,9 +188,12 @@ export default {
 .energy{
   /*background-color: #dad;*/
     /*display: none;*/
+    margin-left: -57px;
     visibility: hidden;
     opacity: 0;
-  /*top:22px;*/
+  top:-16px;
+  /*left: -40px;*/
+
   position: absolute;
   /*position: relative;*/
   width: 150px;
@@ -198,7 +222,7 @@ position: relative;
   bottom: 0px;
   width: 38px;
   height: 38px;
-  background: url(../../../javascript/images/goldenore.png);
+  /*background: url(../../../javascript/images/goldenore.png);*/
   cursor: pointer;
 }
 </style>
