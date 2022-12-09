@@ -1,25 +1,27 @@
 <template>
- <div > 
+ <div class="dropzone d-flex "> 
   <!-- {{drop}} -->
   <!-- {{pumpkdead}} -->
       <div class="d-flex justify-center drop">
 
-        <div v-for="(item, index) in drop" :key= "item.id" >
-{{item.id}}
+        <div v-for="(item, index) in drop">
+            <!-- {{item.id}} -->
+
           <v-tooltip top >
-            <template v-slot:activator="{ on, attrs}">
-              <span  v-bind="attrs" v-on="on" class="ore"  v-bind:style=" "></span>
-              <span  class="energy"></span>
+            <template   v-slot:activator="{ on, attrs}" :name="''+item.id">
+
+              <div  v-bind="attrs" v-on="on" class="ore"  v-bind:style=" "></div>
+              <div  class="energy"></div>
             </template>
             <span>
               <span style="color:#ffe79f;" >
                 <!-- {{item.title}} -->
-                123
+                {{item.title}}
               </span> 
               <br>
               <span >
                 <!-- {{item.desc}} -->
-                321
+                {{item.desc}}
               </span>
             </span>
           </v-tooltip> 
@@ -47,62 +49,77 @@ export default {
   name: 'Signin',
   data () {
     return {
-      drop: ''
+      drop: []
     }
   },
   watch:{
+    drop: function (){
+      console.log("drop incoming")
+
+
+   
+    },
     pumpkdead: function (val){
       console.log("DROPval")
-     
+
     // console.log(val)
     if (val == true){
       this.getdrop()
-      // function end(){
-      //   var m2 = gsap.timeline();
-      //   m2.to(".unit",{
-      //     className: "+=off",
-      //     onComplete: oregen
-      //   })
-      
-      function oregen(){
+      console.log('val')
+      console.log(val)
+      console.log('val')
+ 
+      setTimeout(function(){
         var m4 = gsap.timeline();
           m4.to(".energy",{
             delay: 1.9,
             opacity: 1,
-            display: "inline"
+            // display: "inline"
+            visibility: "visible"
 
           }).to(".energy",{
             delay:0.7,
-            display: "none"
-          })                      
-        gsap.set(".ore", {
-          y: +15,
-        });
-        var m3 = gsap.timeline();
-        m3.to(".ore",{
-          delay: 1.9,
-          y: 0,
-          opacity: 1,
-          display: "inline",
-          duration: 1.5,
-          ease: "power4.out",
-        })
-      } 
-      var drop = gsap.timeline();
-      drop.add(oregen())     
+            opacity: 0,
+            // display: "none",
+            visibility: "hidden"
+          })
+          gsap.set(".ore", {
+            y: +15,
+            opacity: 0,
+            // display: "none",
+            visibility: "hidden"
+          });
+          var m3 = gsap.timeline();
+          m3.to(".ore",{
+            delay: 1.9,
+            y: 0,
+            opacity: 1,
+            // display: "inline",
+            visibility: "visible",
+            duration: 1.5,
+            ease: "power4.out",
+          })   
+        },1000 );
       }else{
         var m3 = gsap.timeline();
         m3.to(".ore",{
           opacity: 0,
-          display: "none",
+          // display: "none",
+          visibility: "hidden",
           duration: 1
         })   
       }
     }
   },
   mounted () {
-    
-    },
+    // gsap.set(".energy", {
+    //   opacity: 0,
+    //   // display: "none",
+    // }); 
+    // gsap.set(".ore", {
+    //   opacity: 0,
+    // });      
+  },
   computed: {
       // ...mapState(useLogStore, {
       //   reuse: "thisreuse",
@@ -118,11 +135,14 @@ export default {
     
   },
   methods: {
+
     getdrop(){
+
        this.$http.plain.get('/my_items/getdrop')
       .then(response => { 
         console.log(response.data)
         this.drop = response.data
+
         // this.loareg = response.data
         
       })
@@ -133,17 +153,25 @@ export default {
 </script>
 
 <style lang="css">
+.dropzone{
+  position: absolute;
+/*background-color: #da4;*/
+}
 /*.v-progress-circular {
   margin: 1rem;
 }*/
 .drop{
-  background-color: #ada;
+  /*background-color: #ada;*/
+  position: relative;
 }
 .energy{
-    display: none;
+  /*background-color: #dad;*/
+    /*display: none;*/
+    visibility: hidden;
     opacity: 0;
-  top:22px;
+  /*top:22px;*/
   position: absolute;
+  /*position: relative;*/
   width: 150px;
   height: 70px;
   background: url(../../../javascript/images/energy27.gif);
@@ -161,11 +189,12 @@ export default {
   cursor: pointer;
 }*/
 .ore{
-  display: none;
-  z-index: 1;
-  position: absolute;
-  
+  /*display: none;*/
+  visibility: hidden;
   opacity: 0;
+  z-index: 1;
+  /*position: absolute;*/
+position: relative;
   bottom: 0px;
   width: 38px;
   height: 38px;
