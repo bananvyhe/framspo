@@ -12,8 +12,8 @@
         @click="signOut">выйти
       </v-btn>  
     </div>  
-    <div v-if="this.signedIn == false">
-<!--       <v-dialog
+  <!--   <div v-if="this.signedIn == false">
+      <v-dialog
         transition="dialog-top-transition"
         max-width="600">
         <template v-slot:activator="{ on, attrs }">
@@ -53,8 +53,8 @@
           </v-card>
         </template>
       </v-dialog>
- -->
-    </div>
+
+    </div> -->
     <div  v-else class="loa  ">
       <!-- {{loa}} -->
     </div>
