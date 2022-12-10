@@ -10,7 +10,7 @@
           <v-tooltip top >
             <template   v-slot:activator="{ on, attrs}" :name="''+item.id" class="d-flex justify-center">
 
-              <div  v-bind="attrs" v-on="on" class="ore"  v-bind:style="{backgroundImage: 'url(/images/'+item.item+'.png'}"></div>
+              <div :style="[   signedIn == true ?  {cursor: 'pointer'}:{cursor: 'not-allowed'} ]"><div  v-bind="attrs" v-on="on" class="ore"  v-bind:style="{backgroundImage: 'url(/images/'+item.item+'.png'}"></div></div>
               <div  class="energy"></div>
             </template>
             <span>
@@ -147,6 +147,9 @@ export default {
       // }),          
     ...mapState(useLogStore, {
       pumpkdead: "thispumpkdead",
+    }), 
+    ...mapState(useLogStore, {
+      signedIn: "thissignedIn",
     }),      
   },    
   created () {
@@ -218,11 +221,11 @@ export default {
   opacity: 0;
   z-index: 1;
   /*position: absolute;*/
-position: relative;
+  position: relative;
   bottom: 0px;
   width: 38px;
   height: 38px;
   /*background: url(../../../javascript/images/goldenore.png);*/
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 </style>
