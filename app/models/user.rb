@@ -1,8 +1,8 @@
 class User < ApplicationRecord
 	has_secure_password
 	has_many :todos
-	has_one :myItem, :dependent => :destroy
-	has_many :listitems, :through => :myItem
+	has_many :myItems, :dependent => :destroy
+	has_many :listitems, :through => :myItems
 	enum role: %i[user manager admin].freeze
 
 	validates :email,

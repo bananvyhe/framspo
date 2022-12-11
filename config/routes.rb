@@ -47,9 +47,11 @@ get 'admin/all', controller: 'welcome#index'
     member do
       post :use_item
       patch :move
+
     end
     collection do
       get :getdrop
+      post :pickdrop
     end
   end 
   

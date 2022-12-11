@@ -10,7 +10,7 @@
           <v-tooltip top >
             <template   v-slot:activator="{ on, attrs}" :name="''+item.id" class="d-flex justify-center">
 
-              <div :style="[   signedIn == true ?  {cursor: 'pointer'}:{cursor: 'not-allowed'} ]"><div  v-bind="attrs" v-on="on" class="ore"  v-bind:style="{backgroundImage: 'url(/images/'+item.item+'.png'}"></div></div>
+              <div :style="[ signedIn == true ?  {cursor: 'pointer'}:{cursor: 'not-allowed'} ]" v-on:click="pickdrop(item.id)" ><div  v-bind="attrs" v-on="on" class="ore"  v-bind:style="{backgroundImage: 'url(/images/'+item.item+'.png'}"></div></div>
               <div  class="energy"></div>
             </template>
             <span>
@@ -159,9 +159,19 @@ export default {
     
   },
   methods: {
+    pickdrop(val){
+      console.log("pickdrop")
+       this.$http.secured.post('/my_items/pickdrop',{id: val})
+      .then(response => { 
+        console.log(response.data)
+ 
 
+        // this.loareg = response.data
+        
+      })
+      .catch(error => { this.setError(error, 'Something went wrong') })      
+    },
     getdrop(){
-
        this.$http.plain.get('/my_items/getdrop')
       .then(response => { 
         console.log(response.data)
