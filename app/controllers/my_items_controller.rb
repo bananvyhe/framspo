@@ -10,14 +10,24 @@ class MyItemsController < ApplicationController
   def pickdrop
   	# puts "---====pickdrop=====----"
   	# puts params[:id]
+  	usfind = User.find(payload['user_id'])
   	@@drop.each do |item| 
   		puts item.inspect
   		if item.fetch("id") == params[:id]
 
   			# usfind = User.find(payload['user_id'])
   			invfind = MyItem.where('listitem_id = ?', params[:id]).joins(:user).where('users.id = ?', payload['user_id']) 
+  			if invfind.empty?
+  				itfind = Listitem.find(params[:id])
+  				usfind.listitems << itfind  				
+  				puts "item added"
+  			elsif 
+
+  				puts "item already exist"
+  			end
+  					
 				puts "true"
-				puts invfind.inspect
+				puts invfind 
 				puts "true"
   		# 	itfind = Listitem.find(params[:id])
 
