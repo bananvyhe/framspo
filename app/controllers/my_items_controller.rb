@@ -11,32 +11,32 @@ class MyItemsController < ApplicationController
   	# puts "---====pickdrop=====----"
   	# puts params[:id]
   	usfind = User.find(payload['user_id'])
+  	@invfind = MyItem.where('listitem_id = ?', params[:id]).joins(:user).where('users.id = ?', payload['user_id']).first 
   	@@drop.each do |item| 
   		puts item.inspect
   		if item.fetch("id") == params[:id]
 
   			# usfind = User.find(payload['user_id'])
-  			invfind = MyItem.where('listitem_id = ?', params[:id]).joins(:user).where('users.id = ?', payload['user_id']) 
-  			if invfind.empty?
+  			
+  			if !@invfind 
   				itfind = Listitem.find(params[:id])
-  				usfind.listitems << itfind  				
+  				usfind.listitems << itfind
+  				# puts "---------"
+  				# puts @invfind.inspect 
+  				addit = usfind.myItems.where('listitem_id = ?', params[:id]).first
+  				# puts addit.inspect 
+  				addit.qty += 1
+  				addit.save
+  				# puts usfind.myItems.inspect 
   				puts "item added"
   			elsif 
-
-  				puts "item already exist"
+  				@invfind.qty += 1 
+  				# puts @invfind.inspect 
+  				@invfind.save
+  				# puts item
+  				# puts "item already exist"
   			end
-  					
-				puts "true"
-				puts invfind 
-				puts "true"
-  		# 	itfind = Listitem.find(params[:id])
-
-  		# 	usfind.listitems << itfind
-  		# puts "true"
-  		# puts itfind.inspect
-
-
-
+  			@@drop.delete(item)
   		elsif 
   		puts 	"false"
   		end
