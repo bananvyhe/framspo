@@ -50,6 +50,7 @@ get 'admin/all', controller: 'welcome#index'
 
     end
     collection do
+      get :menuget
       get :getdrop
       post :pickdrop
     end

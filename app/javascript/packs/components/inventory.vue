@@ -98,6 +98,7 @@ export default {
   },
   created() {
     this.getloareg()
+    this.menuget()
   },
   methods: {
     ...mapActions(useLogStore, ["setLoareg"]),     
@@ -109,7 +110,19 @@ export default {
         this.setLoareg(response.data)
       })
       .catch(error => { this.setError(error, 'Something went wrong') })
-    },       
+    }, 
+    menuget(){
+      console.log("menuget")
+   this.$http.secured.get('/my_items/menuget')
+      .then(response => { 
+        console.log(response.data)
+ 
+
+        // this.loareg = response.data
+        
+      })
+      .catch(error => { this.setError(error, 'Something went wrong') })            
+    },   
     oneClick: function(event, id) {
       this.clicks++
         if (this.clicks === 1) {

@@ -1,12 +1,17 @@
 class MyItemsController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	before_action :authorize_access_request!, only: [:index, :incloareg, :decloareg, :pickdrop]
+	before_action :authorize_access_request!, only: [:index, :incloareg, :decloareg, :pickdrop, :menuget]
 
   def index
 		@MyItem = User.find(payload['user_id'])
 		
 		render json: @MyItem.loa
   end	
+  def menuget
+  	puts "==----menuget---=="
+  	@invfind = MyItem.joins(:user).where('users.id = ?', payload['user_id'])  
+  	render json: @invfind
+  end
   def pickdrop
   	# puts "---====pickdrop=====----"
   	# puts params[:id]
