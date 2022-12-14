@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class=""> 
      <v-menu
       v-model="menu"
       :close-on-content-click="false"
@@ -7,12 +7,17 @@
       offset-y>
       <template v-slot:activator="{ on, attrs }">
         <div
-          class="inventory d-flex"
+          class="inventory d-flex "
           color="indigo"
           dark
           v-bind="attrs"
           v-on="on">
         </div>
+        <div class="px-2">
+          {{loareg}}
+        </div>
+
+
       </template>
       <v-card
         elevation="2"
@@ -26,7 +31,7 @@
 
             <v-tooltip  top>
                <template v-slot:activator="{ on, attrs}">
-                <div v-on="on" v-bind="attrs" class="item-inv" v-bind:style="{backgroundImage: `url('${item.image}')`}">
+                <div v-on="on" v-bind="attrs" class="item-inv" v-bind:style="{backgroundImage: 'url(/images/'+item.image+'.png'}">
 <!--                   <span  v-bind="attrs" v-on="on" v-bind:style="{backgroundImage: `url('${item.image}')`}">
                   </span>    -->                
                 </div>
@@ -75,7 +80,7 @@ export default {
       clicks: 0,
       timer: null,  
           
-      items: [{id: 1, position: 1, item_name: 'Золотой самородок', qty: 25, image: '../../images/goldenore.png', desc: 'ценный ресурс для оплаты ключевых действий'},{id: 2, position: 2, item_name: 'Золотой самородок', qty: 12, image: '../../images/goldenore.png', desc: 'ценный ресурс для оплаты ключевых действий'}],
+      items: [{id: 1, position: 1, item_name: 'Золотой самородок', qty: 25, image: 'gold', desc: 'ценный ресурс для оплаты ключевых действий'},{id: 2, position: 2, item_name: 'Золотой самородок', qty: 12, image: 'gold', desc: 'ценный ресурс для оплаты ключевых действий'}],
       isOpen: false,
     }
   },
@@ -87,9 +92,24 @@ export default {
     }
   },
   computed: {
-
+    ...mapState(useLogStore, {
+      loareg: "thisloareg",
+    }),    
+  },
+  created() {
+    this.getloareg()
   },
   methods: {
+    ...mapActions(useLogStore, ["setLoareg"]),     
+    getloareg(){
+       this.$http.secured.get('/my_items')
+      .then(response => { 
+        console.log(response.data)
+        // this.loareg = response.data
+        this.setLoareg(response.data)
+      })
+      .catch(error => { this.setError(error, 'Something went wrong') })
+    },       
     oneClick: function(event, id) {
       this.clicks++
         if (this.clicks === 1) {
@@ -178,7 +198,7 @@ export default {
 }
  .inventory{
   /*background-color: #ada;*/
-  width: 40px;
+  width: 50px;
   height: 40px;
   /*background-color: #dad;*/
   position: absolute;
