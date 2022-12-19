@@ -81,7 +81,7 @@ export default {
               opacity: 0,
              })
              .to(".ore",{
-              y: 45,
+              y: 25,
               display: "none",
              })
            
@@ -134,24 +134,25 @@ export default {
           // stagger: 1.9,
           stagger: {
             
-            each: 1.9,
+            each: 1.5,
             // onStart: bgadd,
             // duration: 0.7,
             onComplete: bgnull,
           },
-
-          duration: 1.2,
-          delay: 2.5,
+          background: 'url(/images/energyonce.gif?a='+Math.random()+')',
+          duration: 1.5,
+          delay: 2.5, 
           opacity: 1,
           // display: "inline"
           visibility: "visible",
-          background: 'url(/images/energyonce.gif)',
+          
           // onComplete: bgnull
         })
         // function bgadd(){
         //   var m11 = gsap.timeline();
         //    m11.to(".energy",{
-        //     background: 'url(/images/energyonce.gif)',
+ 
+        //     background: 'url(/images/energyonce.gif?a='+Math.random()+')',
         //    })
         // }
 
@@ -174,7 +175,7 @@ export default {
         }
 
         gsap.set(".ore", {
-          y: 45,
+          y: 25,
           opacity: 0,
           display: "none",
           // visibility: "hidden"
@@ -220,12 +221,14 @@ export default {
     },    
     pickdrop(val){
       console.log("pickdrop")
-       this.$http.secured.post('/my_items/pickdrop',{id: val})
-      .then(response => { 
-        console.log(response.data)
-        // this.loareg = response.data
-      })
-      .catch(error => { this.setError(error, 'Something went wrong') })      
+      if (this.signedIn == true){
+         this.$http.secured.post('/my_items/pickdrop',{id: val})
+        .then(response => { 
+          console.log(response.data)
+          // this.loareg = response.data
+        })
+        .catch(error => { this.setError(error, 'Something went wrong') })   
+      }   
     },
     getdrop(){
        this.$http.plain.get('/my_items/getdrop')
