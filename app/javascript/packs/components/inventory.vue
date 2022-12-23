@@ -31,13 +31,15 @@
 
             <v-tooltip  top>
                <template v-slot:activator="{ on, attrs}">
-                <div v-on="on" v-bind="attrs" class="item-inv" v-bind:style="{backgroundImage: 'url(/images/'+item.item+'.png'}">
+
+                <div v-on="on" v-bind="attrs" class="item-inv px-1 py-0 d-flex justify-end align-end" v-bind:style="{backgroundImage: 'url(/images/'+item.item+'.png'}">
 <!--                   <span  v-bind="attrs" v-on="on" v-bind:style="{backgroundImage: `url('${item.image}')`}">
-                  </span>    -->                
+                  </span>    -->  {{item.qty}}              
                 </div>
               </template>
-                <span><span style="color:#ffe79f;">{{item.item_name}}</span> <br><span class="caption">{{item.desc}}</span></span>
-
+                <span>
+                  <span style="color:#ffe79f;">{{item.title}}</span> 
+                  <br><span class="caption">{{item.desc}}</span></span>
            <!--    <div slot="content">
                 <h5 style="padding-left: 0.5em;">{{item.item_name}}</h5><p>{{item.description}}</p>
               </div>
