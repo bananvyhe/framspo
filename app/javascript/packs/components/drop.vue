@@ -128,12 +128,10 @@ export default {
   methods: {
     dropanim(){
       this.$nextTick(function () {
-
         var m4 = gsap.timeline();
         m4.to(".energy",{
           // stagger: 1.9,
           stagger: {
-            
             each: 1.5,
             // onStart: bgadd,
             // duration: 0.7,
@@ -145,7 +143,6 @@ export default {
           opacity: 1,
           // display: "inline"
           visibility: "visible",
-          
           // onComplete: bgnull
         })
         // function bgadd(){
@@ -158,7 +155,6 @@ export default {
 
         // var self = this
         function bgnull(){
-           
           // console.log(self.pumpkdead)
           console.log(" pumpkdead")
           var m9 = gsap.timeline();
@@ -170,17 +166,14 @@ export default {
           // opacity: 0,
           // display: "none",
           // visibility: "hidden"
-
           })
         }
-
         gsap.set(".ore", {
           y: 25,
           opacity: 0,
           display: "none",
           // visibility: "hidden"
         });
-
         var m3 = gsap.timeline();
         m3.to(".ore",{
           stagger: 1.2,
@@ -193,7 +186,6 @@ export default {
           ease: "power4.out",
           onComplete: oreswing
         })
-
         // var self = this 
         function oreswing(){
           var self = this
@@ -214,8 +206,6 @@ export default {
               duration: 3,
             })   
           }
-
-                
         }
       })
     },    
