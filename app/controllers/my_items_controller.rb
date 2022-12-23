@@ -9,7 +9,19 @@ class MyItemsController < ApplicationController
   end	
   def menuget
   	puts "==----menuget---=="
-  	@invfind = MyItem.joins(:user).where('users.id = ?', payload['user_id'])  
+  	@invfind = MyItem.where('user_id = ?', payload['user_id'])
+  		.joins(:listitem).select(:id, :qty, :'listitems.title', :'listitems.desc', :'listitems.item', :'listitems.rate' )
+
+  		# .select(' qty, listitems.title')
+  		# .joins(:listitem)
+  		# .joins(:user)
+  		# .where('user_id = ?', payload['user_id'])
+  	puts @invfind.inspect
+
+  	# @invfind.each do |item| 
+  	# 	puts item.listitem.inspect
+  	# end
+  	puts "==----menuget---==" 
   	render json: @invfind
   end
   def pickdrop
