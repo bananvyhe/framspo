@@ -18,22 +18,18 @@
         <div class="px-2">
           {{loareg}}
         </div>
-
-
       </template>
       <v-card
         elevation="2"
         min-height="200">
-        <div v-if="items == 0" ><h4>пустой инвентарь</h4></div>
+        <div v-if="thisinv == 0" ><h4>пустой инвентарь</h4></div>
         <draggable 
           class="inv" 
-          v-model="Array.from(items)"  
+          v-model="Array.from(thisinv)"  
           @end="itemMoved">
-          <div v-for="(item, index) in thisinv" class="one-item" v-on:click="oneClick(item.item_name, item.id)"> 
-
+          <div v-for="(item, index) in thisinv" class="one-item" v-on:click="oneClick(item.item_name, item.listid)">
             <v-tooltip  top>
                <template v-slot:activator="{ on, attrs}">
-
                 <div v-on="on" v-bind="attrs" class="item-inv px-1 py-0 d-flex justify-end align-end" v-bind:style="{backgroundImage: 'url(/images/'+item.item+'.png'}">
 <!--                   <span  v-bind="attrs" v-on="on" v-bind:style="{backgroundImage: `url('${item.image}')`}">
                   </span>    -->  {{item.qty}}              
@@ -60,12 +56,11 @@
 <script>
 import { mapState, mapActions } from 'pinia' 
 import { useLogStore } from 'store.js'
-// import { mapGetters } from 'vuex';
 import axios from 'axios'  
 import draggable from "vuedraggable"
 export default {
   components: { draggable },
-  // props:['isOpen'],
+ 
   
   data() {
     return {
@@ -188,6 +183,8 @@ export default {
       var data = new FormData
  
       data.append("my_item[position]", event.newIndex + 1)
+      // console.log(data)
+
       axios({
         method: 'PATCH',
         url: `/my_items/${this.items[event.newIndex].id}/move`,

@@ -7,11 +7,15 @@ class MyItemsController < ApplicationController
 		
 		render json: @MyItem.loa
   end	
+
+	def move
+    @item.update(my_item_params)
+  end   
   def menuget
   	puts "==----menuget---=="
 
   	@invfind = MyItem.where('user_id = ?', payload['user_id'])
-  		.joins(:listitem).select(:qty, :'listitems.title', :'listitems.desc', :'listitems.item', :'listitems.rate', :'listitems.id' )
+  		.joins(:listitem).select('my_items.id', 'qty', 'listitems.title', 'listitems.desc', 'listitems.item', 'listitems.rate', 'listitems.id as listid' )
 
   # 	user = User.find(payload['user_id'])
 
@@ -114,7 +118,7 @@ class MyItemsController < ApplicationController
   end
 
 	private
-  	# def MyItem_params
-   #  	params.permit(:loa)
-  	# end			 
+ def my_item_params
+    params.require(:my_item).permit(   :position, :qty,  )
+  end		 
 end
