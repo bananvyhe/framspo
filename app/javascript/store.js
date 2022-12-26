@@ -4,7 +4,7 @@ import ls from 'localstorage-slim';
 export const useLogStore = defineStore("logStore", {
 
   state: () => ({
-
+    inventory: [],
     valueReuse: 0,   
     reuse: false,
     signedIn: false,
@@ -18,6 +18,9 @@ export const useLogStore = defineStore("logStore", {
   }),
 
   getters: {
+    thisinv(){
+      return this.inventory
+    },     
     thisvalue(){
       return this.valueReuse
     },      
@@ -66,6 +69,38 @@ export const useLogStore = defineStore("logStore", {
       }, 50)  
 
     },
+    upinv(val){
+     console.log( "-----------")
+      var res = this.inventory 
+ // console.log(this.inventory )
+ const newArray = this.inventory.map(item => {
+    if (item.id === val) {
+      return {...item, qty: item.qty++};
+    }
+    return item;
+  });
+ console.log( "................")    
+ console.log(newArray);
+ console.log( "...............")    
+  // let renmeObjectKey = (object) => {
+  //   object.qty += 1;
+  //   delete object.name;
+  // };
+ 
+
+       // var item = this.inventory.forEach(el => el.id == val) 
+ 
+      // console.log(this.inventory )
+      console.log(val)
+      console.log( "-----------")      
+    
+       
+    },
+    setinv(val) {
+        console.log(val)
+        this.inventory = val
+
+    },
     setPumpkDead () {
       this.pumpkdead = true
     },
@@ -94,9 +129,9 @@ export const useLogStore = defineStore("logStore", {
       this.ctsrf = csrf
     },
     increments(loa) {
-    	console.log( "-----------")
-			console.log(loa)
-			console.log( "-----------")
+   //  	console.log( "-----------")
+			// console.log(loa)
+			// console.log( "-----------")
       if (this.signedIn == true){
         this.loareg += loa
       }else{

@@ -9,9 +9,17 @@ class MyItemsController < ApplicationController
   end	
   def menuget
   	puts "==----menuget---=="
-  	@invfind = MyItem.where('user_id = ?', payload['user_id'])
-  		.joins(:listitem).select(:id, :qty, :'listitems.title', :'listitems.desc', :'listitems.item', :'listitems.rate' )
 
+  	@invfind = MyItem.where('user_id = ?', payload['user_id'])
+  		.joins(:listitem).select(:qty, :'listitems.title', :'listitems.desc', :'listitems.item', :'listitems.rate', :'listitems.id' )
+
+  # 	user = User.find(payload['user_id'])
+
+		# my_items = user.myItems.includes(:listitem).group(:listitem_id) 
+ 
+
+
+  	# @invfind = MyItem.where('listitem_id = ?', params[:id]).joins(:user).where('users.id = ?', payload['user_id']) 
   		# .select(' qty, listitems.title')
   		# .joins(:listitem)
   		# .joins(:user)

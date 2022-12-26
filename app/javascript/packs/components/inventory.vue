@@ -1,5 +1,7 @@
 <template>
   <div class=""> 
+    <!-- {{thisinv}} -->
+    <!-- {{items}} -->
      <v-menu
       v-model="menu"
       :close-on-content-click="false"
@@ -27,7 +29,7 @@
           class="inv" 
           v-model="Array.from(items)"  
           @end="itemMoved">
-          <div v-for="(item, index) in items" class="one-item" v-on:click="oneClick(item.item_name, item.id)"> 
+          <div v-for="(item, index) in thisinv" class="one-item" v-on:click="oneClick(item.item_name, item.id)"> 
 
             <v-tooltip  top>
                <template v-slot:activator="{ on, attrs}">
@@ -87,13 +89,17 @@ export default {
     }
   },
   watch: {
+  
     isOpen(){
       if (this.isOpen == true) {
-        this.ItemsGet()
+        // this.ItemsGet()
       }
     }
   },
-  computed: {
+  computed: {   
+    ...mapState(useLogStore, {
+      thisinv: "thisinv",
+    }),      
     ...mapState(useLogStore, {
       loareg: "thisloareg",
     }),    
@@ -103,6 +109,7 @@ export default {
     this.menuget()
   },
   methods: {
+    ...mapActions(useLogStore, ["setinv"]),
     ...mapActions(useLogStore, ["setLoareg"]),     
     getloareg(){
        this.$http.secured.get('/my_items')
@@ -117,8 +124,10 @@ export default {
       console.log("menuget")
       this.$http.secured.get('/my_items/menuget')
       .then(response => { 
-        console.log(response.data)
-        this.items = response.data
+        // console.log(response.data)
+        // this.items = response.data
+        this.setinv(response.data)
+        // this.items = this.thisinv
       })
       .catch(error => { this.setError(error, 'Something went wrong') })            
     },   
