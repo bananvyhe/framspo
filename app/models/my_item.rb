@@ -1,8 +1,8 @@
 class MyItem < ApplicationRecord
-	acts_as_list scope: :listitem
-
+	
+	scope :sorted, ->{ order(position: :asc) }
   belongs_to :user
   belongs_to :listitem
-  acts_as_list scope: :listitem
+  acts_as_list  scope: :user 
  
 end
