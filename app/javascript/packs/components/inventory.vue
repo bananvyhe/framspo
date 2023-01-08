@@ -1,6 +1,5 @@
 <template>
-  <div class=""> 
-    <!-- {{thisinv}} -->
+  <div class="">
     <!-- {{items}} -->
      <v-menu
       v-model="menu"
@@ -24,10 +23,11 @@
         min-height="200">
         <div v-if="thisinv == 0" ><h4>пустой инвентарь</h4></div>
         <draggable 
-          class="inv" 
-          v-model="Array.from(thisinv)"  
-          @end="itemMoved">
-          <div v-for="(item, index) in thisinv" class="one-item" v-on:click="oneClick(item.item_name, item.listid)">
+ 
+          class="inv"
+          :list="Array.from(thisinv)"
+          @change="itemMoved">
+          <div v-for="(item, index) in thisinv" class="one-item" v-on:click="oneClick(item.item_name, item.listid)" :key="item.id">
             <v-tooltip  top>
                <template v-slot:activator="{ on, attrs}">
                 <div v-on="on" v-bind="attrs" class="item-inv px-1 py-0 d-flex justify-end align-end" v-bind:style="{backgroundImage: 'url(/images/'+item.item+'.png'}">
@@ -50,7 +50,11 @@
 
       </v-card>
     </v-menu>
-
+  <div style="width: 500px; font-size: 0.8em">
+    {{thisinv}}
+    <br>
+    {{items}}
+  </div>
   </div>
 </template>
 <script>
@@ -122,7 +126,7 @@ export default {
         // console.log(response.data)
         // this.items = response.data
         this.setinv(response.data)
-        // this.items = this.thisinv
+        this.items = this.thisinv
       })
       .catch(error => { this.setError(error, 'Something went wrong') })            
     },   
@@ -162,41 +166,45 @@ export default {
          
       })
     },
-    itemsGet(){
-      console.log('ItemsGet')
-      axios({
-        method: 'get',
-        url: '/my_items',
-        headers: {
-          'Authorization': 'bearer '+this.token.access
-        } 
-        })
-        .then((response) => { 
-           // console.log(response)
-          this.items= ''
-          var total = response.data
-          this.items = total
-        });      
-    },
     itemMoved: function(event) {
-      // this.$http.secured.path(`/my_items/${this.items[event.newIndex].id}/move`)
-      var data = new FormData
- 
-      data.append("my_item[position]", event.newIndex + 1)
-      // console.log(data)
+      console.log(event)
+      const evt = event.added || event.moved
+      if (evt == undefined) {return}
+      const element = evt.element
+// console.log('event.newIndex' )
+//       console.log(event.moved.newIndex  + 1)
 
-      axios({
-        method: 'PATCH',
-        url: `/my_items/${this.items[event.newIndex].id}/move`,
-        data: data,
-        headers: {
-          'Authorization': 'bearer '+this.token.access
-        }
-      }).then((response) => { 
-        this.items= ''
-        this.ItemsGet()
-      }) 
-    },            
+      var data = new FormData
+        
+      // data.append("my_item[id]", this.katbib2s[katbib2_index].id)
+      data.append("my_item[position]", event.moved.newIndex  + 1)
+      data.append("my_item[my_item_id]", event.moved.element.id  )
+      console.log(data.my_item)
+        this.$http.secured.patch(`/my_items/${element.id}/move`, data)
+          .then(response => { 
+    
+        this.menuget()
+        })
+        .catch(error => { this.setError(error, 'Something went wrong') })
+      
+    },
+    // itemsGet(){
+    //   console.log('ItemsGet') 
+    //   axios({
+    //     method: 'get',
+    //     url: '/my_items',
+    //     headers: {
+    //       'Authorization': 'bearer '+this.token.access
+    //     } 
+    //     })
+    //     .then((response) => { 
+    //        // console.log(response)
+    //       this.items= ''
+    //       var total = response.data
+    //       this.items = total
+    //     });      
+    // },
+        
   }
 }
 </script>

@@ -1,7 +1,7 @@
 class MyItemsController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	before_action :authorize_access_request!, only: [:index, :incloareg, :decloareg, :pickdrop, :menuget]
-
+	before_action :authorize_access_request!, only: [:index, :incloareg, :decloareg, :pickdrop, :menuget, :move]
+	before_action :set_my_item, only: [ :show, :edit, :update, :destroy, :move]
   def index
 		@MyItem = User.find(payload['user_id'])
 		
@@ -9,20 +9,39 @@ class MyItemsController < ApplicationController
   end	
 
 	def move
-    @item.update(my_item_params)
+		# @user = MyItem.where('user_id = ?', payload['user_id']).sorted.update(my_item_params)
+ 
+		# @user = MyItem.where('user_id = ?', payload['user_id']).sorted.insert_at(my_item_params)
+		# @user = User.find(payload['user_id']).myItems.update(my_item_params) 
+		# pos = my_item_params[:position]
+		# pos = pos.to_i
+ 
+		# @user = @item.insert_at(my_item_params[:position].to_i)
+		# @user = @item.update(my_item_params)
+ 		# @user = MyItem.where('user_id = ?', payload['user_id']).update(my_item_params)
+ 		# .find(params[:id]).insert_at(pos)
+@user = MyItem.find(my_item_params[:my_item_id].to_i).insert_at(my_item_params[:position].to_i) 
+     # @user = MyItem.update(my_item_params)
+    puts "==----move---=="
+    puts my_item_params[:my_item_id]
+    puts my_item_params.inspect
+    # puts my_item_params.id
+    puts @user.inspect
+    puts "==----move---=="
   end   
   def menuget
   	puts "==----menuget---=="
 
   	@invfind = MyItem.where('user_id = ?', payload['user_id'])
-  		.joins(:listitem).select('my_items.id', 'qty', 'listitems.title', 'listitems.desc', 'listitems.item', 'listitems.rate', 'listitems.id as listid' )
+  		.joins(:listitem)
+  		.select('my_items.id', 'qty', 'position', 'listitems.title', 'listitems.desc', 'listitems.item', 'listitems.rate', 'listitems.id as listid' )
 
   # 	user = User.find(payload['user_id'])
 
 		# my_items = user.myItems.includes(:listitem).group(:listitem_id) 
  
-
-
+		@invfind = @invfind.sorted
+			# @invfind = @invfind
   	# @invfind = MyItem.where('listitem_id = ?', params[:id]).joins(:user).where('users.id = ?', payload['user_id']) 
   		# .select(' qty, listitems.title')
   		# .joins(:listitem)
@@ -118,7 +137,11 @@ class MyItemsController < ApplicationController
   end
 
 	private
+  def set_my_item
+    # binding.pry
+     @item = MyItem.find_by_user_id(payload['user_id'])
+  end	
  def my_item_params
-    params.require(:my_item).permit(   :position, :qty,  )
+    params.require(:my_item).permit( :id, :my_item_id, :position, :qty, :listid )
   end		 
 end
